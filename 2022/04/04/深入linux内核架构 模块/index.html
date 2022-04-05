@@ -16,21 +16,21 @@
   <meta name="author" content="leon.liu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="非对称加密与对称加密优缺点  对称加密：        优点：加密解密速度快        缺点：秘钥容易泄露，安全性低。秘钥管理复杂， 非对称加密：        优点：安全性高，秘钥管理方便。        缺点：加密解密速度慢 加密：公钥加密，私钥解密认证：私钥加密，公钥解密   如果A给B发送一个加密的有数字签名的文件，会怎么样呢？     首先A有自己的公钥和私钥：A_public_ke">
+    <meta name="description" content="深入linux内核架构–模块概述模块的优点 缩减内核映像的尺寸，编译模块无需重新编译内核，动态加载，只运行必要的模块在内核中。 开发调试方便，无需重启系统。  使用模块加载模块有两个应用程序：insmod和modprobe。 modprobe会分析模块的依赖性，把要加载模块依赖的模块先加载如内核。而insmod只是单纯加载一个模块到内核。 模块依赖关系 depmod可以生成依赖 模块自动加载模块不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非对称加密、私钥、公钥、数字签名、数字证书、HTTPS那些事">
-<meta property="og:url" content="http://example.com/2022/04/03/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E3%80%81HTTPS%E9%82%A3%E4%BA%9B%E4%BA%8B/index.html">
+<meta property="og:title" content="深入linux内核架构  模块">
+<meta property="og:url" content="http://example.com/2022/04/04/%E6%B7%B1%E5%85%A5linux%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84%20%E6%A8%A1%E5%9D%97/index.html">
 <meta property="og:site_name" content="leon的博客">
-<meta property="og:description" content="非对称加密与对称加密优缺点  对称加密：        优点：加密解密速度快        缺点：秘钥容易泄露，安全性低。秘钥管理复杂， 非对称加密：        优点：安全性高，秘钥管理方便。        缺点：加密解密速度慢 加密：公钥加密，私钥解密认证：私钥加密，公钥解密   如果A给B发送一个加密的有数字签名的文件，会怎么样呢？     首先A有自己的公钥和私钥：A_public_ke">
+<meta property="og:description" content="深入linux内核架构–模块概述模块的优点 缩减内核映像的尺寸，编译模块无需重新编译内核，动态加载，只运行必要的模块在内核中。 开发调试方便，无需重启系统。  使用模块加载模块有两个应用程序：insmod和modprobe。 modprobe会分析模块的依赖性，把要加载模块依赖的模块先加载如内核。而insmod只是单纯加载一个模块到内核。 模块依赖关系 depmod可以生成依赖 模块自动加载模块不">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-03T13:29:55.000Z">
-<meta property="article:modified_time" content="2022-04-03T13:30:05.000Z">
+<meta property="article:published_time" content="2022-04-04T13:37:02.000Z">
+<meta property="article:modified_time" content="2022-04-05T13:37:20.000Z">
 <meta property="article:author" content="leon.liu">
-<meta property="article:tag" content="协议">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>非对称加密、私钥、公钥、数字签名、数字证书、HTTPS那些事 - leon的博客</title>
+  <title>深入linux内核架构  模块 - leon的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="非对称加密、私钥、公钥、数字签名、数字证书、HTTPS那些事">
+            <span class="h2" id="subtitle" title="深入linux内核架构  模块">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-03 21:29" pubdate>
-        2022年4月3日 晚上
+      <time datetime="2022-04-04 21:37" pubdate>
+        2022年4月4日 晚上
       </time>
     </span>
   
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.7k 字
+      1.4k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14 分钟
+      7 分钟
     </span>
   
 
@@ -243,30 +243,39 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">非对称加密、私钥、公钥、数字签名、数字证书、HTTPS那些事</h1>
+            <h1 style="display: none">深入linux内核架构  模块</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <p><strong>非对称加密与对称加密优缺点</strong></p>
-<p> <strong>对称加密：</strong><br>        优点：加密解密速度快<br>        缺点：秘钥容易泄露，安全性低。秘钥管理复杂，</p>
-<p><strong>非对称加密：</strong><br>        优点：安全性高，秘钥管理方便。<br>        缺点：加密解密速度慢</p>
-<p><strong>加密：公钥加密，私钥解密</strong><br><strong>认证：私钥加密，公钥解密</strong></p>
-<p>  <strong>如果A给B发送一个加密的有数字签名的文件，会怎么样呢？</strong><br>     首先A有自己的公钥和私钥：A_public_key, A_private_key<br>     B也有自己的公钥和私钥：   B_public_key, B_private_key<br>     （1）A和B互换公钥<br>     （2）A将文件用hash算法生成摘要，用A_private_key对摘要加密，得到的就叫数字签名<br>     （3）A用B_public_key对文件加密<br>     （4）将加密的文件和数字签名一起发给B<br>       ——B收到内容后<br>     （5）用B_private_key解密文件，得到明文<br>     （6）用A_public_key解密数字签名，得到内容摘要<br>     （7）将明文的文件内容用同样hash算法得到摘要，与第六步的摘要对比。相同则证明内容和来源都正确。</p>
-<p><strong>解密数字签名时，需要事先知道发送方A的公钥，那怎么才知道自己得到的公钥是发送方A的呢？</strong><br>     例如：C知道B的公钥，然后偷偷把B手里A的公钥A_public_key换成自己的公钥C_public_key，那么以后C给B发送的东西，B还一直以为是A发送的。因为B不知道自己手里公钥就是A的。<br>     怎么办呢？<strong>使用数字证书</strong></p>
-<p>A找证书中心（CA）申请自己的证书，CA把A的公钥和一些信息作为证书内容写入，然后用CA自己的私钥生成数字签名一并写入证书。A给B发数据时把用B的公钥加密的数据、A的数字签名、A的数字证书一起发过去。B的电脑安装有根证书（操作系统带的，知道CA的公钥），用CA的公钥验证A的数字证书里面签名的合法性，合法后从证书内容里读出A的公钥。再用A的公钥解密A的数字签名验证数据完成性。最后用B的私钥解密数据。</p>
-<p><strong>数字证书可以伪造吗？</strong><br>     不能。数字证书里有CA的数字签名，签名是由证书内容的哈希摘要用CA的私钥加密的。用CA的公钥验证签名的合法性就可以验证证书的真假。</p>
-<p><strong>https传输，访问google网站：</strong><br>握手时用非对称加密传输对称加密的密码<br>数据传输时用对称加密的密码加密数据（对称加密解密速度比非对称加密快）</p>
-<p><strong>过程：</strong><br>     （1）浏览器发送自己支持的加密规则给google<br>     （2）google选择一组加密算法和HASH算法，并将自己的数字证书发给浏览器<br>     （3）浏览器验证数字证书的合法性（验证证书的数字签名），然后生成一个随机数，从google的数字证书里面获取google的公钥，用这个公钥加密随机数。用约定的hash算法生成握手消息的摘要，并用生成的随机数加密摘要。把握手消息、加密的摘要、加密的随机数发给google<br>     （4）google用自己的私钥解密随机数，然后用随机数解密摘要，再用hash生成收到的握手消息的摘要与解密的摘要对比，验证正确性。<br>     （5）google一样用hash算法生成握手消息的摘要，并用解密的随机数加密摘要。然后把握手消息、加密的摘要发给浏览器<br>     （6）浏览器验证摘要成功后，握手完成。之后通信的数据用之前浏览器生成的随机密码加密后传输。</p>
-<p><strong>不能授信的https访问？</strong><br>     比如自己搭建的https服务器，证书没有得到CA的认证。浏览器收到服务器的证书后，会查看证书内容，根据证书里的颁发机构在本地电脑的根证书里查找颁发机构对应的公钥。当然查找不到或者解密证书的签名失败，会提示正在访问不授信的网站，但是你是可以继续安全浏览这个网站的。因为浏览器依然可以从不授信的证书里取出服务器的公钥然后加密生成的随机密码，进行后续的握手和数据传输过程。<br>     对于不授信的https访问，只需要注意它是不是钓鱼网站就可以了。例如有可能自己的dns遭到劫持，访问支付宝网站时，被重定向到高度模仿支付宝网页的https网站。这时google浏览器肯定就会弹窗提示你正在访问不授信的https网站，如果你没有提高警惕，就会被蒙蔽，泄露了自己输入的账户和密码。</p>
-<p><strong>还有哪种情况会出现访问https网站而不安全呢？</strong><br>     电脑的根证书是假的。操作系统里有很多自带的根证书，存储了各个数字证书中心的公钥。如果根证书是假的，那么就有面临访问欺诈网站而不自察的问题。<br>      当然一般而言根证书不会是假的，如果是假的，那么这家数字证书中心颁发的所有证书都会被提示为不授信，容易被看出来。如若根证书是真的，但证书中心的私钥被黑客获取到了，那么他就可以给自己颁发假证书而瞒过大家了。操作系统厂商知道这个情况后会更新补丁宣布该根证书失效，或者通过更新证书吊销列表CRL来宣布证书失效。此时你就会得到这句提示“ 该站点安全证书的吊销信息不可用，是否继续”。<br>      还有一种情况就是你自己安装的根证书被窃取了。例如12306购票网站要求下载安装根证书，这个根证书说白了就是12306自己给自己颁发的，没有在CA获得认证，所以浏览器会提示你在访问不授信的网站之类的消息，12306首页就给个公告让大家安装他提供的根证书来消除大家购票的后顾之忧。12306这么挫，那么它的根证书被窃取到私钥就成为可能了，非法分子就可以通过12306的私钥来颁发假证书欺骗中国的广大网民。即便12306知道了自己证书被窃，也没有好的补救措施（操作系统厂商不会给你打补丁，不会把你的证书更新到CRL），只能发个公告让大家手动删除安装的证书。</p>
-<p><strong>为路由器申请免费证书？</strong><br>     我试了下去申请有授权的免费证书，申请不到，有两点原因：（1）我们通过192.168.2.1访问，证书不能绑定局域网IP，最多只能绑定公网IP（2）通过airphomesh.net访问，这个域名也是没有去正规机构注册，内部用得，验证的时候解析不了dns，验证失败。freeSSL的验证方法：去dns服务商哪儿修改你的记录值，然后他会检查记录值是否改了，主要就是验证这个域名是你的。</p>
-<p>参考：<br>数字签名是什么 <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html">http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html</a><br>https那些事 <a target="_blank" rel="noopener" href="http://www.guokr.com/post/114121/">http://www.guokr.com/post/114121/</a></p>
-<p>公钥私钥加密解密数字证书数字签名详解 <a target="_blank" rel="noopener" href="http://codefine.co/1455.html">http://codefine.co/1455.html</a><br>为什么12306买火车票要安装根证书<br><a target="_blank" rel="noopener" href="https://techyan.me/2013/05/07/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A812306%E4%B9%B0%E7%81%AB%E8%BD%A6%E7%A5%A8%E8%A6%81%E8%A3%85%E6%A0%B9%E8%AF%81%E4%B9%A6%EF%BC%9F/?variant=zh-cn">https://techyan.me/2013/05/07/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A812306%E4%B9%B0%E7%81%AB%E8%BD%A6%E7%A5%A8%E8%A6%81%E8%A3%85%E6%A0%B9%E8%AF%81%E4%B9%A6%EF%BC%9F/?variant=zh-cn</a></p>
+              <h1 id="深入linux内核架构–模块"><a href="#深入linux内核架构–模块" class="headerlink" title="深入linux内核架构–模块"></a>深入linux内核架构–模块</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="模块的优点"><a href="#模块的优点" class="headerlink" title="模块的优点"></a>模块的优点</h3><ul>
+<li>缩减内核映像的尺寸，编译模块无需重新编译内核，动态加载，只运行必要的模块在内核中。</li>
+<li>开发调试方便，无需重启系统。</li>
+</ul>
+<h3 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h3><p>加载模块有两个应用程序：insmod和modprobe。</p>
+<p>modprobe会分析模块的依赖性，把要加载模块依赖的模块先加载如内核。而insmod只是单纯加载一个模块到内核。</p>
+<p><strong>模块依赖关系</strong></p>
+<p>depmod可以生成依赖</p>
+<h2 id="模块自动加载"><a href="#模块自动加载" class="headerlink" title="模块自动加载"></a>模块自动加载</h2><p>模块不仅可以由用户命令加载，还可以由内核主动发起加载。如下两种情况会主动加载：</p>
+<p>（1）内核知道一个功能不可用，如用户请求挂载一个文件系统，但内核不支持，可以尝试加载所需要的模块，然后再次重启挂载文件系统。</p>
+<p>（2）一个新设备连接到可插拔的总线（USB,PCI等），内核自动加载适当的模块。</p>
+<p>如上两种情况都会依赖应用层的应用程序。</p>
+<h3 id="kmod实现自动加载"><a href="#kmod实现自动加载" class="headerlink" title="kmod实现自动加载"></a>kmod实现自动加载</h3><p>内核发起主动加载主要是调用<code>request_module</code>函数，实现在<code>kernel/kmod.c</code>。</p>
+<p>以netfilter的nf-log为例，当用户通过iptables命令启动nflog时，内核会通过<code>nf_logger_find_get</code>查找，实现如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">nf_logger_find_get</span><span class="hljs-params">(<span class="hljs-type">int</span> pf, <span class="hljs-keyword">enum</span> nf_log_type type)</span><br>&#123;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">nf_logger</span> *<span class="hljs-title">logger</span>;</span><br><br>	<span class="hljs-keyword">if</span> (rcu_access_pointer(loggers[pf][type]) == <span class="hljs-literal">NULL</span>)<br>		request_module(<span class="hljs-string">&quot;nf-logger-%u-%u&quot;</span>, pf, type);<br>	<span class="hljs-comment">// .....</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当前没有这个logger，那么就调用request_module加载对应模块。</p>
+<p>request_module实现是通过创建工作队列，运行应用层程序<code>modprobe</code>（该值可通过&#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;modprobe配置）。</p>
+<p><strong>modprobe怎么找到这个模块？</strong></p>
+<p>request_module的第一个参数<code>&quot;nf-logger-%u-%u&quot;</code>看着有些奇怪，modprobe会通过模块别名找到具体模块，别名在模块安装时生成。如下</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">leon</span>@leon-server:~$ cat /lib/modules/<span class="hljs-number">5</span>.<span class="hljs-number">4</span>.<span class="hljs-number">0</span>-<span class="hljs-number">58</span>-generic/modules.alias | grep nf-log<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">5</span>-<span class="hljs-number">1</span> nfnetlink_log<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">3</span>-<span class="hljs-number">1</span> nfnetlink_log<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">7</span>-<span class="hljs-number">1</span> nfnetlink_log<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">10</span>-<span class="hljs-number">1</span> nfnetlink_log<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">2</span>-<span class="hljs-number">1</span> nfnetlink_log<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">5</span>-<span class="hljs-number">0</span> nf_log_netdev<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">3</span>-<span class="hljs-number">0</span> nf_log_arp<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">2</span>-<span class="hljs-number">0</span> nf_log_ipv4<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">10</span>-<span class="hljs-number">0</span> nf_log_ipv6<br><span class="hljs-attribute">alias</span> nf-logger-<span class="hljs-number">7</span>-<span class="hljs-number">0</span> nf_log_bridge<br></code></pre></td></tr></table></figure>
+
+<h3 id="热插拔"><a href="#热插拔" class="headerlink" title="热插拔"></a>热插拔</h3><p>device tab注册的地方，我的usb磁盘怎么加载上去的</p>
+<h3 id="启动阶段自动加载"><a href="#启动阶段自动加载" class="headerlink" title="启动阶段自动加载"></a>启动阶段自动加载</h3><p>修改<code>/etc/modules</code>文件即可</p>
 
             </div>
             <hr>
@@ -277,7 +286,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
                     
                   </div>
                 
@@ -294,9 +303,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/04/%E6%B7%B1%E5%85%A5linux%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84%20%E6%A8%A1%E5%9D%97/">
+                      <a href="/2022/04/04/%E6%B7%B1%E5%85%A5linux%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84--%E6%A8%A1%E5%9D%97/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">深入linux内核架构  模块</span>
+                        <span class="hidden-mobile">深入linux内核架构--模块</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -304,8 +313,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/03/linux%E7%94%A8fread%E8%AF%BBsocket%E6%95%B0%E6%8D%AE%E6%B3%A8%E6%84%8F%E7%82%B9/">
-                        <span class="hidden-mobile">linux下使用fread读socket套接字的注意点</span>
+                      <a href="/2022/04/03/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E3%80%81HTTPS%E9%82%A3%E4%BA%9B%E4%BA%8B/">
+                        <span class="hidden-mobile">非对称加密、私钥、公钥、数字签名、数字证书、HTTPS那些事</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
