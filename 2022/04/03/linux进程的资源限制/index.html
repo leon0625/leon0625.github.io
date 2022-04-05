@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="leon.liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="linux进程的资源限制setrlimit和getrlimit　　每个进程都有一组资源限制，可以通过getrlimit和setrlimit函数查询更改。   注意：　　资源限制影响到调用进程并由子进程继承。   函数原型   123456789#include &lt;sys&#x2F;resource.h&gt;int getrlimit(int resource, struct rlimit *rlim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux进程的资源限制">
+<meta property="og:url" content="http://example.com/2022/04/03/linux%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6/index.html">
+<meta property="og:site_name" content="leon的博客">
+<meta property="og:description" content="linux进程的资源限制setrlimit和getrlimit　　每个进程都有一组资源限制，可以通过getrlimit和setrlimit函数查询更改。   注意：　　资源限制影响到调用进程并由子进程继承。   函数原型   123456789#include &lt;sys&#x2F;resource.h&gt;int getrlimit(int resource, struct rlimit *rlim">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-03T08:45:34.000Z">
+<meta property="article:modified_time" content="2022-04-05T07:58:04.278Z">
+<meta property="article:author" content="leon.liu">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>linux进程的资源限制 - leon的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>leon的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="linux进程的资源限制">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-03 16:45" pubdate>
+        2022年4月3日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">linux进程的资源限制</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：13 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="linux进程的资源限制"><a href="#linux进程的资源限制" class="headerlink" title="linux进程的资源限制"></a>linux进程的资源限制</h1><h2 id="setrlimit和getrlimit"><a href="#setrlimit和getrlimit" class="headerlink" title="setrlimit和getrlimit"></a>setrlimit和getrlimit</h2><p>　　每个进程都有一组资源限制，可以通过getrlimit和setrlimit函数查询更改。  </p>
+<p><strong>注意：</strong><br>　　<strong>资源限制影响到调用进程并由子进程继承。</strong>  </p>
+<p><em>函数原型</em>  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/resource.h&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getrlimit</span><span class="hljs-params">(<span class="hljs-type">int</span> resource, <span class="hljs-keyword">struct</span> rlimit *rlim)</span></span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">setrlimit</span><span class="hljs-params">(<span class="hljs-type">int</span> resource, <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> rlimit *rlim)</span></span>;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">rlimit</span> &#123;<br>    <span class="hljs-type">rlim_t</span> rlim_cur;  <span class="hljs-comment">/* Soft limit */</span><br>    <span class="hljs-type">rlim_t</span> rlim_max;  <span class="hljs-comment">/* Hard limit (ceiling for rlim_cur) */</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>更改资源限制时，有以下几点规则：  </p>
+<ol>
+<li>软限制值小于等于硬限制值；  </li>
+<li><strong>超级用户才能更改硬限制值</strong>；</li>
+</ol>
+<p>可通过reource参数设置需要更改的资源限制<br>下面介绍一下关心的时间和内存限制：  </p>
+<ul>
+<li><p>RLIMIT_CPU<br>cpu使用的最大值（秒），当超过软限制时，内核向改进程发送SIGXCPU信号。进程可以捕捉该信号，到内核会每个1s发一次，当超过硬限制时，会发送SIGKILL信号终止该进程。  </p>
+</li>
+<li><p>RLIMIT_AS<br>进程可用存储区的最大长度（字节）。这会影响sbrk很mmap函数。超过限制会收到SIGSEGV信号。    </p>
+</li>
+<li><p>RLIMIT_DATA<br>数据段的最大字节长度，这是初始化、非初始化以及堆的总大小。超过限制会收到SIGSEGV信号。  </p>
+</li>
+<li><p>RLIMIT_STACK<br>栈的最大大小</p>
+</li>
+</ul>
+<hr>
+<h3 id="RLIMIT-AS和RLIMIT-DATA"><a href="#RLIMIT-AS和RLIMIT-DATA" class="headerlink" title="RLIMIT_AS和RLIMIT_DATA"></a>RLIMIT_AS和RLIMIT_DATA</h3><ul>
+<li>在实际使用中，我们往往会限制竞赛程序的malloc分配总大小和全局数组空间大小。那么这两个参数该怎么用才能限制住呢？<br>　　全局数组肯定会占用数据段的大小，用RLIMIT_DATA限制即可。关键是malloc的限制，这个glibc的实现有关了。glibc在分配小内存时在堆上分配，这通过RLIMIT_DATA可以限制；而超过限制的大内存是通过mmap分配，mmap分配的不在堆上，而它产生的地址空间受RLIMIT_AS影响。</li>
+</ul>
+<p>问题：RLIMIT_DATA和RLIMIT_AS限制多大合适？  
+　　</p>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://github.com/lodevil/Lo-runner/issues/10">https://github.com/lodevil/Lo-runner/issues/10</a><br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/niocai/archive/2012/04/01/2428128.html">http://www.cnblogs.com/niocai/archive/2012/04/01/2428128.html</a><br>unix系统高级编程  </p>
+<p><em>一段限制的小程序</em>  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/time.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/resource.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/wait.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> KB (1024)</span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">set_limit</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">rlimit</span> <span class="hljs-title">memory_limit</span>;</span><br><br>    <span class="hljs-comment">//限制进程虚拟地址段大小</span><br>    memory_limit.rlim_cur = memory_limit.rlim_max = <span class="hljs-number">10</span>*<span class="hljs-number">1024</span>*KB;<br>    <span class="hljs-keyword">if</span>(setrlimit(RLIMIT_AS, &amp;memory_limit))<br>        perror(<span class="hljs-string">&quot;setrlimit:&quot;</span>);<br><br>    <span class="hljs-comment">//限制进程数据段大小</span><br>    memory_limit.rlim_cur = memory_limit.rlim_max = <span class="hljs-number">10</span>*<span class="hljs-number">1024</span>*KB;<br>    <span class="hljs-keyword">if</span>(setrlimit(RLIMIT_DATA, &amp;memory_limit))<br>        perror(<span class="hljs-string">&quot;setrlimit:&quot;</span>);<br><br>    <span class="hljs-comment">//限制进程栈大小</span><br>    memory_limit.rlim_cur = memory_limit.rlim_max = <span class="hljs-number">1024</span>*KB;<br>    <span class="hljs-keyword">if</span>(setrlimit(RLIMIT_STACK, &amp;memory_limit))<br>        perror(<span class="hljs-string">&quot;setrlimit:&quot;</span>);<br><br>    <span class="hljs-comment">//限制进程CPU时间</span><br>    memory_limit.rlim_cur = memory_limit.rlim_max = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(setrlimit(RLIMIT_CPU, &amp;memory_limit))<br>        perror(<span class="hljs-string">&quot;setrlimit:&quot;</span>);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span><br>&#123;<br>    <span class="hljs-type">pid_t</span> pid;<br>    <span class="hljs-type">int</span> status;<br><br>    <span class="hljs-comment">/* 子进程参数处理 */</span><br>    <span class="hljs-type">char</span> *child_argv[<span class="hljs-number">10</span>] = &#123;<span class="hljs-literal">NULL</span>&#125;;<br>    <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt; argc; i++)<br>    &#123;<br>        child_argv[i<span class="hljs-number">-1</span>] = argv[i];<br>    &#125;<br><br>    set_limit();<br>    <span class="hljs-keyword">if</span>((pid = fork()) &lt; <span class="hljs-number">0</span>)<br>    &#123;<br>        perror(<span class="hljs-string">&quot;&quot;</span>);<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">-1</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(pid == <span class="hljs-number">0</span>)<br>    &#123;<br>        execvp(child_argv[<span class="hljs-number">0</span>], child_argv);  <span class="hljs-comment">//执行竞赛程序</span><br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;llm-&gt;%s(%d) execvp error\n&quot;</span>, __FUNCTION__, __LINE__);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-keyword">if</span>(wait(&amp;status) != pid)<br>            perror(<span class="hljs-string">&quot;wait:&quot;</span>);<br><br>        <span class="hljs-keyword">if</span>(WIFEXITED(status))<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;child process normal exit\n&quot;</span>);<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(WIFSIGNALED(status))<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;abort,  signal number = %d\n&quot;</span>, WTERMSIG(status));<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/03/goahead%E4%BB%A3%E7%A0%81-rom%20page%E5%8E%9F%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">goahead代码-rom page原理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/03/%E5%9C%A8Makefile%E9%87%8C%E5%AE%9E%E7%8E%B0%E7%B1%BB%E4%BC%BC%E6%88%96%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%85%B3%E7%B3%BB/">
+                        <span class="hidden-mobile">在Makefile里实现类似或的条件关系</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","appKey":"K6nBN6bvf3Kv7DI1c2M7eHiQ","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    人生苦短，远离bug
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://lib.baomitu.com/mermaid/8.13.10/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
