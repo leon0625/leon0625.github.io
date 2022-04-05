@@ -16,20 +16,21 @@
   <meta name="author" content="leon.liu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="深入linux内核架构–模块  title: 深入linux内核架构–模块date: 2022-4-4 21:37:02tags: linuxpostHexo: true  深入linux内核架构–模块概述模块的优点 缩减内核映像的尺寸，编译模块无需重新编译内核，动态加载，只运行必要的模块在内核中。 开发调试方便，无需重启系统。  使用模块加载模块有两个应用程序：insmod和modprobe。">
+    <meta name="description" content="深入linux内核架构–模块概述模块的优点 缩减内核映像的尺寸，编译模块无需重新编译内核，动态加载，只运行必要的模块在内核中。 开发调试方便，无需重启系统。  使用模块加载模块有两个应用程序：insmod和modprobe。 modprobe会分析模块的依赖性，把要加载模块依赖的模块先加载如内核。而insmod只是单纯加载一个模块到内核。 模块依赖关系 depmod可以生成依赖 模块自动加载模块不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leon的博客">
-<meta property="og:url" content="http://example.com/2022/04/05/%E6%B7%B1%E5%85%A5linux%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84--%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:title" content="深入linux内核架构--模块">
+<meta property="og:url" content="http://example.com/2022/04/04/%E6%B7%B1%E5%85%A5linux%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84--%E6%A8%A1%E5%9D%97/index.html">
 <meta property="og:site_name" content="leon的博客">
-<meta property="og:description" content="深入linux内核架构–模块  title: 深入linux内核架构–模块date: 2022-4-4 21:37:02tags: linuxpostHexo: true  深入linux内核架构–模块概述模块的优点 缩减内核映像的尺寸，编译模块无需重新编译内核，动态加载，只运行必要的模块在内核中。 开发调试方便，无需重启系统。  使用模块加载模块有两个应用程序：insmod和modprobe。">
+<meta property="og:description" content="深入linux内核架构–模块概述模块的优点 缩减内核映像的尺寸，编译模块无需重新编译内核，动态加载，只运行必要的模块在内核中。 开发调试方便，无需重启系统。  使用模块加载模块有两个应用程序：insmod和modprobe。 modprobe会分析模块的依赖性，把要加载模块依赖的模块先加载如内核。而insmod只是单纯加载一个模块到内核。 模块依赖关系 depmod可以生成依赖 模块自动加载模块不">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-05T12:30:30.141Z">
-<meta property="article:modified_time" content="2022-04-05T12:30:30.141Z">
+<meta property="article:published_time" content="2022-04-04T13:37:02.000Z">
+<meta property="article:modified_time" content="2022-04-05T12:40:57.857Z">
 <meta property="article:author" content="leon.liu">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>leon的博客</title>
+  <title>深入linux内核架构--模块 - leon的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -175,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="">
+            <span class="h2" id="subtitle" title="深入linux内核架构--模块">
               
             </span>
 
@@ -185,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-05 20:30" pubdate>
-        2022年4月5日 晚上
+      <time datetime="2022-04-04 21:37" pubdate>
+        2022年4月4日 晚上
       </time>
     </span>
   
@@ -196,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      1.9k 字
     </span>
   
 
@@ -205,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11 分钟
+      10 分钟
     </span>
   
 
@@ -242,20 +243,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">深入linux内核架构--模块</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 分钟前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <p>深入linux内核架构–模块</p>
-<hr>
-<p>title: 深入linux内核架构–模块<br>date: 2022-4-4 21:37:02<br>tags: linux<br>postHexo: true</p>
-<hr>
-<h1 id="深入linux内核架构–模块"><a href="#深入linux内核架构–模块" class="headerlink" title="深入linux内核架构–模块"></a>深入linux内核架构–模块</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="模块的优点"><a href="#模块的优点" class="headerlink" title="模块的优点"></a>模块的优点</h3><ul>
+              <h1 id="深入linux内核架构–模块"><a href="#深入linux内核架构–模块" class="headerlink" title="深入linux内核架构–模块"></a>深入linux内核架构–模块</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="模块的优点"><a href="#模块的优点" class="headerlink" title="模块的优点"></a>模块的优点</h3><ul>
 <li>缩减内核映像的尺寸，编译模块无需重新编译内核，动态加载，只运行必要的模块在内核中。</li>
 <li>开发调试方便，无需重启系统。</li>
 </ul>
@@ -287,6 +284,13 @@
               <div class="post-metas mb-3">
                 
                 
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                  </div>
+                
               </div>
               
                 <p class="note note-warning">
@@ -302,7 +306,7 @@
                     
                       <a href="/2022/04/05/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">博客使用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
