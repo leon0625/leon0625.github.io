@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-04/16-094559-a4a0-leon.png">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-04-16T09:56:02.000Z">
+<meta property="article:modified_time" content="2022-04-16T09:57:25.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.7k 字
+      4.4k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24 分钟
+      23 分钟
     </span>
   
 
@@ -397,21 +397,14 @@
 
 <p><strong>–soft</strong></p>
 <p>只是修改HEAD指向，相当于撤回了commit动作。所有修改的文件都是已暂存状态。</p>
-<p>所以可以用–soft合并之前的多个临时提交。</p>
+<p>所以可以用–soft合并之前的多个提交（压缩提交）。</p>
 <p><strong>–mixed</strong></p>
 <p>不跟路径的情况下，修改HEAD和index指向，相当于撤回了commit和add动作。所有撤回的修改都存在工作区中。</p>
 <p><strong>–hard</strong></p>
 <p>三棵树同时修改，相当于撤回了commit,add,和本地修改。（因为之前的已经提交了，还可以通过reflog救回来）</p>
 <p><strong>git reset [版本aa] 路径</strong></p>
 <p>git reset 跟路径的情况下，会把index更改为reset的版本状态，把work中的文件改为HEAD中的状态（即修改撤回到work了）。如果此时直接commit，那么commit后仓库中的文件跟版本aa是一样。</p>
-<pre><code class=" mermaid">sequenceDiagram
-	participant ws as 工作区&lt;br/&gt;(working tree)
-	participant index as 暂存区&lt;br/&gt;index&lt;br/&gt;又叫staged
-	participant head as HEAD &lt;br/&gt; 当前分支的头
-
-	ws -&gt;&gt; index: git add/rm/del
-	index -&gt;&gt; head: git commit
-	head-&gt;&gt;index: git reset --soft
+<pre><code class=" mermaid">
 </code></pre>
 
 
