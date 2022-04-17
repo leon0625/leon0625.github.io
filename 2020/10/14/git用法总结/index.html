@@ -23,13 +23,11 @@
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  配置（1）初次配置用户名邮箱 12git config --global user.name &quot;leon&amp;quo">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-04/16-094559-a4a0-leon.png">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-04-17T01:34:41.000Z">
+<meta property="article:modified_time" content="2022-04-17T01:36:11.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-04/16-094559-a4a0-leon.png">
   
   
   <title>git用法总结 - leon的博客</title>
@@ -199,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.9k 字
+      4.5k 字
     </span>
   
 
@@ -208,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25 分钟
+      23 分钟
     </span>
   
 
@@ -300,7 +298,7 @@
 	ws -&gt;&gt; staged: git add
 	staged-&gt;&gt;ws: git reset &lt;file&gt;
 	staged-&gt;&gt;.git: git commit
-	.git-&gt;&gt;ws:git reset &lt;commit &gt;
+	.git-&gt;&gt;ws:git reset &lt;commit id&gt;
 	.git-&gt;&gt;ws: git checkout
 	.git-&gt;&gt;remote: git push
 	remote-&gt;&gt;.git: git fetch
@@ -310,25 +308,6 @@
 </code></pre>
 
 
-
-<h4 id="文件状态"><a href="#文件状态" class="headerlink" title="文件状态"></a>文件状态</h4><p>刚clone好的仓库，所有文件都是未修改状态，文件状态的变化如下图。</p>
-<pre><code class=" mermaid">sequenceDiagram
-	participant untrack as 未跟踪
-	participant unmod as 未修改
-	participant modifyied as 已修改
-	participant staged as 已暂存
-	untrack -&gt;&gt; staged:git add
-	staged -&gt;&gt; untrack: git restore --stage filename
-	
-	unmod -&gt;&gt; modifyied: 编辑文件
-	modifyied -&gt;&gt; unmod: git restore filename
-	modifyied -&gt;&gt; staged: git add
-	staged -&gt;&gt; modifyied: git restore --stage filename
-</code></pre>
-
-
-
-<img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-04/16-094559-a4a0-leon.png" srcset="/img/loading.gif" lazyload alt="image-20220416094557938" style="zoom:70%;" />
 
 <h3 id="查看修改diff"><a href="#查看修改diff" class="headerlink" title="查看修改diff"></a>查看修改diff</h3><ul>
 <li><p>查看当前工作区的修改(修改后还未暂存)</p>
