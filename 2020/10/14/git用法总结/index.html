@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  配置（1）初次配置用户名邮箱 12git config --global user.name &quot;leon&amp;quo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-04-17T01:36:11.000Z">
+<meta property="article:modified_time" content="2022-04-17T01:37:09.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -298,7 +298,7 @@
 	ws -&gt;&gt; staged: git add
 	staged-&gt;&gt;ws: git reset &lt;file&gt;
 	staged-&gt;&gt;.git: git commit
-	.git-&gt;&gt;ws:git reset &lt;commit id&gt;
+
 	.git-&gt;&gt;ws: git checkout
 	.git-&gt;&gt;remote: git push
 	remote-&gt;&gt;.git: git fetch
