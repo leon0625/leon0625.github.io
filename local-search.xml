@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>ubuntu server安装xfce4桌面</title>
+    <link href="/2022/04/20/ubuntu%20server%E5%AE%89%E8%A3%85xfce4%E6%A1%8C%E9%9D%A2/"/>
+    <url>/2022/04/20/ubuntu%20server%E5%AE%89%E8%A3%85xfce4%E6%A1%8C%E9%9D%A2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="ubuntu-server安装xfce4桌面"><a href="#ubuntu-server安装xfce4桌面" class="headerlink" title="ubuntu server安装xfce4桌面"></a>ubuntu server安装xfce4桌面</h1><blockquote><p>一般而言不需要使用桌面环境，只是为了使用gitk看log，通过smaba共享，在windows上看log比较慢。</p><p>xfce桌面环境据说比较轻量，快捷，linus大神都是用这个</p></blockquote><p>使用如下命令安装：</p><figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs bash">sudo apt install xfce4 xfce4-terminal<br></code></pre></td></tr></table></figure><p>xfce4-terminal一并装上，不然桌面终端会使用xterm，xterm实在太简陋了（主要是字体太小，还不好调（ctrl+右键可以临时调一下））。</p><p>装完之后登录时需要选择xfce4桌面</p><p><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-04/20-234459-7894-leon.png" alt="image-20220420234456899"></p><p>登录之后就可以看到桌面了<br><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-04/20-234948-fbdd-leon.png"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>ubuntu</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>博客使用</title>
     <link href="/2022/04/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/"/>
     <url>/2022/04/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/</url>
