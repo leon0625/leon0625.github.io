@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  配置（1）初次配置用户名邮箱 12git config --global user.name &quot;leon&amp;quo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-04-21T05:46:15.000Z">
+<meta property="article:modified_time" content="2022-04-21T05:51:16.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.4k 字
+      5.5k 字
     </span>
   
 
@@ -421,7 +421,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># dcommit发现冲突</span><br>git svn dcommit<br><span class="hljs-comment"># 拉取svn新代码合入本地，会有冲突的文件</span><br>git svn rebase<br><span class="hljs-comment"># 查看那些文件冲突</span><br>git st<br><span class="hljs-comment"># 修改文件，解决冲突</span><br>vi xxx<br><span class="hljs-comment"># 标记冲突已解决</span><br>git add xxx<br><span class="hljs-comment"># 继续变基</span><br>git rebase --<span class="hljs-built_in">continue</span><br><span class="hljs-comment"># 提交代码</span><br>git svn dcommit<br></code></pre></td></tr></table></figure>
 
 
-<h3 id="空目录问题"><a href="#空目录问题" class="headerlink" title="空目录问题"></a>空目录问题</h3><p>git不支持空目录<br>.gitkeep文件使用</p>
+<h3 id="空目录问题"><a href="#空目录问题" class="headerlink" title="空目录问题"></a>空目录问题</h3><p>git不支持空目录<br>.gitkeep文件使用<br>查找空文件夹<br><code>find -type d -empty</code><br>在空文件夹下建一个.gitkeep（约定俗成）</p>
 <h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><h3 id="如何在github上下载某个项目的单独某个目录？"><a href="#如何在github上下载某个项目的单独某个目录？" class="headerlink" title="如何在github上下载某个项目的单独某个目录？"></a>如何在github上下载某个项目的单独某个目录？</h3><p>使用svn来下载，例如我想下载我的practice项目的hash_table目录</p>
 <p>（1）在github上点开这个目录，浏览器地址栏可以得到这个地址</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/leon0625/practice/tree/master/hash_table">https://github.com/leon0625/practice</a><a target="_blank" rel="noopener" href="https://github.com/leon0625/practice/tree/master/hash_table">&#x2F;tree&#x2F;master</a>&#x2F;hash_table</p>
