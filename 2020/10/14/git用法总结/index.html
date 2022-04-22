@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  配置（1）初次配置用户名邮箱 12git config --global user.name &quot;leon&amp;quo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-04-22T07:36:47.000Z">
+<meta property="article:modified_time" content="2022-04-22T07:40:59.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -421,7 +421,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># dcommit发现冲突</span><br>git svn dcommit<br><span class="hljs-comment"># 拉取svn新代码合入本地，会有冲突的文件</span><br>git svn rebase<br><span class="hljs-comment"># 查看那些文件冲突</span><br>git st<br><span class="hljs-comment"># 修改文件，解决冲突</span><br>vi xxx<br><span class="hljs-comment"># 标记冲突已解决</span><br>git add xxx<br><span class="hljs-comment"># 继续变基</span><br>git rebase --<span class="hljs-built_in">continue</span><br><span class="hljs-comment"># 提交代码</span><br>git svn dcommit<br></code></pre></td></tr></table></figure>
 
 
-<h3 id="空目录问题"><a href="#空目录问题" class="headerlink" title="空目录问题"></a>空目录问题</h3><p>git不支持空目录权限管理，无法git add空目录，所以如果svn服务器上有空目录。使用会有一些注意点：<br>（1）git svn clone的最后一步，git会主动建立空目录，保存代码一致<br>（2）<strong>如果rm所有代码，然后git reset –hard，这时空目录会丢失</strong></p>
+<h3 id="空目录问题"><a href="#空目录问题" class="headerlink" title="空目录问题"></a>空目录问题</h3><p>git不支持空目录权限管理，无法git add空目录，所以如果svn服务器上有空目录。使用会有一些注意点：<br>（1）git svn clone的最后一步，git会主动建立空目录，保存代码一致<br>（2）<strong>如果rm所有代码，然后git reset –hard，这时空目录会丢失</strong>。恢复办法为：git svn rebase，这时空目录会重新创建。</p>
 <p><strong>解决办法</strong><br>（1）先通过svn下载代码，然后查找空文件夹 <code>find -type d -empty</code><br>（2）在空文件夹下建一个.gitkeep（约定俗成），并提交这个空目录（视情况）</p>
 <h3 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h3><p>2个固定分支<br>master主分支：不做任何修改，用于merge要提交的代码，从原厂仓库拉最新代码<br>工作空间分支：提交本地化的管理型代码（gitignore,.vscode,.gitkeep），同步最新的master分支</p>
 <p>其他特性分支：从工作空间创建，修改bug，特性开发的分支。修改完后，将修改点rebase或者merge到master。从master提交代码，</p>
