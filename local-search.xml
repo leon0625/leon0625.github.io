@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>obsidian插件使用</title>
+    <link href="/2022/05/14/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
+    <url>/2022/05/14/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="高级表格"><a href="#高级表格" class="headerlink" title="高级表格"></a>高级表格</h1><p>使用tab和enter，自动对齐，比较方便，还可以排序等</p><table><thead><tr><th>fdsf</th><th>fdsf</th><th>sdfsdf</th></tr></thead><tbody><tr><td>ss</td><td>sssssssssssssss</td><td>dddddddddddddd</td></tr><tr><td>fdsffdsfdsfdsfs</td><td>fdsfds</td><td>s</td></tr></tbody></table><h1 id="admonition"><a href="#admonition" class="headerlink" title="admonition"></a>admonition</h1><p>更美观的东西</p><figure class="highlight plaintext"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs ad-bug">不清楚为啥有问题<br></code></pre></td></tr></table></figure><p>自定义标题和默认折叠（折叠这个功能很有用，可以折叠大段代码）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ad-error">title: 代码<br>collapse: close<br><br>```c<br>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#include &lt;string.h&gt;<br><br>int main(int argc, char *argv[])<br>&#123;<br>    /* code */<br>    return 0;<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ad-note">污染问题，和其他markdown解析器不兼容，肯定会存在一点点。不要用太高级的就行。<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>[object Object]</title>
     <link href="/2022/05/14/%7B%7Btitle%7D%7D/"/>
     <url>/2022/05/14/%7B%7Btitle%7D%7D/</url>
