@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-05-27T02:56:36.000Z">
+<meta property="article:modified_time" content="2022-06-15T06:32:09.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月27日 上午
+                  本文最后更新于：2022年6月15日 下午
                 
               </p>
             
@@ -341,6 +341,9 @@
 <p><code>--soft</code> 不删除工作空间改动代码</p>
 <p><code>--hard</code> 删除工作空间改动</p>
 <p><code>HEAD^</code> 上一个版本，也可以写成<code>HEAD~1</code></p>
+<p>(6) 撤销中间某次commit</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq">git <span class="hljs-built_in">revert</span> commit_id<br></code></pre></td></tr></table></figure>
+<p>执行之后会自动提交。</p>
 <h3 id="status"><a href="#status" class="headerlink" title="status"></a>status</h3><p>（1）git status不显示Untracked的文件</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git status -uno</span><br></code></pre></td></tr></table></figure>
 
