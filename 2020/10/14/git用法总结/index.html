@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-06-15T06:32:09.000Z">
+<meta property="article:modified_time" content="2022-06-17T08:25:37.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年6月15日 下午
+                  本文最后更新于：2022年6月17日 下午
                 
               </p>
             
@@ -280,7 +280,7 @@
 
 <h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><p>创建<code>.gitignore</code>文件即可，忽略遵从如下规则</p>
 <ul>
-<li>#开头的行表示注释</li>
+<li><code>#</code>开头的行表示注释</li>
 <li>可以使用标准的 glob 模式匹配，它会<strong>递归</strong>地应用在整个工作区中</li>
 <li>匹配模式可以以（&#x2F;）开头防止递归</li>
 <li>匹配模式可以以（&#x2F;）结尾指定目录</li>
