@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>生成树协议STP算法</title>
+    <link href="/2022/09/09/%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AESTP%E7%AE%97%E6%B3%95/"/>
+    <url>/2022/09/09/%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AESTP%E7%AE%97%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="生成树协议STP算法"><a href="#生成树协议STP算法" class="headerlink" title="生成树协议STP算法"></a>生成树协议STP算法</h1><blockquote><p>以太网网桥使用生成树协议STP(Spanning Tree Protocol)，可以在提高网络可靠性的同时，又避免环路带来的各种问题。</p></blockquote><p>生成树算法STA(Spanning Tree Algorithm)是生成树协议的核心。它的目的是：在包含有物理环路的网络中，构建出一个能够连通全网各个节点的树形无环路逻辑拓扑。</p><p><strong>生成树算法三步骤</strong><br>（1）选举根网桥<br>（2）选举根端口<br>（3）选举指定端口并阻塞备用端口</p><h2 id="选举根网桥"><a href="#选举根网桥" class="headerlink" title="选举根网桥"></a>选举根网桥</h2><p>选举规则为：<strong>网桥ID（BID）最小者为根网桥。</strong></p><p>网桥ID由两部分组成：优先级，网桥的mac地址。<br>优先级范围为：0-61440，默认为32768，步长4096。</p><p>网桥ID的比较方法为：<br>（1）优先级小的，则网桥ID越小。<br>（2）优先级相同，则比较MAC地址。MAC地址从左至右比较，数值小的，则网桥ID越小。</p><h2 id="选举根端口RP（Root-Port）"><a href="#选举根端口RP（Root-Port）" class="headerlink" title="选举根端口RP（Root Port）"></a>选举根端口RP（Root Port）</h2><p>每个非根网桥上都有一个根端口RP ，并且只有一个。<br>根端口RP用于接收根交换机发来的BPDU，也用于转发普通流量。</p><h3 id="根端口的选举条件为"><a href="#根端口的选举条件为" class="headerlink" title="根端口的选举条件为"></a>根端口的选举条件为</h3><p>（1）BPDU接收端口到根交换机的路径成本最小。<br>　　链路带宽　　成本值<br>　　 10Mbs&#x2F;s 　　100<br>　　 100Mb&#x2F;s 　　19<br>　　 1Gb&#x2F;s　　　　4<br>　　 10Gb&#x2F;s 　　　2<br>（2）对端的网桥ID最小。<br>（3）对端的端口ID（PID）最小。<br>　　端口ID由优先级和端口序号组成。<br>　　优先级范围为0-240，默认128，步长16。</p><h2 id="选举指定端口DP（Designated-Port）"><a href="#选举指定端口DP（Designated-Port）" class="headerlink" title="选举指定端口DP（Designated Port）"></a>选举指定端口DP（Designated Port）</h2><p>在每个网段选出指定端口，并且只有一个。<br>（前面说的网段，又有称LAN的，可以理解为：连接两个网桥的每条物理链路，每条物理链路上都有且一个指定端口）</p><p>指定端口用于转发根交换机发出来的BPDU，也用于转发普通流量。</p><h3 id="指定端口的选举条件"><a href="#指定端口的选举条件" class="headerlink" title="指定端口的选举条件"></a>指定端口的选举条件</h3><p>（1）根网桥的所有端口都是指定端口。<br>（2）根端口对端的端口一定是指定端口。<br>（3）BPDU转发端口到根交换机的路径成本最小的端口。<br>（4）本端的网桥ID最小者。</p><p>指定端口选举完成后，剩余端口便是备用端口AP(Alternate Port)，将他们阻塞。</p><h2 id="图例"><a href="#图例" class="headerlink" title="图例"></a>图例</h2><p><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2022-09/09-152649-a99a-leon.png"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>popen里面使用&amp;把进程放后台问题</title>
     <link href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8/"/>
     <url>/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8/</url>
