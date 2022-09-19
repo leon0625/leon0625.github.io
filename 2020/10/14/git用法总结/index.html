@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-09-19T02:51:25.000Z">
+<meta property="article:modified_time" content="2022-09-19T02:52:41.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.7k 字
+      6.8k 字
     </span>
   
 
@@ -412,7 +412,7 @@
 <p><strong>注意：</strong></p>
 <p>git-svn并不能使用完整的git功能，为了避免遇到麻烦，保持线性提交，不能有merge产生的提交。把master分支外的修改全部变基到master分支。</p>
 <p>（1）clone分支，-T表示trunk目录的名字，-b表示分支的名字，这样才会把分支这些一起clone下来</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git svn <span class="hljs-built_in">clone</span> file:///tmp/test-svn -T trunk -b branches -t tags<br><br><span class="hljs-comment"># 不clone所有版本，有的svn仓库</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git svn <span class="hljs-built_in">clone</span> file:///tmp/test-svn -T trunk -b branches -t tags<br><br><span class="hljs-comment"># 不clone所有版本，有的svn仓库提交</span><br></code></pre></td></tr></table></figure>
 
 <p>svn上分支管理有可能比较乱，没有统一命名和目录管理，所以可以不用弄这些，直接clone一个分支</p>
 <p>（2）日常修改，然后把修改推送到svn</p>
