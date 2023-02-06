@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2022-12-21T06:30:52.000Z">
+<meta property="article:modified_time" content="2023-02-06T02:38:24.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7k 字
+      7.1k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35 分钟
+      36 分钟
     </span>
   
 
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年12月21日 下午
+                  本文最后更新于：2023年2月6日 上午
                 
               </p>
             
@@ -440,6 +440,7 @@
 <h3 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h3><p>2个固定分支<br>master主分支：不做任何修改，用于merge要提交的代码，从原厂仓库拉最新代码<br>工作空间分支：提交本地化的管理型代码（gitignore,.vscode,.gitkeep），同步最新的master分支</p>
 <p>其他特性分支：从工作空间创建，修改bug，特性开发的分支。修改完后，将修改点rebase或者merge到master。从master提交代码，</p>
 <p>（1）git svn clone代码<br>（2）创建工作空间分支，编译<br>（3）在工作空间分支创建特性分支<br>（4）将特性分支的修改merge到master<br>（5）在master上提交，拉取远程仓库代码<br>（6）把master分支合并到特性分支</p>
+<h3 id="修改url"><a href="#修改url" class="headerlink" title="修改url"></a>修改url</h3><p>(1)  <code>vi .git/config </code>修改url为新的url<br>(2) <code>git svn fetch</code><br>(3) <code>vi .git/config</code> 修改url为老的url<br>(4) </p>
 <h2 id="清理"><a href="#清理" class="headerlink" title="清理"></a>清理</h2><p>清理所有文件，保持干净的工作区，可以代替make clean<br><code>git clean -xfd</code><br><strong>会删除空目录，记得git svn rebase</strong></p>
 <h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><h3 id="如何在github上下载某个项目的单独某个目录？"><a href="#如何在github上下载某个项目的单独某个目录？" class="headerlink" title="如何在github上下载某个项目的单独某个目录？"></a>如何在github上下载某个项目的单独某个目录？</h3><p>使用svn来下载，例如我想下载我的practice项目的hash_table目录</p>
 <p>（1）在github上点开这个目录，浏览器地址栏可以得到这个地址</p>
