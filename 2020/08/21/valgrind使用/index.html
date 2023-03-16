@@ -24,7 +24,7 @@
 <meta property="og:description" content="valgrind使用编译如下是编译armv7的版本 1234.&#x2F;configure --prefix&#x3D;&#96;pwd&#96;&#x2F;llm CC&#x3D;&#x2F;projects&#x2F;hnd&#x2F;tools&#x2F;bcm&#x2F;crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1&#x2F;usr&#x2F;bin&#x2F;arm-buildroot-linux-gnueabi-gcc --host&#x3D;armv7">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-21T08:16:56.000Z">
-<meta property="article:modified_time" content="2022-09-06T12:10:05.000Z">
+<meta property="article:modified_time" content="2023-02-27T09:05:32.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.4k 字
+      4.5k 字
     </span>
   
 
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年9月6日 晚上
+                  本文最后更新于：2023年2月27日 下午
                 
               </p>
             
@@ -256,7 +256,7 @@
 <figure class="highlight awk"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs awk">.<span class="hljs-regexp">/configure --prefix=`pwd`/</span>llm CC=<span class="hljs-regexp">/projects/</span>hnd<span class="hljs-regexp">/tools/</span>bcm<span class="hljs-regexp">/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/u</span>sr<span class="hljs-regexp">/bin/</span>arm-buildroot-linux-gnueabi-gcc --host=armv7-linux<br>mkdir llm<br>make -j6<br>make install<br></code></pre></td></tr></table></figure>
 <h3 id="打包使用"><a href="#打包使用" class="headerlink" title="打包使用"></a>打包使用</h3><p>编译出来的install目录有100多M，全部拷到设备里面内存没那么大。所以只拷贝关键的<br>bin&#x2F;valgrind 文件<br>Libexec下所有文件，然后删掉里面最大的一些可执行文件（删掉不需要用的，检查内存泄漏的话，只保留memcheck-arm-linux这个可执行文件即可，其他的库文件，xml都要保留）</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><strong>注意需要设置环境变量</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /tmp<br><span class="hljs-built_in">mkdir</span> 123<br><span class="hljs-built_in">cd</span> 123<br>tftp -gr valgrind 192.168.10.123<br>tftp -gr test_arm 192.168.10.123<br>tftp -gr libexec.tar 192.168.10.123<br>tar -xf libexec.tar <br><span class="hljs-built_in">rm</span> libexec.tar<br><span class="hljs-comment"># 下面这个目录根据实际情况修改</span><br><span class="hljs-built_in">export</span> VALGRIND_LIB=/tmp/123/libexec<br><span class="hljs-built_in">chmod</span> +x -R ./<br>./valgrind --leak-check=full ./test_arm<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /tmp<br><span class="hljs-built_in">mkdir</span> 123<br><span class="hljs-built_in">cd</span> 123<br>tftp -gr valgrind 192.168.10.123<br>tftp -gr test_arm 192.168.10.123<br>tftp -gr libexec.tar 192.168.10.123<br>tar -xf libexec.tar <br><span class="hljs-built_in">rm</span> libexec.tar<br><span class="hljs-comment"># 下面这个目录根据实际情况修改</span><br><span class="hljs-built_in">export</span> VALGRIND_LIB=/tmp/123/libexec/valgrind<br><span class="hljs-built_in">chmod</span> +x -R ./<br>./valgrind --leak-check=full ./test_arm<br></code></pre></td></tr></table></figure>
 
 
 

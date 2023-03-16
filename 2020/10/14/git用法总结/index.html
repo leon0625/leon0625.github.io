@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-02-06T02:40:12.000Z">
+<meta property="article:modified_time" content="2023-03-16T09:59:56.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.1k 字
+      7.4k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      36 分钟
+      37 分钟
     </span>
   
 
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年2月6日 上午
+                  本文最后更新于：2023年3月16日 下午
                 
               </p>
             
@@ -273,7 +273,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global core.editor vim</span><br>git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global merge.tool vimdiff</span><br></code></pre></td></tr></table></figure>
 
 <p>（6）配置别名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global alias.st status<br>git config --global alias.co checkout<br>git config --global alias.br branch<br><span class="hljs-comment"># 简短的查看日志</span><br>git config --global alias.slog <span class="hljs-string">&#x27;log --pretty=format:&quot;%h %aN %ad %s&quot; --date=format:&quot;%Y-%m-%d %H:%M:%S&quot;&#x27;</span><br><span class="hljs-comment"># 彩色查看log</span><br>git config --global alias.clog <span class="hljs-string">&#x27;log --pretty=format:&quot;%Cred%h%Creset %Cgreen%cr%Creset %s %Cblue%aN%Creset&quot;&#x27;</span><br><span class="hljs-comment"># 图形化log</span><br>git config --global alias.cglog <span class="hljs-string">&#x27;log --graph --pretty=format:&quot;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset%n&quot; --abbrev-commit --date=relative --branches&#x27;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global alias.st status<br>git config --global alias.co checkout<br>git config --global alias.br branch<br><span class="hljs-comment"># 简短的查看日志</span><br>git config --global alias.slog <span class="hljs-string">&#x27;log --pretty=format:&quot;%h %aN %ad %s&quot; --date=format:&quot;%Y-%m-%d %H:%M:%S&quot;&#x27;</span><br><span class="hljs-comment"># 彩色查看log</span><br>git config --global alias.clog <span class="hljs-string">&#x27;log --pretty=format:&quot;%Cred%h%Creset %Cgreen%cr%Creset %s %Cblue%aN%Creset&quot;&#x27;</span><br><span class="hljs-comment"># 图形化log</span><br>git config --global alias.cglog <span class="hljs-string">&#x27;log --graph --pretty=format:&quot;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset%n&quot; --abbrev-commit --date=relative --branches&#x27;</span><br><br>alias.calog=<span class="hljs-built_in">log</span> --graph --pretty=format:<span class="hljs-string">&quot;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset%n&quot;</span> --abbrev-commit --<span class="hljs-built_in">date</span>=relative --branches<br></code></pre></td></tr></table></figure>
 
 <p>（7）查看现有配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --list<br><span class="hljs-comment"># 同时显示来源</span><br>git config --list --show-origin<br></code></pre></td></tr></table></figure>
@@ -441,7 +441,9 @@
 <p>其他特性分支：从工作空间创建，修改bug，特性开发的分支。修改完后，将修改点rebase或者merge到master。从master提交代码，</p>
 <p>（1）git svn clone代码<br>（2）创建工作空间分支，编译<br>（3）在工作空间分支创建特性分支<br>（4）将特性分支的修改merge到master<br>（5）在master上提交，拉取远程仓库代码<br>（6）把master分支合并到特性分支</p>
 <h3 id="修改url"><a href="#修改url" class="headerlink" title="修改url"></a>修改url</h3><p>(1)  <code>vi .git/config </code>修改url为新的url<br>(2) <code>git svn fetch</code><br>(3) <code>vi .git/config</code> 修改url为老的url<br>(4) <code>git svn rebase -l</code><br>(5)  <code>vi .git/config</code> 修改url为新的url<br>(6) <code>git svn rebase</code></p>
-<h2 id="清理"><a href="#清理" class="headerlink" title="清理"></a>清理</h2><p>清理所有文件，保持干净的工作区，可以代替make clean<br><code>git clean -xfd</code><br><strong>会删除空目录，记得git svn rebase</strong></p>
+<h2 id="清理"><a href="#清理" class="headerlink" title="清理"></a>清理</h2><p>清理所有文件，保持干净的工作区，可以代替make clean<br><code>git clean -xfd</code></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">-f, <span class="hljs-comment">--force           force</span><br>-d                    remove <span class="hljs-keyword">whole</span> <span class="hljs-built_in">directories</span><br>-x                    remove ignored <span class="hljs-built_in">files</span>, too<br></code></pre></td></tr></table></figure>
+<p><strong>会删除空目录，记得git svn rebase</strong></p>
 <h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><h3 id="如何在github上下载某个项目的单独某个目录？"><a href="#如何在github上下载某个项目的单独某个目录？" class="headerlink" title="如何在github上下载某个项目的单独某个目录？"></a>如何在github上下载某个项目的单独某个目录？</h3><p>使用svn来下载，例如我想下载我的practice项目的hash_table目录</p>
 <p>（1）在github上点开这个目录，浏览器地址栏可以得到这个地址</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/leon0625/practice/tree/master/hash_table">https://github.com/leon0625/practice</a><a target="_blank" rel="noopener" href="https://github.com/leon0625/practice/tree/master/hash_table">&#x2F;tree&#x2F;master</a>&#x2F;hash_table</p>
