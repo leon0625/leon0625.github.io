@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-03-16T13:46:46.000Z">
+<meta property="article:modified_time" content="2023-03-16T13:47:21.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -374,7 +374,7 @@
 <p>如果两边分支都有提交，那么可以变基，如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 将experiment分支上的修改变基到master分支上</span><br>$ git checkout experiment<br>$ git rebase master<br>First, rewinding <span class="hljs-built_in">head</span> to replay your work on top of it...<br>Applying: added staged <span class="hljs-built_in">command</span><br><span class="hljs-comment"># 然后进行一次快进合并</span><br>$ git checkout master<br>$ git merge experiment<br></code></pre></td></tr></table></figure>
 
-<p>如果要线性修改提交记录，那么一直按如下流程做：<br><code>git pull -r</code></p>
+<p>如果要线性修改提交记录，那么可以一直使用rebase，pull代码时也是用rebase:  <code>git pull -r</code></p>
 <h2 id="贮藏-stash"><a href="#贮藏-stash" class="headerlink" title="贮藏 stash"></a>贮藏 stash</h2><p>有时需要切换分支，但本地工作区已经很乱了，改了很多东西。想临时储存一下当前混乱的工作区。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 贮藏当前修改（只会贮藏已修改和已暂存的，未跟踪的不会贮藏）</span><br>git stash push<br><span class="hljs-comment"># 贮藏所有内容（未跟踪的也会贮藏，.gitignore忽略的文件也会贮藏，贮藏之后工作区完全干干净净）</span><br>git stash push -a -m <span class="hljs-string">&quot;msg&quot;</span><br><br><span class="hljs-comment"># 查看贮藏列表</span><br>git stash list<br><br><span class="hljs-comment"># 恢复上一次贮藏</span><br>git stash apply<br><span class="hljs-comment"># 贮藏很多次后，恢复指定贮藏</span><br>git stash apply stash@&#123;1&#125;<br><br><span class="hljs-comment"># 丢弃贮藏</span><br>git stash drop stash@&#123;1&#125;<br><br><span class="hljs-comment"># 恢复上一次贮藏并丢弃它</span><br>git stash pop<br><br><span class="hljs-comment"># 查看贮藏区的修改</span><br>git stash show stash@&#123;0&#125;<br><span class="hljs-comment"># 查看修改内容</span><br>git stash show -p stash@&#123;0&#125;<br></code></pre></td></tr></table></figure>
 
