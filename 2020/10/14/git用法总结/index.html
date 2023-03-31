@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-03-31T02:20:50.000Z">
+<meta property="article:modified_time" content="2023-03-31T02:21:22.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.9k 字
+      7.8k 字
     </span>
   
 
@@ -382,12 +382,29 @@
 <h2 id="交互式暂存"><a href="#交互式暂存" class="headerlink" title="交互式暂存"></a>交互式暂存</h2><p>有时我们修改了一个文件的两个地方，但是想分开提交，一次只提交文件中某几处差异。这时就可以使用交互式暂存。<code>git add -i</code></p>
 <figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs console"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add -i</span><br>           staged     unstaged path<br>  1:    unchanged        +0/-1 TODO<br>  2:    unchanged        +1/-1 index.html<br>  3:    unchanged        +5/-1 lib/simplegit.rb<br><br>*** Commands ***<br>  1: [s]tatus     2: [u]pdate      3: [r]evert     4: [a]dd untracked<br>  5: [p]atch      6: [d]iff        7: [q]uit       8: [h]elp<br>What now&gt;<br></code></pre></td></tr></table></figure>
 <p>s查看状态，p就是我们需要的命令。<br><code>p</code>后，会让你选择要操作那个文件，选择文件后，<strong>什么也不输入回车</strong>，进入下一个选择页面，这个页面会一次次的出现差异，让你选择是否暂存，输入y或者n即可。</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs fortran">```<br><br><br>## 三棵树<br><br>HEAD: 上一次提交的快照，下一次提交的父节点，相当于该分支的最后一次提交。<br><br><span class="hljs-built_in">Index</span>：预期的下一次提交的快照，就是暂存区<br><br>work目录：就是自己的工作区。前两个都是抽象的.git目录下的一些东西。<br><br>每一次git操作，都会有一个快照产生，三棵树都指向各自的快照。<br><br>当work和<span class="hljs-built_in">index</span>快照指向不同，那么git <span class="hljs-keyword">status</span>就会显示“文件已修改，但未暂存”<br><br>当<span class="hljs-built_in">index</span>和HEAD指向不同，那么git <span class="hljs-keyword">status</span>就会显示“文件已暂存”<br><br>当三棵树的指向全部相同，那么git <span class="hljs-keyword">status</span>就是干净的。<br><br>## reset命令<br><br>对三棵树的操作根据选项不同，区别如下(默认是mixed选项)<br><br></code></pre></td></tr></table></figure>
-<div class="code-wrapper"><pre><code class="hljs">--mixed               reset HEAD and index
---soft                reset only HEAD
---hard                reset HEAD, index and working tree
-</code></pre></div>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><br><br><br>**<span class="hljs-comment">--soft**</span><br><br>只是修改HEAD指向，相当于撤回了<span class="hljs-keyword">commit</span>动作。所有修改的文件都是已暂存状态。<br><br>所以可以用<span class="hljs-comment">--soft合并之前的多个提交（压缩提交，有时在一个bug分支上修改bug，修改完后又发现引入新问题，还要修改，提交了几次，最后验收通过，为了让分支上的日志就更容易看出来具体修改，而不是几次不完善的修改，可以压缩提交）。</span><br><br>**<span class="hljs-comment">--mixed**</span><br><br>修改HEAD和<span class="hljs-keyword">index</span>指向，相当于撤回了<span class="hljs-keyword">commit</span>和<span class="hljs-keyword">add</span>动作。所有撤回的修改都存在工作区中。<br><br>**<span class="hljs-comment">--hard**</span><br><br>三棵树同时修改，相当于撤回了<span class="hljs-keyword">commit</span>,<span class="hljs-keyword">add</span>,和本地修改。（因为之前的已经提交了，还可以通过reflog救回来）<br><br>**git <span class="hljs-keyword">reset</span> [版本aa] 路径**<br><br>git <span class="hljs-keyword">reset</span> 跟路径的情况下，会把<span class="hljs-keyword">index</span>更改为<span class="hljs-keyword">reset</span>的版本状态，把<span class="hljs-keyword">work</span>中的文件改为HEAD中的状态（即修改撤回到<span class="hljs-keyword">work</span>了）。如果此时直接<span class="hljs-keyword">commit</span>，那么<span class="hljs-keyword">commit</span>后仓库中的文件跟版本aa是一样。<br><br>**例子**<br><br>```bash<br># 回退到当前版本<br>git <span class="hljs-keyword">reset</span> HEAD <br># 回退到上一个版本<br>git <span class="hljs-keyword">reset</span> HEAD~ <br># 回退到指定版本<br>git <span class="hljs-keyword">reset</span> <span class="hljs-number">3</span>f51 <br><br># 撤销暂存区的文件（不会修改文件，只是取消文件暂存）<br>git <span class="hljs-keyword">reset</span> HEAD xxx.file<br><br># git <span class="hljs-keyword">commit</span>之后撤销，只撤销<span class="hljs-keyword">commit</span>，代码修改仍在<br>git <span class="hljs-keyword">reset</span> <span class="hljs-comment">--soft HEAD^</span><br></code></pre></td></tr></table></figure>
+<h2 id="三棵树"><a href="#三棵树" class="headerlink" title="三棵树"></a>三棵树</h2><p>HEAD: 上一次提交的快照，下一次提交的父节点，相当于该分支的最后一次提交。</p>
+<p>Index：预期的下一次提交的快照，就是暂存区</p>
+<p>work目录：就是自己的工作区。前两个都是抽象的.git目录下的一些东西。</p>
+<p>每一次git操作，都会有一个快照产生，三棵树都指向各自的快照。</p>
+<p>当work和index快照指向不同，那么git status就会显示“文件已修改，但未暂存”</p>
+<p>当index和HEAD指向不同，那么git status就会显示“文件已暂存”</p>
+<p>当三棵树的指向全部相同，那么git status就是干净的。</p>
+<h2 id="reset命令"><a href="#reset命令" class="headerlink" title="reset命令"></a>reset命令</h2><p>对三棵树的操作根据选项不同，区别如下(默认是mixed选项)</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-comment">--mixed               reset HEAD and index</span><br><span class="hljs-comment">--soft                reset only HEAD</span><br><span class="hljs-comment">--hard                reset HEAD, index and working tree</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>–soft</strong></p>
+<p>只是修改HEAD指向，相当于撤回了commit动作。所有修改的文件都是已暂存状态。</p>
+<p>所以可以用–soft合并之前的多个提交（压缩提交，有时在一个bug分支上修改bug，修改完后又发现引入新问题，还要修改，提交了几次，最后验收通过，为了让分支上的日志就更容易看出来具体修改，而不是几次不完善的修改，可以压缩提交）。</p>
+<p><strong>–mixed</strong></p>
+<p>修改HEAD和index指向，相当于撤回了commit和add动作。所有撤回的修改都存在工作区中。</p>
+<p><strong>–hard</strong></p>
+<p>三棵树同时修改，相当于撤回了commit,add,和本地修改。（因为之前的已经提交了，还可以通过reflog救回来）</p>
+<p><strong>git reset [版本aa] 路径</strong></p>
+<p>git reset 跟路径的情况下，会把index更改为reset的版本状态，把work中的文件改为HEAD中的状态（即修改撤回到work了）。如果此时直接commit，那么commit后仓库中的文件跟版本aa是一样。</p>
+<p><strong>例子</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 回退到当前版本</span><br>git reset HEAD <br><span class="hljs-comment"># 回退到上一个版本</span><br>git reset HEAD~ <br><span class="hljs-comment"># 回退到指定版本</span><br>git reset 3f51 <br><br><span class="hljs-comment"># 撤销暂存区的文件（不会修改文件，只是取消文件暂存）</span><br>git reset HEAD xxx.file<br><br><span class="hljs-comment"># git commit之后撤销，只撤销commit，代码修改仍在</span><br>git reset --soft HEAD^<br></code></pre></td></tr></table></figure>
 
 
 
