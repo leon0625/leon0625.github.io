@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-03-31T02:21:22.000Z">
+<meta property="article:modified_time" content="2023-04-07T07:39:29.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.8k 字
+      7.9k 字
     </span>
   
 
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年3月31日 上午
+                  本文最后更新于：2023年4月7日 下午
                 
               </p>
             
@@ -362,7 +362,10 @@
 <p>（3）对于已经跟踪的文件，使用.gitignore文件无效，可以使用</p>
 <p>这个命令只对本地生效，只是设置了文件未修改的标记。</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">update</span>-<span class="hljs-keyword">index</span> <span class="hljs-comment">--assume-unchanged file命令</span><br></code></pre></td></tr></table></figure>
-
+<p>显示哪些文件做了标记</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">git <span class="hljs-keyword">ls</span>-<span class="hljs-keyword">files</span> -v | <span class="hljs-keyword">grep</span> <span class="hljs-string">&#x27;^[[:lower:]]&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>撤销对这些文件的忽略</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">git <span class="hljs-keyword">update</span>-<span class="hljs-built_in">index</span> --<span class="hljs-keyword">no</span>-assume-unchanged <span class="hljs-keyword">file</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 新建分支</span><br>git branch iss90<br><span class="hljs-comment"># 切换到分支</span><br>git checkout iss90<br><span class="hljs-comment"># 两个命令可以合并</span><br>git checkout -b iss90<br><br><span class="hljs-comment"># 查看分支</span><br>git branch<br><span class="hljs-comment"># 查看已合并过的分支</span><br>git branch --merged<br><br><span class="hljs-comment"># 合并分支到主线,先切换到master分支，然后合并</span><br>git checkout master<br>git merge iss90<br><br><span class="hljs-comment"># 删除分支</span><br>git branch -d iss90<br></code></pre></td></tr></table></figure>
 
