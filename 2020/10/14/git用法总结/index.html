@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-04-20T06:36:23.000Z">
+<meta property="article:modified_time" content="2023-04-20T06:37:33.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -432,9 +432,12 @@
 <p>（5）其他svn操作</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git svn <span class="hljs-built_in">log</span><br>git svn info<br></code></pre></td></tr></table></figure>
 
-<p>（6）如何同时在两个svn分支上开发</p>
+<p>（6）添加svn分支（针对不规则命名情况）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+
+<p>（7）如何同时在两个svn分支上开发</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># feiyi_ui分支跟踪的svn上feyi_ui分支</span><br>git br feiyi_ui remotes/origin/feiyi_ui<br>git co feiyi_ui<br></code></pre></td></tr></table></figure>
-<p>注意：<code>git br -vv</code>并不能看到当前分支的跟踪分支是哪个svn分支，这和git远程分支不太一样。当git svn dcommit时，它会自动</p>
+<p>注意：<code>git br -vv</code>并不能看到当前分支的跟踪分支是哪个svn分支，这和git远程分支不太一样。当git svn dcommit时，它会自动去找这个本地分支是从哪个svn分支来的，自动提交到对应的svn分支。</p>
 <h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>当dcommit有冲突时，需要<code>git svn rebase</code>拉取远程修改合入本地，解决冲突后再dcommit</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># dcommit发现冲突</span><br>git svn dcommit<br><span class="hljs-comment"># 拉取svn新代码合入本地，会有冲突的文件</span><br>git svn rebase<br><span class="hljs-comment"># 查看那些文件冲突</span><br>git st<br><span class="hljs-comment"># 修改文件，解决冲突</span><br>vi xxx<br><span class="hljs-comment"># 标记冲突已解决</span><br>git add xxx<br><span class="hljs-comment"># 继续变基</span><br>git rebase --<span class="hljs-built_in">continue</span><br><span class="hljs-comment"># 提交代码</span><br>git svn dcommit<br></code></pre></td></tr></table></figure>
 
