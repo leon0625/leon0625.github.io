@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-04-20T06:37:33.000Z">
+<meta property="article:modified_time" content="2023-04-20T06:38:18.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.1k 字
+      8.3k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      41 分钟
+      42 分钟
     </span>
   
 
@@ -432,8 +432,8 @@
 <p>（5）其他svn操作</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git svn <span class="hljs-built_in">log</span><br>git svn info<br></code></pre></td></tr></table></figure>
 
-<p>（6）添加svn分支（针对不规则命名情况）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<p>（6）添加svn分支（针对不规则命名情况）<br>编辑.git&#x2F;config文件</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[svn-remote <span class="hljs-string">&quot;svn/AX5410&quot;</span>]<br>        url = <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/172.20.1.217/svn</span><span class="hljs-regexp">/bcm-ax3000-ctcc/branches</span><span class="hljs-regexp">/products/</span><span class="hljs-variable constant_">FY</span>-<span class="hljs-variable constant_">AX5410</span><br>        fetch = <span class="hljs-symbol">:refs/remotes/svn/AX5410</span><br></code></pre></td></tr></table></figure>
 
 <p>（7）如何同时在两个svn分支上开发</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># feiyi_ui分支跟踪的svn上feyi_ui分支</span><br>git br feiyi_ui remotes/origin/feiyi_ui<br>git co feiyi_ui<br></code></pre></td></tr></table></figure>
