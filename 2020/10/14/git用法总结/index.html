@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-05-04T02:42:16.000Z">
+<meta property="article:modified_time" content="2023-05-26T06:19:22.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年5月4日 上午
+                  本文最后更新于：2023年5月26日 下午
                 
               </p>
             
@@ -275,7 +275,7 @@
 <p>（6）配置别名</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global alias.st status<br>git config --global alias.co checkout<br>git config --global alias.br branch<br><span class="hljs-comment"># 简短的查看日志</span><br>git config --global alias.slog <span class="hljs-string">&#x27;log --pretty=format:&quot;%h %aN %ad %s&quot; --date=format:&quot;%Y-%m-%d %H:%M:%S&quot;&#x27;</span><br><span class="hljs-comment"># 彩色查看log</span><br>git config --global alias.clog <span class="hljs-string">&#x27;log --pretty=format:&quot;%Cred%h%Creset %Cgreen%cr%Creset %s %Cblue%aN%Creset&quot;&#x27;</span><br><span class="hljs-comment"># 图形化log</span><br>git config --global alias.cglog <span class="hljs-string">&#x27;log --graph --pretty=format:&quot;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset%n&quot; --abbrev-commit --date=relative --branches&#x27;</span><br><br>alias.calog=<span class="hljs-built_in">log</span> --graph --pretty=format:<span class="hljs-string">&quot;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset%n&quot;</span> --abbrev-commit --<span class="hljs-built_in">date</span>=relative --branches<br></code></pre></td></tr></table></figure>
 
-<p>（7）查看现有配置</p>
+<p>（7）配置提交注释模版<br>（7）查看现有配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --list<br><span class="hljs-comment"># 同时显示来源</span><br>git config --list --show-origin<br></code></pre></td></tr></table></figure>
 
 <h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><p>创建<code>.gitignore</code>文件即可，忽略遵从如下规则</p>
