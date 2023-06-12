@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-05-26T06:19:22.000Z">
+<meta property="article:modified_time" content="2023-06-12T07:38:28.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.5k 字
+      8.6k 字
     </span>
   
 
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年5月26日 下午
+                  本文最后更新于：2023年6月12日 下午
                 
               </p>
             
@@ -275,7 +275,10 @@
 <p>（6）配置别名</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global alias.st status<br>git config --global alias.co checkout<br>git config --global alias.br branch<br><span class="hljs-comment"># 简短的查看日志</span><br>git config --global alias.slog <span class="hljs-string">&#x27;log --pretty=format:&quot;%h %aN %ad %s&quot; --date=format:&quot;%Y-%m-%d %H:%M:%S&quot;&#x27;</span><br><span class="hljs-comment"># 彩色查看log</span><br>git config --global alias.clog <span class="hljs-string">&#x27;log --pretty=format:&quot;%Cred%h%Creset %Cgreen%cr%Creset %s %Cblue%aN%Creset&quot;&#x27;</span><br><span class="hljs-comment"># 图形化log</span><br>git config --global alias.cglog <span class="hljs-string">&#x27;log --graph --pretty=format:&quot;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset%n&quot; --abbrev-commit --date=relative --branches&#x27;</span><br><br>alias.calog=<span class="hljs-built_in">log</span> --graph --pretty=format:<span class="hljs-string">&quot;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset%n&quot;</span> --abbrev-commit --<span class="hljs-built_in">date</span>=relative --branches<br></code></pre></td></tr></table></figure>
 
-<p>（7）配置提交注释模版<br>（7）查看现有配置</p>
+<p>（7）配置提交注释模版</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">vi ~<span class="hljs-string">/.gitCommitTemplate</span><br>git config <span class="hljs-params">--global</span> commit.template ~<span class="hljs-string">/.gitCommitTemplate</span><br></code></pre></td></tr></table></figure>
+
+<p>（8）查看现有配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --list<br><span class="hljs-comment"># 同时显示来源</span><br>git config --list --show-origin<br></code></pre></td></tr></table></figure>
 
 <h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><p>创建<code>.gitignore</code>文件即可，忽略遵从如下规则</p>
@@ -378,7 +381,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 将experiment分支上的修改变基到master分支上</span><br>$ git checkout experiment<br>$ git rebase master<br>First, rewinding <span class="hljs-built_in">head</span> to replay your work on top of it...<br>Applying: added staged <span class="hljs-built_in">command</span><br><span class="hljs-comment"># 然后进行一次快进合并</span><br>$ git checkout master<br>$ git merge experiment<br></code></pre></td></tr></table></figure>
 
 <p>如果要线性修改提交记录，那么可以一直使用rebase，pull代码时也是用rebase:  <code>git pull -r</code></p>
-<h3 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h3><h2 id="贮藏-stash"><a href="#贮藏-stash" class="headerlink" title="贮藏 stash"></a>贮藏 stash</h2><p>有时需要切换分支，但本地工作区已经很乱了，改了很多东西。想临时储存一下当前混乱的工作区。</p>
+<h3 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h3><p>git </p>
+<h2 id="贮藏-stash"><a href="#贮藏-stash" class="headerlink" title="贮藏 stash"></a>贮藏 stash</h2><p>有时需要切换分支，但本地工作区已经很乱了，改了很多东西。想临时储存一下当前混乱的工作区。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 贮藏当前修改（只会贮藏已修改和已暂存的，未跟踪的不会贮藏）</span><br>git stash push<br><span class="hljs-comment"># 贮藏所有内容（未跟踪的也会贮藏，.gitignore忽略的文件也会贮藏，贮藏之后工作区完全干干净净）</span><br>git stash push -a -m <span class="hljs-string">&quot;msg&quot;</span><br><br><span class="hljs-comment"># 查看贮藏列表</span><br>git stash list<br><br><span class="hljs-comment"># 恢复上一次贮藏</span><br>git stash apply<br><span class="hljs-comment"># 贮藏很多次后，恢复指定贮藏</span><br>git stash apply stash@&#123;1&#125;<br><br><span class="hljs-comment"># 丢弃贮藏</span><br>git stash drop stash@&#123;1&#125;<br><br><span class="hljs-comment"># 恢复上一次贮藏并丢弃它</span><br>git stash pop<br><br><span class="hljs-comment"># 查看贮藏区的修改</span><br>git stash show stash@&#123;0&#125;<br><span class="hljs-comment"># 查看修改内容</span><br>git stash show -p stash@&#123;0&#125;<br></code></pre></td></tr></table></figure>
 
 
@@ -443,7 +447,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># dcommit发现冲突</span><br>git svn dcommit<br><span class="hljs-comment"># 拉取svn新代码合入本地，会有冲突的文件</span><br>git svn rebase<br><span class="hljs-comment"># 查看那些文件冲突</span><br>git st<br><span class="hljs-comment"># 修改文件，解决冲突</span><br>vi xxx<br><span class="hljs-comment"># 标记冲突已解决</span><br>git add xxx<br><span class="hljs-comment"># 继续变基</span><br>git rebase --<span class="hljs-built_in">continue</span><br><span class="hljs-comment"># 提交代码</span><br>git svn dcommit<br></code></pre></td></tr></table></figure>
 
 
-<h3 id="空目录问题"><a href="#空目录问题" class="headerlink" title="空目录问题"></a>空目录问题</h3><p>git不支持空目录权限管理，无法git add空目录，所以如果svn服务器上有空目录。使用会有一些注意点：<br>（1）git svn clone的最后一步，git会主动建立空目录，保存代码一致<br>（2）<strong>如果rm所有代码，然后git reset –hard，这时空目录会丢失</strong>。<br>（3）<strong>如果git stash -a暂存所有文件，空目录也会丢失。</strong><br>（4）<strong>恢复办法为：git svn rebase</strong>，这时空目录会重新创建。</p>
+<h3 id="空目录问题"><a href="#空目录问题" class="headerlink" title="空目录问题"></a>空目录问题</h3><p>git不支持空目录权限管理，无法git add空目录，所以如果svn服务器上有空目录。使用会有一些注意点：<br>（1）git svn clone的最后一步，git会主动建立空目录，保持代码一致<br>（2）<strong>如果rm所有代码，然后git reset –hard，这时空目录会丢失</strong>。<br>（3）<strong>如果git stash -a暂存所有文件，空目录也会丢失。</strong><br>（4）<strong>恢复办法为：git svn rebase</strong>，这时空目录会重新创建。</p>
 <p><strong>解决办法</strong><br>（1）先通过svn下载代码，然后查找空文件夹 <code>find -type d -empty</code><br>（2）在空文件夹下建一个.gitkeep（约定俗成），并提交这个空目录（视情况）</p>
 <p><strong>删除空目录问题</strong><br>git 删除空目录传了之后，git svn dcommit并没有删除空目录。</p>
 <h3 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h3><p>2个固定分支<br>master主分支：不做任何修改，用于merge要提交的代码，从原厂仓库拉最新代码<br>工作空间分支：提交本地化的管理型代码（gitignore,.vscode,.gitkeep），同步最新的master分支</p>
@@ -451,7 +455,7 @@
 <p>（1）git svn clone代码<br>（2）创建工作空间分支，编译<br>（3）在工作空间分支创建特性分支<br>（4）将特性分支的修改merge到master<br>（5）在master上提交，拉取远程仓库代码<br>（6）把master分支合并到特性分支</p>
 <h3 id="修改url"><a href="#修改url" class="headerlink" title="修改url"></a>修改url</h3><p>(1)  <code>vi .git/config </code>修改url为新的url<br>(2) <code>git svn fetch</code><br>(3) <code>vi .git/config</code> 修改url为老的url<br>(4) <code>git svn rebase -l</code><br>(5)  <code>vi .git/config</code> 修改url为新的url<br>(6) <code>git svn rebase</code></p>
 <h2 id="清理"><a href="#清理" class="headerlink" title="清理"></a>清理</h2><p>clean用于清理未暂存的文件，保持干净的工作区，可以代替make clean<br><code>git clean -xfd</code></p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">-f, <span class="hljs-comment">--force           force</span><br>-d                    remove <span class="hljs-keyword">whole</span> <span class="hljs-built_in">directories</span><br>-x                    remove ignored <span class="hljs-built_in">files</span>, too 默认忽略的文件不好清理，-x会一并清理<br></code></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">-f, <span class="hljs-comment">--force           force</span><br>-d                    remove <span class="hljs-keyword">whole</span> <span class="hljs-built_in">directories</span><br>-x                    remove ignored <span class="hljs-built_in">files</span>, too 默认忽略的文件不会清理，-x会一并清理<br></code></pre></td></tr></table></figure>
 <p><strong>会删除空目录，记得git svn rebase</strong></p>
 <h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><h3 id="如何在github上下载某个项目的单独某个目录？"><a href="#如何在github上下载某个项目的单独某个目录？" class="headerlink" title="如何在github上下载某个项目的单独某个目录？"></a>如何在github上下载某个项目的单独某个目录？</h3><p>使用svn来下载，例如我想下载我的practice项目的hash_table目录</p>
 <p>（1）在github上点开这个目录，浏览器地址栏可以得到这个地址</p>
