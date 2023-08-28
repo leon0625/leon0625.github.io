@@ -187,6 +187,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" target="_self">
+          gcc选项跟踪函数调用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" target="_self">
+          
+          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-28 19:27" pubdate>
+              2023-08-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2020/10/14/git%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" target="_self">
           git用法总结
         </a>
@@ -504,39 +537,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2022-09-09 13:55" pubdate>
               2022-09-09
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/09/03/sed%E4%BD%BF%E7%94%A8/" target="_self">
-          sed使用
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/09/03/sed%E4%BD%BF%E7%94%A8/" target="_self">
-          
-          sed使用语法1sed [option] [address]command [input file] 如果没有输入文件，那么从标准输入中读取。 option   option 作用    -n 阻止输入行的自动输出(如需打印得需要p命令)   -f 使用脚本文件而不是命令行输入命令   -e 说明后面跟命令，命令行输入多个命令时使用。也可以使用大括号来实现   -E 使用扩展的正则   sed默认
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-03 14:44" pubdate>
-              2022-09-03
             </time>
           </div>
         
