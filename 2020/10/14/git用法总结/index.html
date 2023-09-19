@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-09-19T01:36:11.000Z">
+<meta property="article:modified_time" content="2023-09-19T01:37:18.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -338,6 +338,7 @@
 <p><strong>双点</strong></p>
 <figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gauss">git <span class="hljs-built_in">log</span> foo..<span class="hljs-built_in">bar</span><br>等价于： git <span class="hljs-built_in">log</span> ^foo <span class="hljs-built_in">bar</span>, 包含<span class="hljs-built_in">bar</span>不包含foo的部分，即<span class="hljs-built_in">bar</span>特有的<br></code></pre></td></tr></table></figure>
 
+<p>![[Pasted image 20230919093705.png]]</p>
 <h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><p>(1) 修改刚提交的日志信息</p>
 <figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-built_in">--amend</span> -<span class="hljs-string">m</span> <span class="hljs-string">&quot;刚修改错了&quot;</span><br></code></pre></td></tr></table></figure>
 
