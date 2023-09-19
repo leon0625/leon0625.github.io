@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-09-19T01:44:50.000Z">
+<meta property="article:modified_time" content="2023-09-19T01:46:12.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      46 分钟
+      47 分钟
     </span>
   
 
@@ -342,10 +342,9 @@
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">git</span></span> <span class="hljs-built_in">log</span> foo...bar<br>等价于：包含 foo bar，但不包含二者公共部分<br></code></pre></td></tr></table></figure>
 
 <p>可以通过下图看懂命令的不同<br>![[Pasted image 20230919093750.png]]</p>
-<h4 id="忽略cherry-pick，merge的提交"><a href="#忽略cherry-pick，merge的提交" class="headerlink" title="忽略cherry-pick，merge的提交"></a>忽略cherry-pick，merge的提交</h4><p>每次merge和cherry-pick都会产生新的提交，默认在使用双点，3点命令时，这些提交也会显示出来。但实际上并不希望看到这些。可通过如下参数控制。（实测双点没有效果，3点效果较好）<br><code>git log foo...bar</code>，只是打印二者所有的不同提交，看不出来谁是谁的，使用&#96;&#96;<br><code>git log --left-right foo...bar</code></p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">git</span></span> <span class="hljs-built_in">log</span> foo...bar<br></code></pre></td></tr></table></figure>
-
-<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><p>(1) 修改刚提交的日志信息</p>
+<h4 id="忽略cherry-pick，merge的提交"><a href="#忽略cherry-pick，merge的提交" class="headerlink" title="忽略cherry-pick，merge的提交"></a>忽略cherry-pick，merge的提交</h4><p>每次merge和cherry-pick都会产生新的提交，默认在使用双点，3点命令时，这些提交也会显示出来。但实际上并不希望看到这些。可通过如下参数控制。（实测双点没有效果，3点效果较好）<br><code>git log foo...bar</code>，只是打印二者所有的不同提交，看不出来谁是谁的，使用<code>--left-right</code>可以看出来哪边是哪边的</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs node-repl">git log --left-right master...experiment<br>&lt; F <br>&lt; E<br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">D</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">C</span><br></code></pre></td></tr></table></figure>
+<h2 id="no-merges将不显示merge的提交"><a href="#no-merges将不显示merge的提交" class="headerlink" title="--no-merges将不显示merge的提交"></a><code>--no-merges</code>将不显示merge的提交</h2><h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><p>(1) 修改刚提交的日志信息</p>
 <figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-built_in">--amend</span> -<span class="hljs-string">m</span> <span class="hljs-string">&quot;刚修改错了&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>(2) 提交时漏了文件</p>
