@@ -24,7 +24,7 @@
 <meta property="og:description" content="git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2023-09-19T01:56:26.000Z">
+<meta property="article:modified_time" content="2023-12-13T02:15:39.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.4k 字
+      9.5k 字
     </span>
   
 
@@ -247,7 +247,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年9月19日 上午
+                  本文最后更新于：2023年12月13日 上午
                 
               </p>
             
@@ -313,11 +313,11 @@
 
 
 <h3 id="查看修改diff"><a href="#查看修改diff" class="headerlink" title="查看修改diff"></a>查看修改diff</h3><ul>
-<li><p>查看当前工作区的修改(修改后还未暂存)</p>
-<p><code>git diff </code></p>
+<li><p>查看当前工作区的修改(修改后还未暂存)<br><code>git diff </code></p>
 </li>
-<li><p>查看暂存区中的修改(已暂存，下一次commit的修改)</p>
-<p><code>git diff --staged</code></p>
+<li><p>查看暂存区中的修改(已暂存，下一次commit的修改)<br><code>git diff --staged</code></p>
+</li>
+<li><p>查看某几个版本间修改文件列表<br><code>git diff --stat 38bb22e88660..HEAD -- . :^userspace/public/apps/lighttpd/web</code><br><code>:^</code>表示排除这个目录</p>
 </li>
 </ul>
 <h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看远程仓库</span><br>git remote -v<br><span class="hljs-comment"># 添加远程仓库</span><br>git remote add shortName https://github.com/paulboone/ticgit<br><span class="hljs-comment"># 从远程仓库拉取(原厂仓库的所有内容会获取下来)</span><br>git fetch<br><span class="hljs-comment"># 将提交推送到远程仓库</span><br>git push origin master<br></code></pre></td></tr></table></figure>
