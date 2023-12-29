@@ -16,20 +16,20 @@
   <meta name="author" content="leon.liu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关键字：可变参数，可变长参数 疑惑open函数为什么可以两个参数，也可以三个参数。如下是man open看到的声明： 12int open(const char *pathname, int flags);int open(const char *pathname, int flags, mode_t mode); c语言本身不支持重载，它是怎么做到的呢？ 下面来一个简单的实现。利用逗号表达式和宏">
+    <meta name="description" content="简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言实现默认参数">
-<meta property="og:url" content="http://example.com/2023/12/14/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0/index.html">
+<meta property="og:title" content="flock使用体会">
+<meta property="og:url" content="http://example.com/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/index.html">
 <meta property="og:site_name" content="leon的博客">
-<meta property="og:description" content="关键字：可变参数，可变长参数 疑惑open函数为什么可以两个参数，也可以三个参数。如下是man open看到的声明： 12int open(const char *pathname, int flags);int open(const char *pathname, int flags, mode_t mode); c语言本身不支持重载，它是怎么做到的呢？ 下面来一个简单的实现。利用逗号表达式和宏">
+<meta property="og:description" content="简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-14T09:35:00.000Z">
-<meta property="article:modified_time" content="2023-12-14T11:25:10.000Z">
+<meta property="article:published_time" content="2023-12-28T23:44:00.000Z">
+<meta property="article:modified_time" content="2023-12-29T01:30:51.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>C语言实现默认参数 - leon的博客</title>
+  <title>flock使用体会 - leon的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="C语言实现默认参数">
+            <span class="h2" id="subtitle" title="flock使用体会">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2023-12-14 17:35" pubdate>
-        2023年12月14日 下午
+      <time datetime="2023-12-29 07:44" pubdate>
+        2023年12月29日 早上
       </time>
     </span>
   
@@ -196,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      412 字
+      2.4k 字
     </span>
   
 
@@ -205,7 +205,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      12 分钟
     </span>
   
 
@@ -242,23 +242,37 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">C语言实现默认参数</h1>
+            <h1 style="display: none">flock使用体会</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2023年12月14日 晚上
+                  本文最后更新于：2023年12月29日 上午
                 
               </p>
             
             <div class="markdown-body">
-              <p>关键字：可变参数，可变长参数</p>
-<p>疑惑open函数为什么可以两个参数，也可以三个参数。如下是man open看到的声明：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">open</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname, <span class="hljs-type">int</span> flags)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">open</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname, <span class="hljs-type">int</span> flags, <span class="hljs-type">mode_t</span> mode)</span>;<br></code></pre></td></tr></table></figure>
-<p>c语言本身不支持重载，它是怎么做到的呢？</p>
-<p>下面来一个简单的实现。<br>利用逗号表达式和宏来实现，c为默认参数，默认0</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> aa(a,b,c...) _aa(a,b,(0,##c))</span><br><br><span class="hljs-type">void</span> _aa(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b,<span class="hljs-type">int</span> c)<br>&#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d,%d,%d\n&quot;</span>, a,b,c);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	aa(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br>	aa(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>输出如下：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span><br><span class="hljs-attribute">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>它的API很简单，如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/file.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">flock</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">int</span> operation)</span>;<br></code></pre></td></tr></table></figure>
+<p>operation可指定：</p>
+<ul>
+<li>LOCK_SH：设置共享（读）锁</li>
+<li>LOCK_EX：设置独占（写）锁</li>
+<li>LOCK_UN：解锁</li>
+</ul>
+<p>它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。</p>
+<p>它是一个系统调用，在内核<code>fs/locks.c</code>中实现。</p>
+<h1 id="实现本质"><a href="#实现本质" class="headerlink" title="实现本质"></a>实现本质</h1><p>每个打开的文件都对应有fd—file结构—inode结构三种数据结构。fd和file结构是进程自己独有的，inode是文件系统层面，所有进程共享。<br>flock在inode上记录了加锁的file结构信息，组成一个链表。通过比较file结构，判断是否需要锁定。<br>所以它的特性很多和文件相关。关键函数如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">flock_lock_inode</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> inode *inode, <span class="hljs-keyword">struct</span> file_lock *request)</span><br>&#123;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">file_lock</span> *<span class="hljs-title">new_fl</span> =</span> <span class="hljs-literal">NULL</span>;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">file_lock</span> *<span class="hljs-title">fl</span>;</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">file_lock_context</span> *<span class="hljs-title">ctx</span>;</span><br>	<span class="hljs-type">int</span> error = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">bool</span> found = <span class="hljs-literal">false</span>;<br>	LIST_HEAD(dispose);<br><br>	<span class="hljs-comment">// 获取inode上的lock信息</span><br>	ctx = locks_get_lock_context(inode, request-&gt;fl_type);<br>	<span class="hljs-keyword">if</span> (!ctx) &#123;<br>		<span class="hljs-keyword">if</span> (request-&gt;fl_type != F_UNLCK)<br>			<span class="hljs-keyword">return</span> -ENOMEM;<br>		<span class="hljs-keyword">return</span> (request-&gt;fl_flags &amp; FL_EXISTS) ? -ENOENT : <span class="hljs-number">0</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">if</span> (!(request-&gt;fl_flags &amp; FL_ACCESS) &amp;&amp; (request-&gt;fl_type != F_UNLCK)) &#123;<br>		new_fl = locks_alloc_lock();<br>		<span class="hljs-keyword">if</span> (!new_fl)<br>			<span class="hljs-keyword">return</span> -ENOMEM;<br>	&#125;<br><br>	percpu_down_read_preempt_disable(&amp;file_rwsem);<br>	spin_lock(&amp;ctx-&gt;flc_lock);<br>	<span class="hljs-keyword">if</span> (request-&gt;fl_flags &amp; FL_ACCESS)<br>		<span class="hljs-keyword">goto</span> find_conflict;<br><br>	<span class="hljs-comment">// 遍历inode上的锁</span><br>	list_for_each_entry(fl, &amp;ctx-&gt;flc_flock, fl_list) &#123;<br>		<span class="hljs-comment">// file指针比较</span><br>		<span class="hljs-keyword">if</span> (request-&gt;fl_file != fl-&gt;fl_file)<br>			<span class="hljs-keyword">continue</span>;<br>		<span class="hljs-comment">// 锁类型(LOCK_EX,LOCK_SH)比较</span><br>		<span class="hljs-keyword">if</span> (request-&gt;fl_type == fl-&gt;fl_type)<br>			<span class="hljs-keyword">goto</span> out;<br>		found = <span class="hljs-literal">true</span>;<br>		<span class="hljs-comment">// file结构上找到锁，但是类型不同，直接删除老的</span><br>		locks_delete_lock_ctx(fl, &amp;dispose);<br>		<span class="hljs-keyword">break</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">if</span> (request-&gt;fl_type == F_UNLCK) &#123;<br>		<span class="hljs-keyword">if</span> ((request-&gt;fl_flags &amp; FL_EXISTS) &amp;&amp; !found)<br>			error = -ENOENT;<br>		<span class="hljs-keyword">goto</span> out;<br>	&#125;<br><br>	<span class="hljs-comment">//file结构上没找到锁也会走这儿</span><br>find_conflict:<br>	list_for_each_entry(fl, &amp;ctx-&gt;flc_flock, fl_list) &#123;<br>		<span class="hljs-keyword">if</span> (!flock_locks_conflict(request, fl))<br>			<span class="hljs-keyword">continue</span>;<br>		error = -EAGAIN;<br>		<span class="hljs-keyword">if</span> (!(request-&gt;fl_flags &amp; FL_SLEEP))<br>			<span class="hljs-keyword">goto</span> out;<br>		<span class="hljs-comment">// 返回这个就会上锁</span><br>		error = FILE_LOCK_DEFERRED;<br>		locks_insert_block(fl, request);<br>		<span class="hljs-keyword">goto</span> out;<br>	&#125;<br>	<span class="hljs-keyword">if</span> (request-&gt;fl_flags &amp; FL_ACCESS)<br>		<span class="hljs-keyword">goto</span> out;<br>	locks_copy_lock(new_fl, request);<br>	locks_insert_lock_ctx(new_fl, &amp;ctx-&gt;flc_flock);<br>	new_fl = <span class="hljs-literal">NULL</span>;<br>	error = <span class="hljs-number">0</span>;<br><br>out:<br>	spin_unlock(&amp;ctx-&gt;flc_lock);<br>	percpu_up_read_preempt_enable(&amp;file_rwsem);<br>	<span class="hljs-keyword">if</span> (new_fl)<br>		locks_free_lock(new_fl);<br>	locks_dispose_list(&amp;dispose);<br>	trace_flock_lock_inode(inode, request, error);<br>	<span class="hljs-keyword">return</span> error;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><blockquote>
+<p>从上面的原理可知：</p>
+</blockquote>
+<ul>
+<li>fork,dup文件描述符后，fd对应的file结构不变，锁定关系不变。</li>
+<li>单个进程可使用一个fd多次重复加锁（内核实际只加锁依次），所以只需要解锁一次。</li>
+<li>单个进程对同一文件open两个fd（file结构不同），在这两个fd上依次加锁会死锁</li>
+<li>关闭文件fd，在该fd上加的锁自动释放</li>
+</ul>
+
             </div>
             <hr>
             <div>
@@ -278,18 +292,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">flock使用体会</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/12/malloc%E4%BD%95%E6%97%B6%E8%BF%94%E5%9B%9E%E5%A4%B1%E8%B4%A5/">
-                        <span class="hidden-mobile">malloc何时返回失败</span>
+                      <a href="/2023/12/14/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0/">
+                        <span class="hidden-mobile">C语言实现默认参数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
