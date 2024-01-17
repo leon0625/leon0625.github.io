@@ -24,7 +24,7 @@
 <meta property="og:description" content="关键字：远程开机  一般的主板都有网络唤醒功能(wake-on-lan)，但从来没有使用过。这个功能可以让一台关机的设备收到特定包后唤醒开机。本文主要介绍linux下的操作，windows上同理也支持，只是设置方法不一样。  设置方法网络唤醒需要两台电脑，一台待唤醒电脑，一台唤醒别人的电脑。 待唤醒电脑配置待唤醒电脑需要开启wake-on-lan功能。（1）设置主板bios，开启wake-on-l">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-01-17T10:36:00.000Z">
-<meta property="article:modified_time" content="2024-01-17T13:25:21.000Z">
+<meta property="article:modified_time" content="2024-01-17T13:26:49.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -276,7 +276,7 @@
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">sudo</span> ethtool -s eth2 wol g<br></code></pre></td></tr></table></figure>
 
 <p>（4）开机自动设置wake-on-lan<br><code>sudo vi /lib/systemd/system/wakeonlan.service</code>，写入如下内容</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=Enable Wake <span class="hljs-literal">On</span> Lan <br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=<span class="hljs-literal">on</span>eshot<br><span class="hljs-attr">ExecStart</span>=/usr/sbin/ethtool -s eth2 wol g<br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=basic.target<br></code></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=Enable Wake <span class="hljs-literal">On</span> Lan<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=<span class="hljs-literal">on</span>eshot<br><span class="hljs-attr">ExecStart</span>=/usr/sbin/ethtool -s eth2 wol g<br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=basic.target<br></code></pre></td></tr></table></figure>
 <p>再执行</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo systemctl <span class="hljs-built_in">enable</span> wakeonlan.service<br></code></pre></td></tr></table></figure>
 <h2 id="唤醒方法"><a href="#唤醒方法" class="headerlink" title="唤醒方法"></a>唤醒方法</h2><p>同一个lan网络下的其他设备，如ubuntu系统，安装wakeonlan，然后执行如下命令即可：<br>mac为待唤醒设备的mac。</p>
