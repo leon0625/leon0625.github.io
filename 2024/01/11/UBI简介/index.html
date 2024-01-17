@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="leon.liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="主要是翻译和自己的碎碎念  UBI - Unsorted Block Images注意人们经常对 UBI 感到困惑，这就是创建此部分的原因。请注意：  UBI 不是闪存转换层 (FTL)，它与 FTL 无关； UBI 与裸闪存配合使用，不适用于 MMC 、 RS-MMC 、 eMMC 、 SD 、 mini-SD 、 micro-SD 、 CompactFlash 、 MemoryStick 、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UBI简介">
+<meta property="og:url" content="http://example.com/2024/01/11/UBI%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="leon的博客">
+<meta property="og:description" content="主要是翻译和自己的碎碎念  UBI - Unsorted Block Images注意人们经常对 UBI 感到困惑，这就是创建此部分的原因。请注意：  UBI 不是闪存转换层 (FTL)，它与 FTL 无关； UBI 与裸闪存配合使用，不适用于 MMC 、 RS-MMC 、 eMMC 、 SD 、 mini-SD 、 micro-SD 、 CompactFlash 、 MemoryStick 、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-11T09:45:00.000Z">
+<meta property="article:modified_time" content="2024-01-12T09:26:12.000Z">
+<meta property="article:author" content="leon.liu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>UBI简介 - leon的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>leon的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="UBI简介">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-01-11 17:45" pubdate>
+        2024年1月11日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      16k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      82 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">UBI简介</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2024年1月12日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>主要是翻译和自己的碎碎念</p>
+</blockquote>
+<h1 id="UBI-Unsorted-Block-Images"><a href="#UBI-Unsorted-Block-Images" class="headerlink" title="UBI - Unsorted Block Images"></a>UBI - Unsorted Block Images</h1><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>人们经常对 UBI 感到困惑，这就是创建此部分的原因。请注意：</p>
+<ul>
+<li>UBI 不是闪存转换层 (FTL)，它与 FTL 无关；</li>
+<li>UBI 与裸闪存配合使用，不适用于 <code>MMC</code> 、 <code>RS-MMC</code> 、 <code>eMMC</code> 、 <code>SD</code> 、 <code>mini-SD</code> 、 <code>micro-SD</code> 、 <code>CompactFlash</code> 、 <code>MemoryStick</code> 、 <code>USB flash drive</code> 等消费类闪存；相反，UBI 与原始闪存设备配合使用，这些设备主要用于移动电话等嵌入式设备。</li>
+</ul>
+<p>请不要混淆。在<a target="_blank" rel="noopener" href="http://www.linux-mtd.infradead.org/doc/ubifs.html#L_raw_vs_ftl">此处</a>阅读有关原始闪存设备与 FTL 设备有何不同的更多信息。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>UBI（拉丁语：“哪里？”）代表“未分类块映像”。它是一个原始闪存设备的卷管理系统，它在单个物理闪存设备上管理多个逻辑卷，并将 I&#x2F;O 负载（即磨损均衡）分布到整个闪存芯片。</p>
+<p>从某种意义上说，UBI 可以与逻辑卷管理器 (LVM) 相比较。LVM 将逻辑扇区映射到物理扇区，而 UBI 将逻辑擦除块映射到物理擦除块。但除了映射之外，UBI 还实现了全局磨损均衡和透明错误处理。</p>
+<p>UBI 卷是一组连续的<code>逻辑擦除块</code> (LEB)。每个逻辑擦除块都动态映射到一个<code>物理擦除块</code> (PEB)。此映射由 UBI 管理，对用户和更高级别的软件隐藏。UBI 是提供全局磨损均衡、每个物理擦除块擦除计数器以及将数据从磨损更严重的物理擦除块透明地移动到磨损较轻的物理擦除块的能力的基本机制。</p>
+<p>创建卷时指定 UBI 卷大小，但稍后可以更改（卷可以动态调整大小）。有可用于操作 UBI 卷的用户空间工具。</p>
+<p>UBI 卷有 2 种类型：动态卷和静态卷。静态卷是只读的，其内容受 <code>CRC-32</code> 校验和保护，而动态卷是可读写的，上层（例如文件系统）负责确保数据完整性。</p>
+<p>静态卷通常用于内核、initramfs 和 dtb。打开时，较大的静态卷可能会产生重大损失，因为此时需要计算 <code>CRC-32</code> 。如果您想将静态卷用于除内核、initramfs 或 dtb 之外的任何内容，那么您很可能做错了，最好改用动态卷。</p>
+<p>UBI 了解有问题的擦除块（即随着时间推移而磨损的闪存部分），并使高级软件不必自行处理有问题的擦除块。UBI 拥有预留物理擦除块的池，当物理擦除块变坏时，它会用好的物理擦除块透明地替换它。UBI 将数据从新发现的有问题的物理擦除块移至好的物理擦除块。结果是，UBI 卷的用户不会注意到 I&#x2F;O 错误，因为 UBI 会透明地处理这些错误。</p>
+<p>NAND 闪存还容易出现读取和写入操作时发生的位翻转错误。位翻转由 ECC 校验和更正，但它们可能会随着时间的推移而累积并导致数据丢失。UBI 通过将数据从具有位翻转的物理擦除块移至其他物理擦除块来处理此问题。此过程称为擦洗。擦洗在后台透明地完成，对上层隐藏。</p>
+<p>以下是 UBI 的主要功能的简短列表：</p>
+<ul>
+<li>UBI 提供可以动态创建、删除或调整大小的卷；</li>
+<li>UBI 在整个闪存设备中实现磨损均衡（即，您可能认为您正在连续写入&#x2F;擦除 UBI 卷的同一逻辑擦除块，但 UBI 会将其扩展到闪存芯片的所有物理擦除块）；</li>
+<li>UBI 透明地处理不良的物理擦除块；</li>
+<li>UBI 通过擦洗最大程度地减少丢失数据的可能性。</li>
+</ul>
+<p>以下是 MTD 分区和 UBI 卷的比较。它们有些相似，因为：</p>
+<ul>
+<li>两者都由擦除块组成 - 对于 UBI 卷是逻辑擦除块，对于 MTD 分区是物理擦除块；</li>
+<li>两者都支持三种基本操作：读取、写入和擦除。</li>
+</ul>
+<p>但 UBI 卷相对于 MTD 分区具有以下优势：</p>
+<ul>
+<li>UBI 实现磨损均衡，因此用户根本不必关心这一点，这意味着上层软件可能更简单；</li>
+<li>UBI 处理坏擦除块，这也导致更简单的上层软件；</li>
+<li>UBI 卷是动态的，这意味着它们可以动态创建、删除或调整大小，而 MTD 分区是静态的；</li>
+<li>UBI 处理位翻转，这再次简化了上层软件；</li>
+<li>UBI 提供卷更新操作，这使得检测中断的软件更新和恢复变得容易；</li>
+<li>UBI 提供原子逻辑擦除块更改操作，该操作允许在操作期间发生不干净的重新引导时更改逻辑擦除块的内容而不丢失数据；这对于上层软件（例如，对于文件系统）可能非常有用；</li>
+<li>UBI 有一个取消映射操作，它只是将逻辑擦除块从物理擦除块取消映射，后台来调度物理擦除，然后返回；这非常快，并且使上层软件无需实现自己的机制来延迟擦除（例如，JFFS2 必须实现此类机制）。</li>
+</ul>
+<p>UBI 还提供了一个块设备，允许常规面向块的文件系统安装在 UBI 卷之上。这是可能的，因为 UBI 以透明的方式处理坏块。</p>
+<p>有一个名为 <code>gluebi</code> 的附加驱动程序，它在 UBI 卷之上模拟 MTD 设备。这看起来有点奇怪，因为 UBI 在 MTD 设备之上工作，然后 <code>gluebi</code> 在其之上模拟其他 MTD 设备，但这实际上可行，并且使得现有软件（例如，JFFS2）可以在 UBI 卷之上运行。但是，新软件可能会受益于高级 UBI 功能，并让 UBI 解决闪存技术强加的许多问题。</p>
+<p>gluebi的内核配置为<code>CONFIG_MTD_UBI_GLUEBI</code>，它在创建删除卷时注册和注销mtd，对该mtd的访问实际是ubi的回调。</p>
+<h2 id="Power-cuts-tolerance-断电容忍"><a href="#Power-cuts-tolerance-断电容忍" class="headerlink" title="Power-cuts tolerance - 断电容忍"></a>Power-cuts tolerance - 断电容忍</h2><p>UBI 和 UBIFS 的设计都考虑到了对断电的容忍度。</p>
+<p>UBI 具有一个内部调试基础架构，可以模拟电源故障以进行测试。模拟的优点在于，它在将控制数据结构写入设备的关键点模拟电源故障，而使用物理断电测试在那些精确时刻中断系统的概率相当低。</p>
+<h2 id="用户空间工具"><a href="#用户空间工具" class="headerlink" title="用户空间工具"></a>用户空间工具</h2><ul>
+<li><code>ubinfo</code> - 提供有关系统中找到的 UBI 设备和卷的信息；</li>
+<li><code>ubiattach</code> - 将 MTD 设备（描述原始闪存）与 UBI 相关联，从而创建相应的 UBI 设备；</li>
+<li><code>ubidetach</code> - 将 MTD 设备从 UBI 设备分离（与 <code>ubiattach</code> 所做的相反）；</li>
+<li><code>ubimkvol</code> - 在 UBI 设备上创建 UBI 卷；</li>
+<li><code>ubirmvol</code> - 从 UBI 设备中删除 UBI 卷；</li>
+<li><code>ubiblock</code> - 管理 UBI 卷的块接口；</li>
+<li><code>ubiupdatevol</code> - 更新 UBI 卷；此工具使用 UBI 卷更新功能，如果更新中断，则会使卷处于“损坏”状态；此外，此工具可用于清除 UBI 卷；</li>
+<li><code>ubicrc32</code> - 计算 <code>CRC-32</code> 文件的校验和，其初始种子与 UBI 使用的相同；</li>
+<li><code>ubinize</code> - 生成 UBI 映像；</li>
+<li><code>ubiformat</code> - 格式化空闪存，擦除闪存并保留擦除计数器，将 UBI 映像闪存到 MTD 设备；</li>
+<li><code>mtdinfo</code> - 报告系统中找到的 MTD 设备的信息。</li>
+</ul>
+<h2 id="UBI-头"><a href="#UBI-头" class="headerlink" title="UBI 头"></a>UBI 头</h2><p>UBI 在每个非坏物理擦除块的开头存储 2 个小的 64 字节头：</p>
+<ul>
+<li><strong>erase counter header</strong><br>  擦除计数器头（或 EC 头），其中包含物理擦除块 (PEB) 的擦除计数器以及其他信息；</li>
+<li><strong>volume identifier header</strong><br>  卷标识符头（或 VID 头），其中存储卷 ID 和此 PEB 所属的逻辑擦除块 (LEB) 编号。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ubi_ec_hdr</span> &#123;</span><br>	__be32  magic;  <span class="hljs-comment">// UBI#</span><br>	__u8    version;<br>	__u8    padding1[<span class="hljs-number">3</span>];<br>	__be64  ec; <span class="hljs-comment">/* Warning: the current limit is 31-bit anyway! */</span><br>	__be32  vid_hdr_offset;<br>	__be32  data_offset;<br>	__be32  image_seq;<br>	__u8    padding2[<span class="hljs-number">32</span>];<br>	__be32  hdr_crc;<br>&#125; __packed;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ubi_vid_hdr</span> &#123;</span><br>	__be32  magic;   <span class="hljs-comment">// UBI!</span><br>	__u8    version;<br>	__u8    vol_type;<br>	__u8    copy_flag;<br>	__u8    compat;<br>	__be32  vol_id;<br>	__be32  lnum;<br>	__u8    padding1[<span class="hljs-number">4</span>];<br>	__be32  data_size;<br>	__be32  used_ebs;<br>	__be32  data_pad;<br>	__be32  data_crc;<br>	__u8    padding2[<span class="hljs-number">4</span>];<br>	__be64  sqnum;<br>	__u8    padding3[<span class="hljs-number">12</span>];<br>	__be32  hdr_crc;<br>&#125; __packed;<br></code></pre></td></tr></table></figure>
+
+<p>这就是为什么逻辑擦除块小于物理擦除块的原因 - 头部占用了一些闪存空间。</p>
+<p>所有 UBI 头都受 <code>CRC-32</code> 校验和保护。有关头内容的更多信息，请参阅 Linux 内核中的 <code>drivers/mtd/ubi/ubi-media.h</code> 文件。</p>
+<p>当 UBI 连接 MTD 设备时，它必须扫描该设备，读取所有头文件，检查 <code>CRC-32</code> 校验和，并将擦除计数器和逻辑到物理擦除块映射信息存储在 RAM 中。有关与此相关的可伸缩性问题的信息，请参阅本节。</p>
+<p>UBI 擦除 PEB 后，它会增加擦除计数器值并将其写入 EC 头文件。这意味着 PEB 始终具有有效的 EC 头文件，除了擦除后和写入 EC 头文件之前的那段短暂时间除外。如果在此短暂时间内发生意外重启，则 EC 头文件将丢失或损坏。在这种情况下，UBI 会在完成 MTD 设备扫描后立即使用平均擦除计数器写入新的 EC 头文件。</p>
+<p>当 UBI 将 VID 头文件与 LEB 关联时，会将其写入 PEB。让我们考虑一下在某些 UBI 操作期间头文件会发生什么情况。</p>
+<ul>
+<li>LEB 取消映射操作只是将 LEB 从 PEB 取消映射，并将 PEB 安排为擦除。擦除 PEB 时，会立即写入 EC 头文件。不会写入 VID 头文件。</li>
+<li>LEB 映射操作或对未映射 LEB 的写操作使 UBI 找到一个合适的 PEB 并将 VID 头写入其中（EC 头必须已存在）。请注意，对已映射 LEB 的写操作只是将数据直接写入 PEB，而不会更改 UBI 头。</li>
+</ul>
+<p>UBI 维护两个每个 PEB 的头，因为它需要在不同的时间向闪存写入不同的信息：</p>
+<ul>
+<li>PEB 被擦除后，立即写入 EC 头，这最大程度地降低了由于意外重启而丢失擦除计数器的可能性；</li>
+<li>当 UBI 将 PEB 与 LEB 关联时，将 VID 头写入 PEB。</li>
+</ul>
+<p>当 EC 头写入 PEB 时，UBI 还不了解卷 ID 或此 PEB 将与之关联的 LEB 编号。这就是为什么 UBI 需要执行两个单独的写操作并拥有两个单独的头的原因。</p>
+<h2 id="UBI-卷表"><a href="#UBI-卷表" class="headerlink" title="UBI 卷表"></a>UBI 卷表</h2><p>卷表是一个闪存数据结构，其中包含有关此 UBI 设备上每个卷的信息。卷表是一个记录卷表的数组。每个记录包含以下信息：</p>
+<ul>
+<li>volume size; 卷大小；</li>
+<li>volume name; 卷名；</li>
+<li>volume type ;  卷类型（动态或静态）；</li>
+<li>volume alignment; 卷对齐；</li>
+<li><a target="_blank" rel="noopener" href="http://www.linux-mtd.infradead.org/doc/ubi.html#L_volupdate">update marker</a> 更新标记（在启动更新时设置在卷上，并在成功完成时清除）；</li>
+<li><a target="_blank" rel="noopener" href="http://www.linux-mtd.infradead.org/doc/ubi.html#L_autoresize">auto-resize</a> flag; 自动调整大小标志；</li>
+<li>CRC-32 此记录的校验和。</li>
+</ul>
+<p>每条记录描述一个 UBI 卷。卷表数组中的记录索引对应于它描述的卷 ID。即，UBI 卷 0 由卷表中的记录 0 描述，依此类推。卷表中的记录总数受 LEB 大小限制，不能大于 128。这意味着 UBI 设备不能有超过 128 个卷。</p>
+<p>每次创建、删除、调整大小、重命名或更新 UBI 卷时，都会更改相应的卷表记录。出于可靠性和断电容差的原因，UBI 维护卷表的两个副本。</p>
+<h3 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h3><p>在内部，卷表驻留在一个称为布局卷的专用 UBI 卷中。此卷由 2 个 LEB 组成 - 一个用于卷表的每个副本。布局卷是一个“内部”UBI 卷，用户看不到它也无法访问它。在读取或写入布局卷时，UBI 使用与普通用户卷相同的机制。</p>
+<p>UBI 在更新卷表记录时使用以下算法：</p>
+<ul>
+<li>Prepare an in-memory buffer with the new volume table contents.<br>  使用新卷表内容准备一个内存中缓冲区。</li>
+<li><a target="_blank" rel="noopener" href="http://www.linux-mtd.infradead.org/doc/ubi.html#L_unmap">Un-map</a> LEB0 of the layout volume.<br>  取消映射布局卷的 LEB0。</li>
+<li>Write the new volume table to LEB0.<br>  将新卷表写入 LEB0。</li>
+<li>Un-map LEB1 of the layout volume.<br>  取消映射布局卷的 LEB1。</li>
+<li>Write the new volume table to LEB1.<br>  将新卷表写入 LEB1。</li>
+<li>Flush the UBI work queue to make sure the PEBs are corresponding to the un-mapped LEBs are erased.<br>  刷新 UBI 工作队列，以确保与未映射 LEB 相对应的 PEB 已擦除。</li>
+</ul>
+<p>在连接 MTD 设备时，UBI 会确保 2 个卷表副本是等效的。如果它们不等效，这可能是由不干净的重新启动引起的，UBI 会从 LEB0 中选择一个并将其复制到布局卷的 LEB1（因为根据上面指定的算法，LEB0 是首先更新的，因此被认为具有最新信息）。如果卷表副本之一已损坏，UBI 会从另一个卷表副本中恢复它。</p>
+<h2 id="最小-flash-input-x2F-output-单元"><a href="#最小-flash-input-x2F-output-单元" class="headerlink" title="最小 flash input&#x2F;output 单元"></a>最小 flash input&#x2F;output 单元</h2><p>UBI 使用闪存的抽象模型。简而言之，从 UBI 的角度来看，闪存（或 MTD 设备）由擦除块组成，这些擦除块可能是好的或坏的。可以从每个好的擦除块读取、写入或擦除。好的擦除块也可以标记为坏的。</p>
+<p>闪存读取和写入只能以最小输入&#x2F;输出单元大小的倍数进行，这取决于闪存类型。</p>
+<ul>
+<li>NOR 闪存通常具有 1 字节的最小 I&#x2F;O 单元大小，因为 NOR 闪存通常允许读取和写入单个字节（事实上，甚至可以更改各个位）。</li>
+<li>某些 NOR 闪存可能具有其他最小 I&#x2F;O 单元大小，例如在 ECC NOR 闪存的情况下为 16 或 32 字节。</li>
+<li>NAND 闪存通常具有 512、2048 或 4096 字节的最小 I&#x2F;O 大小，这对应于它们的页大小。NAND 闪存将每页 ECC 代码存储在 OOB 区域中，这意味着必须一次写入整个 NAND 页才能计算 ECC，并且必须一次读取整个 NAND 页才能检查 ECC。</li>
+</ul>
+<p>最小 I&#x2F;O 单元大小是 MTD 设备的一个非常重要的特性。它影响很多事情，例如：</p>
+<ul>
+<li>VID 头的物理位置取决于最小 I&#x2F;O 单元大小，这意味着 LEB 大小也取决于它；通常，最小 I&#x2F;O 单元大小越大，LEB 大小越小，因此 UBI 闪存空间开销越大；</li>
+<li>对 LEB 的所有写入都应与最小 I&#x2F;O 单元大小对齐，并且应为最小 I&#x2F;O 单元大小的倍数；这不适用于读取，但请记住，在 MTD 级别上，所有读取都是以最小 I&#x2F;O 单元大小的倍数完成的；这只是通过缓冲读取数据并将仅请求的字节量复制到用户缓冲区来对用户隐藏。</li>
+</ul>
+<h2 id="NAND-flash-sub-pages-NAND-闪存子页"><a href="#NAND-flash-sub-pages-NAND-闪存子页" class="headerlink" title="NAND flash sub-pages NAND 闪存子页"></a>NAND flash sub-pages NAND 闪存子页</h2><p>如前所述，所有 UBI I&#x2F;O 都以最小 I&#x2F;O 单元大小的倍数执行，这相当于 NAND 设备的页大小（在 NAND 闪存的情况下）。但是，某些 SLC NAND 闪存允许更小的 I&#x2F;O 单元，在 MTD 术语中称为子页。并非所有 NAND 设备都有子页。</p>
+<ul>
+<li>截至 2009 年 4 月，MLC NAND 没有子页。</li>
+<li>SLC NAND 通常具有子页。例如，512 字节 NAND 页通常由 2x256 字节子页组成，2048 字节 NAND 页通常由 4x512 字节子页组成。</li>
+<li>具有 2048 字节 NAND 页的 SLC OneNAND 芯片具有 4x512 字节子页。</li>
+</ul>
+<p>如果 NAND 闪存支持子页，则可以按子页为单位计算 ECC 代码，而不是按页为单位计算。在这种情况下，可以独立读写子页。</p>
+<p>但是，即使 NAND 芯片可能支持子页，SoC 的 NAND 控制器也可能不支持。如果闪存由仅按页为单位计算 ECC 代码的控制器管理，则无法以子页块为单位执行 I&#x2F;O。例如，OLPC XO-1 笔记本电脑就是这种情况 - 它的 NAND 芯片支持子页，但 NAND 控制器不支持。</p>
+<p>注意，术语“子页”是 MTD 术语，但它也称为“NOP”，代表“部分程序数”。NOP1 NAND 闪存没有子页 - UBI 将它们视为具有与 NAND 页大小相等的子页大小的 NAND。NOP2 NAND 闪存有 2 个子页（每个为半个 NAND 页），NOP4 闪存有 4 个子页（每个为四分之一 NAND 页）。</p>
+<p>UBI 利用子页来减少闪存空间开销。如果可以使用子页，则可以减少此开销（请参阅此处）。考虑一个具有 128KiB 擦除块和 2048 字节页面的 NAND 闪存。如果没有子页，UBI 将 VID 头部放在物理偏移量 2048，因此 LEB 大小变为 124KiB（128KiB 减去一个存储 EC 头部的 NAND 页，再减去一个存储 VID 头部的 NAND 页）。相反，如果 NAND 闪存确实具有子页，则 UBI 将 VID 头部放在物理偏移量 512（第二个子页），因此 LEB 大小变为 126KiB（128KiB 减去一个用于存储两个 UBI 头部的 NAND 页）。请参阅本部分以获取有关 UBI 头部存储位置的更多信息。</p>
+<p>子页面仅由 UBI 内部使用，并且仅用于存储头。UBI API 不允许用户对子页面单元执行 I&#x2F;O。原因之一是子页面写入可能很慢。要写入子页面，驱动程序实际上可能会写入整个 NAND 页，但在与此操作无关的子页面中放入 <code>0xFF</code> 个字节。如果是这种情况，写入 4 个子页面将比一次写入整个 NAND 页慢 4 倍。因此，UBI 确实对头使用子页面，但此技巧不适用于 UBI API。</p>
+<h2 id="UBI-头位置"><a href="#UBI-头位置" class="headerlink" title="UBI 头位置"></a>UBI 头位置</h2><p>EC 头始终位于偏移量 0 处，占用 64 个字节，VID 头位于下一个可用的最小 I&#x2F;O 单元或子页面，也占用 64 个字节。例如：</p>
+<ul>
+<li>对于具有 1 字节最小 I&#x2F;O 单元的 NOR 闪存，VID 头位于偏移量 64；</li>
+<li>对于没有子页面的 NAND 闪存，VID 头位于第二个 NAND 页；</li>
+<li>对于具有子页面的 NAND 闪存，VID 头位于第二个子页面。<h2 id="Flash-space-overhead-闪存空间开销"><a href="#Flash-space-overhead-闪存空间开销" class="headerlink" title="Flash space overhead 闪存空间开销"></a>Flash space overhead 闪存空间开销</h2></li>
+</ul>
+<p>UBI 将一些闪存空间用于其自身目的，从而减少了可供 UBI 用户使用的闪存空间。即：</p>
+<ul>
+<li>2 个 PEB 用于存储卷表；</li>
+<li>1 个 PEB 用于磨损均衡目的；</li>
+<li>1 个 PEB 用于原子 LEB 更改操作；</li>
+<li>一些 PEB 用于处理坏 PEB；这适用于 NAND 闪存，但不适用于 NOR 闪存；默认情况下，保留的 PEB 数量可配置，等于每 1024 个块中的 20 个块；</li>
+<li>UBI 将 EC 和 VID 头部存储在每个 PEB 的开头；用于这些目的的字节数取决于闪存类型，如下所述。</li>
+</ul>
+<p>我们引入符号：</p>
+<ul>
+<li>W - 闪存芯片上的物理擦除块总数（注意：整个芯片，而非 MTD 分区）；</li>
+<li>P - MTD 分区上的物理擦除块总数；</li>
+<li>S P - 物理擦除块大小；</li>
+<li>S L - 逻辑擦除块大小；</li>
+<li>B B - MTD 分区上的坏块数；</li>
+<li>B R - 为坏 PEB 处理预留的 PEB 数量（对于 NAND，默认值为 20 * W&#x2F;1024，对于 NOR 和其他没有坏 PEB 的闪存类型，默认值为 0）；</li>
+<li>B - MAX(BR,BB);</li>
+<li>O - 与以字节为单位存储 EC 和 VID 头相关联的开销，即 O &#x3D; S P - S L 。</li>
+</ul>
+<p>UBI 开销为 (B + 4) * S P + O * (P - B - 4)，即用户无法访问此数量的字节。O 因闪存的不同而不同：</p>
+<ul>
+<li>对于具有 1 字节最小 I&#x2F;O 单元的 NOR 闪存，O 为 128 字节；</li>
+<li>对于没有子页的 NAND 闪存（例如，MLC NAND），O 为 2 个 NAND 页，即在 2KiB NAND 页的情况下为 4KiB，在 512 字节 NAND 页的情况下为 1KiB；</li>
+<li>对于具有子页的 NAND 闪存，UBI 优化了其闪存布局，并将 EC 和 VID 头部放在同一个 NAND 页，但不同的子页；在这种情况下，O 仅为一个 NAND 页；</li>
+<li>对于其他闪存，如果最小 I&#x2F;O 单元大小大于或等于 64 字节，则开销应为 2 个最小 I&#x2F;O 单元；如果最小 I&#x2F;O 单元大小小于 64 字节，则开销应为 2 乘以 64 字节，并与最小 I&#x2F;O 单元大小对齐。</li>
+</ul>
+<p><strong>算一下手上一块128MB的nand flash实际用了多少</strong><br>mtdinfo -a查看一下mtd信息，如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">mtd2</span><br><span class="hljs-attr">Name:</span>                           <span class="hljs-string">image</span><br><span class="hljs-attr">Type:</span>                           <span class="hljs-string">nand</span><br><span class="hljs-attr">Eraseblock size:</span>                <span class="hljs-number">131072</span> <span class="hljs-string">bytes,</span> <span class="hljs-number">128.0</span> <span class="hljs-string">KiB</span><br><span class="hljs-attr">Amount of eraseblocks:</span>          <span class="hljs-number">1000</span> <span class="hljs-string">(131072000</span> <span class="hljs-string">bytes,</span> <span class="hljs-number">125.0</span> <span class="hljs-string">MiB)</span><br><span class="hljs-attr">Minimum input/output unit size:</span> <span class="hljs-number">2048 </span><span class="hljs-string">bytes</span><br><span class="hljs-attr">Sub-page size:</span>                  <span class="hljs-number">2048 </span><span class="hljs-string">bytes</span><br><span class="hljs-attr">OOB size:</span>                       <span class="hljs-number">64</span> <span class="hljs-string">bytes</span><br><span class="hljs-attr">Character device major/minor:</span>   <span class="hljs-number">90</span><span class="hljs-string">:4</span><br><span class="hljs-attr">Bad blocks are allowed:</span>         <span class="hljs-literal">true</span><br><span class="hljs-attr">Device is writable:</span>             <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+<p>我们的ubi连接的mtd2, 有1000个块，物理擦除块儿大小128KB，子页大小2KB，计算结果如下（处理坏块预留的PEB在ubinfo -a中可以查到为20）<br><code>(1000-4)*4096 + 24*131072=7056KB</code><br>就是说开销有7M。</p>
+<h2 id="UBI-闪存器的工作原理"><a href="#UBI-闪存器的工作原理" class="headerlink" title="UBI 闪存器的工作原理"></a>UBI 闪存器的工作原理</h2><p>以下是 UBI 闪存器程序在擦除闪存或写入 UBI 映像时必须执行的操作列表。</p>
+<ul>
+<li><p>首先，扫描闪存并收集擦除计数器。即，它从每个 PEB 读取 EC 头，检查头部的 <code>CRC-32</code> 校验和，并将擦除计数器保存在 RAM 中。无需读取 VID 头。应跳过坏 PEB。</p>
+</li>
+<li><p>接下来，计算平均擦除计数器。这将用于具有损坏或丢失的 EC 头的 PEB。此类 PEB 可能由于意外重启而发生，但数量不应太多。</p>
+</li>
+<li><p>如果仅仅只是擦除闪存，那么必须擦除每个 PEB，并且必须在 PEB 的开头写入适当的 EC 头。EC 头应包含更新的擦除计数器。应跳过不良 PEB。对于 NAND 闪存，在擦除或写入时出现 I&#x2F;O 错误的情况下，应将 PEB 标记为不良（在此处查看有关 UBI 如何将 PEB 标记为不良的更多信息）。</p>
+</li>
+<li><p>如果打算写入 UBI 映像，那么闪存器应针对每个非坏 PEB 执行以下操作。  </p>
+<ul>
+<li>从 UBI 映像（PEB 大小字节）中读取此 PEB 的内容到缓冲区。</li>
+<li>从缓冲区的末尾剥离充满 <code>0xFF</code> 字节的最小 I&#x2F;O 单元（详细信息如下）。</li>
+<li>擦除 PEB。</li>
+<li>更改缓冲区中的 EC 头 - 在此处放置新的擦除计数器值并重新计算 <code>CRC-32</code> 校验和。</li>
+<li>将缓冲区写入物理擦除块。</li>
+</ul>
+<p>  一如既往，应跳过坏 PEB，对于 NAND 闪存，如果在擦除或写入时发生 I&#x2F;O 错误，则应将 PEB 标记为坏。</p>
+</li>
+</ul>
+<p>实际上，输入 UBI 映像大小通常比闪存大小小，因此闪存器必须正确刷新已使用的 PEB，并正确擦除未使用的 PEB。</p>
+<p>注意，在写入 UBI 映像时，输入 UBI 映像中的擦除块写入何处并不重要。例如，第一个输入擦除块可以写入第一个 PEB，也可以写入第二个或最后一个。</p>
+<p>还要注意，如果您在生产时创建闪存器来写入 UBI 映像（即新闪存，仅一次），那么闪存器不必更改输入 UBI 映像的 EC 头，因为这是新闪存，并且每个 PEB 都有零擦除计数器。这意味着生产线闪存器可能会更简单。</p>
+<p>如果您的 UBI 映像包含 UBIFS 文件系统，并且您的闪存是 NAND，则可能必须在输入 PEB 数据的末尾插入 <code>0xFF</code> 字节。这一点非常重要，尽管并非所有 NAND 闪存都要求这样做。有时，不这样做可能会导致非常不愉快的问题，以后可能很难调试。因此，我们建议始终这样做。</p>
+<p>原因在于 UBIFS 将仅包含 <code>0xFF</code> 字节的 NAND 页（我们称之为“空 NAND 页”）视为可用。例如，假设 PEB 的第一个 NAND 页包含一些数据，第二个是空的，第三个也包含一些数据，第四个以及其余的 NAND 页也是空的。在这种情况下，UBIFS 将从第四个开始的所有 NAND 页视为可用，并将数据写入那里。如果闪存程序已将 <code>0xFF</code> 写入这些页，那么任何新的 UBIFS 数据都会导致第二次写入。但是，许多 NAND 闪存要求仅写入 NAND 页一次，即使数据仅包含 <code>0xFF</code> 字节。</p>
+<p>换句话说，写入 <code>0xFF</code> 字节可能会产生副作用。闪存器必须做的是在写入 PEB 缓冲区之前从 PEB 缓冲区的末尾删除所有空 NAND 页。不必删除所有空 NAND 页，只需删除最后一个即可。这意味着闪存器不必扫描整个缓冲区以查找 <code>0xFF</code> 。只需从末尾扫描缓冲区，然后在第一个非 <code>0xFF</code> 字节处停止即可。这要快得多。</p>
+<h2 id="标记擦除块为坏块"><a href="#标记擦除块为坏块" class="headerlink" title="标记擦除块为坏块"></a>标记擦除块为坏块</h2><p>此部分与 NAND 闪存以及表现出坏擦除块的其他闪存相关。UBI 在以下 2 种情况下将物理擦除块标记为坏块：</p>
+<ul>
+<li>擦除块写入操作失败，在这种情况下，UBI 将数据从该 PEB 移动到其他 PEB（数据恢复），并安排对该 PEB 进行折磨(torturing)；</li>
+<li>擦除操作失败，错误为 <code>EIO</code> ，在这种情况下，擦除块立即标记为坏块。</li>
+</ul>
+<p>折磨在后台进行，目的是检测物理擦除块是否实际上是坏块。写入失败可能出于多种原因，包括驱动程序或文件系统等上层内容中的错误（例如，FS 错误地多次写入同一 NAND 页）。在折磨期间，UBI 执行以下操作：</p>
+<ul>
+<li>擦除擦除块；</li>
+<li>回读并确保它只包含 0xFF 字节；</li>
+<li>写入测试模式字节；</li>
+<li>回读擦除块并检查模式；</li>
+<li>依此类推，针对多个模式（ <code>0xA5</code> 、 <code>0x5A</code> 、 <code>0x00</code> ）执行。</li>
+</ul>
+<p>如果擦除块经受住了严酷测试，则不会将其标记为坏块。但是，严酷测试期间的位翻转是将擦除块标记为坏块的充分理由。有关详细信息，请参阅 <code>torture_peb()</code> 函数。</p>
+<h2 id="用于坏块处理的保留块（仅适用于-NAND-芯片）"><a href="#用于坏块处理的保留块（仅适用于-NAND-芯片）" class="headerlink" title="用于坏块处理的保留块（仅适用于 NAND 芯片）"></a>用于坏块处理的保留块（仅适用于 NAND 芯片）</h2><p>众所周知，NAND 芯片具有一定数量的物理擦除块，制造商将其标记为坏块。在 NAND 设备的使用寿命期间，可能会出现其他坏块。尽管如此，制造商通常会保证前几个物理擦除块不是坏块，并且坏 PEB 的总数不会超过一定数量。例如，一块 256MiB（2048 个 128KiB PEB）的三星 OneNAND 芯片在耐用寿命期间保证不超过 40 个 128KiB PEB。这是 NAND 设备的常见值：20&#x2F;1024 PEB，约为闪存大小的 2%。</p>
+<p>20&#x2F;1024 的比例是 UBI 为 UBI 设备预留的默认块数。这意味着如果 4096 PEB NAND 上有 2 个 UBI 设备，则每个 UBI 设备将预留 80 PEB。这似乎是一种空间浪费，但鉴于坏块可能出现在 NAND 闪存上的任何位置，并且在整个设备上分布不均，因此这是更安全的方式。因此，与其在 NAND 闪存上使用多个 UBI 设备，不如仅使用一个包含多个 UBI 卷的 UBI 设备更节省空间。</p>
+<p>每 1024 PEB 保留的 20 PEB 的默认值是一个内核配置选项。对于每个 UBI 设备，可以通过内核参数或 ubiattach 参数（自内核 3.7 起）调整此值。</p>
+<h2 id="Volume-auto-resize-卷自动调整大小"><a href="#Volume-auto-resize-卷自动调整大小" class="headerlink" title="Volume auto-resize 卷自动调整大小"></a>Volume auto-resize 卷自动调整大小</h2><p>在生产过程中要刷新 UBI 映像时，应为所有卷指定确切的大小（大小存储在 UBI 卷表中）。然而，在实践中，在嵌入式领域，我们希望有一个只读卷用于根文件系统，还有一个读&#x2F;写卷用于剩余的任何空间（日志、用户数据等）。如果根文件系统的大小是固定的，则第二个卷的大小可以因产品而异（给定不同的闪存大小）。</p>
+<p>这是自动调整大小标志的用途。如果卷启用了自动调整大小标志，则在首次运行 UBI 时，其大小将扩展以填满剩余的未使用空间。调整卷大小后，UBI 会移除自动调整大小标志，并且不再调整卷的大小。自动调整大小标志存储在卷表中，并且只能将一个卷标记为自动调整大小。</p>
+<h2 id="UBI-operations"><a href="#UBI-operations" class="headerlink" title="UBI operations"></a>UBI operations</h2><h3 id="LEB-un-map"><a href="#LEB-un-map" class="headerlink" title="LEB un-map"></a>LEB un-map</h3><p>LEB 取消映射操作由 <code>ubi_leb_unmap()</code> UBI 内核 API 函数实现。从内核版本 <code>2.6.29</code> 开始，取消映射操作可通过 <code>UBI_IOCEBUNMAP</code> ioctl 命令供用户空间程序使用。应针对 UBI 卷字符设备调用 ioctl。</p>
+<p>LEB 取消映射操作：</p>
+<ul>
+<li>首先从相应的 PEB 取消映射 LEB；</li>
+<li>然后计划擦除 PEB 并返回；它不会等待 PEB 的擦除完成；相反，PEB 由 UBI 后台线程擦除；</li>
+</ul>
+<p>当读取未映射的 LEB 时，UBI 返回所有 <code>0xFF</code> 字节，因此取消映射操作可以被视为非常快速的擦除操作。但 UBI 程序员必须注意一个方面：<br>假设您取消映射映射到 PEB P 的 LEB L。由于 P 不是同步擦除的，而只是后台擦除，因此在不干净的重新启动的情况下可能会出现“意外情况”：如果在物理擦除 P 之前重新启动，则在 UBI 在下次启动时连接 MTD 设备时，L 将再次映射到 P。事实上，UBI 将扫描 MTD 设备并找到引用 L 的 P，并将此映射信息添加到 EBA 表中。<br>但是，一旦您将任何数据写入 L，或使用 LEB 映射操作对其进行映射，它就会映射到新的 PEB，并且旧内容将永远消失，因为即使在不干净的重新启动的情况下，UBI 也会为 L 选择较新的映射。</p>
+<h4 id="实现细节-1"><a href="#实现细节-1" class="headerlink" title="实现细节"></a>实现细节</h4><p>本节介绍了在 unclean 重启的情况下，UBI 如何区分 LEB 的旧版本和新版本。假设我们取消映射映射到 PEB P1 的 LEB L，这意味着 UBI 将 P1 安排为擦除。然后，我们向 L 写入一些数据，这意味着 UBI 找到另一个 PEB P2 ，将 L 映射到 P2 ，并将数据写入 P 2 。如果在 P1 物理擦除之前，但在写入操作之后发生 unclean 重启，我们最终会得到映射到同一个 LEB L 的 2 个 PEB（P1 和 P2 ）。</p>
+<p>为了处理这种情况，UBI 维护了一个全局 64 位序列号变量。每次将 PEB 映射到 LEB 时都会递增序列号变量，并将它的值存储在 PEB 的 VID 头中。因此，每个 VID 头都有一个唯一的序列号，序列号越大，VID 头就越“年轻”。当 UBI 连接 MTD 设备时，它会将全局序列号变量初始化为现有 VID 头中找到的最高值加一。</p>
+<p>在上述情况下，UBI 只需选择具有最高序列号的 PEB（P2）并丢弃具有较低序列号的 PEB（P1）。</p>
+<p>请注意，如果在 UBI 将一个 PEB 的内容移动到另一个 PEB 以便进行磨损均衡时发生不干净的重新启动，或者在原子 LEB 更改操作期间发生不干净的重新启动，则情况会更加困难。在这种情况下，仅选择较新的 PEB 是不够的，还需要确保数据已到达新的 PEB。</p>
+<h3 id="LEB-map"><a href="#LEB-map" class="headerlink" title="LEB map"></a>LEB map</h3><p>LEB 映射操作将以前未映射的逻辑擦除块 (LEB) 映射到物理擦除块 (PEB)。例如，如果对 LEB A 运行操作，UBI 将找到一个合适的 PEB，向 PEB 写入 VID 头，并修改内存中的 EBA 表。VID 头现在将引用 LEB A。此操作后，对 LEB A 的所有 I&#x2F;O 实际上都将转到映射的 PEB。</p>
+<p>LEB 映射操作可通过 <code>ubi_leb_map()</code> UBI 内核 API 函数或通过 <code>UBI_IOCEBMAP</code> 卷字符设备 ioctl 命令使用。但是，此 ioctl 接口仅从内核版本 <code>2.6.29</code> 开始可用。</p>
+<p>LEB 映射操作的功能之一是确保删除旧的 LEB 内容。如本节所述，当 LEB 取消映射时，相应的 PEB 不会立即擦除。如果发生不干净的重新启动，则在 UBI 连接 MTD 设备后，LEB 可能会再次映射到相同的 PEB。因此，如果在取消映射后立即映射 LEB，则可以确保删除旧的 LEB 内容。换句话说，即使在不干净的重新启动的情况下，映射操作返回后，LEB 也保证只包含 0xFF 字节。</p>
+<p>请谨慎使用 LEB 映射操作。除非确实需要，否则请勿使用它，因为映射的 LEB 会给 UBI 磨损均衡子系统增加更多开销，与未映射的 LEB 相比。事实上，如果某个 LEB 未映射，则没有包含此 LEB 数据的 PEB，并且磨损均衡子系统不必移动任何数据来维持磨损均衡。相反，如果 LEB 映射到 PEB，则磨损均衡子系统需要关注的 PEB 会多一个，并且如果当前 PEB 的擦除计数器变得太低，则需要将一个 LEB 重新映射到另一个 PEB（然后将 LEB 重新映射到擦除计数器较高的 PEB，并将旧 PEB 用于其他操作）。</p>
+<h3 id="Volume-update"><a href="#Volume-update" class="headerlink" title="Volume update"></a>Volume update</h3><p>卷更新操作对于设备软件更新非常有用。该操作使用新内容更改整个 UBI 卷的内容。但如果在更新过程中中断，卷将进入“已损坏”状态，并且卷上的进一步 I&#x2F;O 最终会产生 <code>EBADF</code> 错误。使卷恢复到正常状态的唯一方法是启动新的卷更新操作并完成它。</p>
+<p>卷更新操作可以检测中断（不完整）的更新，并借助“镜像”卷（该卷具有相同的内容）或通过显示对话框（该对话框会通知用户问题并要求重新刷新）重新启动更新。相比之下，在使用原始 MTD 分区时很难检测到中断的更新。</p>
+<p>卷更新操作可通过用户空间 UBI 接口使用，而无法通过 UBI 内核 API 使用。要更新卷，您首先必须对相应的 UBI 卷字符设备节点调用 <code>UBI_IOCVOLUP</code> ioctl，并向其传递一个指向 64 位值的指针，其中包含新卷内容的长度（以字节为单位）。然后，必须将此数量的字节写入卷字符设备节点。将最后一个字节发送到字符设备节点后，更新操作即完成。从概念上讲，该序列（以伪代码表示）为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">fd = open(<span class="hljs-string">&quot;/dev/my_volume&quot;</span>);<br>ioctl(fd, UBI_IOCVOLUP, &amp;image_size);<br>write(fd, buf, image_size);<br>close(fd);<br></code></pre></td></tr></table></figure>
+
+<p>有关更多详细信息，请参见 <code>include/mtd/ubi-user.h</code> 。请记住，如果更新中断，卷的旧内容将不会被保留。此外，您不必一次写入所有新数据。可以任意多次调用 <code>write()</code> 函数，并每次传递任意数量的数据。在所有数据写入后，操作将完成。如果最后一次写入操作包含的字节数超过 UBI 预期，则会忽略多余的字节。</p>
+<p>卷更新操作的一个特例是我们所说的卷截断，当数据长度为零时，通过相同的 ioctl 命令完成。在这种情况下，卷将被擦除，并将包含所有 <code>0xFF</code> 字节（所有 LEB 都将取消映射）。</p>
+<p>请注意， <code>/sys/class/ubi/ubiX_X/corrupted</code> sysfs 文件反映了卷的“损坏”状态：如果卷正常，则包含 ASCII “0”，如果损坏（即如果卷更新已启动但未完成），则包含 “1”。</p>
+<p>如果更新中断，卷更新操作不会保留其先前的内容；它不是原子的。但是，UBI 通过卷重命名操作提供原子卷更新。</p>
+<p>卷更新借助更新标记实现。一旦用户发出 <code>UBI_IOCVOLUP</code> ioctl，UBI 会在 UBI 卷表的相应记录中设置卷的更新标记标志。此时，卷被擦除，UBI 等待用户发送数据。只有当所有数据已发送并已成功写入闪存后，更新标记才会被清除。如果更新中断（例如，不干净的重新启动、更新应用程序崩溃等），则不会清除更新标记，并且该卷被视为“已损坏”。只有在成功执行更新操作后，才会清除更新标记。</p>
+<h3 id="Atomic-LEB-change-原子-LEB-更改"><a href="#Atomic-LEB-change-原子-LEB-更改" class="headerlink" title="Atomic LEB change - 原子 LEB 更改"></a>Atomic LEB change - 原子 LEB 更改</h3><p>原子 LEB 更改操作以原子方式更改 LEB 的内容，以便在操作中断时保留旧内容。换句话说，LEB 将始终包含旧内容或新内容。此功能可通过 <code>ubi_leb_change()</code> 内核 API 调用获得。</p>
+<p>此操作的用户空间接口已添加到内核版本 <code>2.6.25</code> 中。其功能可通过 <code>UBI_IOCEBCH</code> ioctl 命令供用户空间使用。您必须传递一个指向正确填充的 <code>struct ubi_leb_change_req</code> 类型请求对象的指针。此对象存储要更改的 LEB 编号和新内容的长度。然后，您必须将指定数量的字节写入卷字符设备。请注意与卷更新操作的相似之处。从概念上讲，顺序（以伪代码表示）为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ubi_leb_change_req</span> <span class="hljs-title">req</span>;</span><br><br>req.lnum = lnum_to_change;<br>req.len = data_len;<br>fd = open(<span class="hljs-string">&quot;/dev/my_volume&quot;</span>);<br>ioctl(fd, UBI_IOCEBCH, &amp;req);<br>write(fd, data_buf, data_len);<br>close(fd);<br></code></pre></td></tr></table></figure>
+
+<p>如果由于某种原因，用户在关闭文件之前没有将指定数量的字节写入文件描述符，则该操作将被取消，并且 LEB 的旧内容将被保留。</p>
+<p>与卷更新操作类似，无论调用 <code>write()</code> 函数多少次以及每次向 UBI 卷传递多少数据都没有关系。原子 LEB 更改操作仅在最后一个数据字节到达后才完成。</p>
+<p>原子 LEB 更改操作对于文件系统可能非常有用，例如 UBIFS 在提交文件系统索引时使用此功能。此行为还可用于在 UBI 之上创建 FTL 层（在此处查看该想法的说明）。</p>
+<p>请记住，原子 LEB 更改操作会计算新数据的 <code>CRC-32</code> 校验和，因此与“LEB 擦除”+“LEB 写入”序列相比，它会产生一些开销。卷更新操作不会计算数据的 <code>CRC-32</code> 校验和，因此更新卷比原子更改其所有擦除块的速度更快。请记住此开销，并确保仅在确实需要原子性时才使用此操作。</p>
+<h2 id="Fastmap"><a href="#Fastmap" class="headerlink" title="Fastmap"></a>Fastmap</h2><p>Fastmap 是一项实验性和可选的 UBI 功能。<br>用于加快大容量闪存的操作速度。</p>
+<h2 id="UBI-卷之上-RO-block-devices"><a href="#UBI-卷之上-RO-block-devices" class="headerlink" title="UBI 卷之上 RO block devices"></a>UBI 卷之上 RO block devices</h2><p>UBI 允许在 UBI 卷之上创建块设备，但存在以下限制：</p>
+<ul>
+<li>Read-only </li>
+<li>串行 I&#x2F;O 操作，但请记住 NAND 驱动程序内核也已对所有 I&#x2F;O 进行了串行化。</li>
+</ul>
+<p>尽管存在这些限制，但块设备对于在 UBI 卷之上挂载只读常规文件系统仍然非常有用。以 squashfs 为例，它可以用作 NAND 设备之上的轻量级只读 rootfs。在这种情况下，UBI 层将负责处理低级细节，例如位翻转处理和磨损均衡。</p>
+<h4 id="Usage-用法"><a href="#Usage-用法" class="headerlink" title="Usage 用法"></a>Usage 用法</h4><p>在 UBI 卷上创建和销毁块设备有点类似于将 MTD 设备附加到 UBI。您可以使用 <code>block</code> UBI 模块参数或使用“ <code>ubiblock</code> ”用户空间工具。</p>
+<p>为了在启动时创建块设备（例如，在该块设备上挂载 rootfs），您可以将 <code>block</code> 参数指定为内核启动参数：<br><code>ubi.mtd=5 ubi.block=0,0 root=/dev/ubiblock0_0</code></p>
+<p>有几种方法可以指定卷：</p>
+<ul>
+<li>使用 UBI 卷路径：<br>  <code>ubi.block=/dev/ubi0_0</code></li>
+<li>使用 UBI 设备和卷名称：<br>  <code>ubi.block=0,rootfs</code></li>
+<li>同时使用 UBI 设备编号和 UBI 卷编号：<br>  <code>ubi.block=0,0</code></li>
+</ul>
+<p>如果您已将 UBI 构建为模块，则可以在模块加载时使用以下参数：<br>$ modprobe ubi mtd&#x3D;&#x2F;dev&#x2F;mtd5 block&#x3D;&#x2F;dev&#x2F;ubi0_0</p>
+<p>还可以在运行时使用 <code>ubiblock</code> 用户空间工具动态创建&#x2F;删除块设备：<br>$ ubiblock –create &#x2F;dev&#x2F;ubi0_0<br>$ ubiblock –remove &#x2F;dev&#x2F;ubi0_0</p>
+<h4 id="我这个板子的ubiblock"><a href="#我这个板子的ubiblock" class="headerlink" title="我这个板子的ubiblock"></a>我这个板子的ubiblock</h4><blockquote>
+<p>我这个板子就是在ubiblock上存的squashfs</p>
+</blockquote>
+<p>boot里面有个参数rootfs_opts，里面记录了rootfs保存的关键信息</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># cat /proc/environment/rootfs_opts </span><br><span class="hljs-attribute">root</span>=/dev/ubiblock0_4 ubi.<span class="hljs-attribute">mtd</span>=image ubi.<span class="hljs-attribute">block</span>=0,4 <span class="hljs-attribute">rootfstype</span>=squashfs# <br></code></pre></td></tr></table></figure>
+<p>这个参数在boot阶段会添加到linux的启动参数里面</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># cat /proc/cmdline </span><br><span class="hljs-attribute">console</span>=ttyAMA0 earlyprintk <span class="hljs-built_in">debug</span> <span class="hljs-attribute">irqaffinity</span>=0 <span class="hljs-attribute">pci</span>=pcie_bus_safe <span class="hljs-attribute">isolcpus</span>=3 rootwait <span class="hljs-attribute">mtdparts</span>=brcmnand.0:2097152(loader),131072000@2097152(image) <span class="hljs-attribute">root</span>=/dev/ubiblock0_4 ubi.<span class="hljs-attribute">mtd</span>=image ubi.<span class="hljs-attribute">block</span>=0,4 <span class="hljs-attribute">rootfstype</span>=squashfs <span class="hljs-attribute">cma</span>=0M<br></code></pre></td></tr></table></figure>
+<p>mtd的情况为：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># cat /proc/mtd </span><br><span class="hljs-attribute">dev</span>:    size   erasesize  name<br><span class="hljs-attribute">mtd0</span>: <span class="hljs-number">08000000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;brcmnand.0&quot;</span><br><span class="hljs-attribute">mtd1</span>: <span class="hljs-number">00200000</span> <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;loader&quot;</span><br><span class="hljs-attribute">mtd2</span>: <span class="hljs-number">07</span>d00000 <span class="hljs-number">00020000</span> <span class="hljs-string">&quot;image&quot;</span><br><span class="hljs-attribute">mtd3</span>: <span class="hljs-number">00000500</span> <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;metadata1&quot;</span><br><span class="hljs-attribute">mtd4</span>: <span class="hljs-number">00000500</span> <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;metadata2&quot;</span><br><span class="hljs-attribute">mtd5</span>: <span class="hljs-number">00992</span>c10 <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;bootfs1&quot;</span><br><span class="hljs-attribute">mtd6</span>: <span class="hljs-number">01</span>f3e000 <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;rootfs1&quot;</span><br><span class="hljs-attribute">mtd7</span>: <span class="hljs-number">00992</span>c10 <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;bootfs2&quot;</span><br><span class="hljs-attribute">mtd8</span>: <span class="hljs-number">01</span>f3e000 <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;rootfs2&quot;</span><br><span class="hljs-attribute">mtd9</span>: <span class="hljs-number">0041</span>e000 <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;data&quot;</span><br><span class="hljs-attribute">mtd10</span>: <span class="hljs-number">0041</span>e000 <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;defaults&quot;</span><br><span class="hljs-attribute">mtd11</span>: <span class="hljs-number">01819000</span> <span class="hljs-number">0001</span>f000 <span class="hljs-string">&quot;plugin&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>第一个参数ubi.mtd&#x3D;image<br>(1) ubi_init将name为image的mtd，attcah到ubi设备。</p>
+<p>第二个参数ubi.block&#x3D;0,4<br>(2) ubiblock_init把ubi0的第4个卷创建为ubiblock设备。</p>
+<p>内核的调用先后大致为：<br>（1）start_kernel–&gt;rest_init–&gt;kernel_thread(kernel_init, NULL, CLONE_FS)<br>（2）kernel_init–&gt;kernel_init_freeable–&gt;kernel_init_freeable –&gt; do_basic_setup –&gt; do_initcalls（初始化ubi）<br>（3）ubi初始化完， prepare_namespace –&gt; mount_block_root</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="http://www.linux-mtd.infradead.org/doc/ubi.html">UBI - Unsorted Block Images</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24835087/article/details/125336305">【NAND文件系统】UBI介绍</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/05/%E5%86%85%E5%AD%98%E7%A2%8E%E7%89%87%E7%A0%94%E7%A9%B6/">
+                        <span class="hidden-mobile">内存碎片研究</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","appKey":"K6nBN6bvf3Kv7DI1c2M7eHiQ","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    人生苦短，远离bug
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://lib.baomitu.com/mermaid/8.13.10/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
