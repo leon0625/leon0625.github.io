@@ -187,15 +187,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/12/14/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0/" target="_self">
-          C语言实现默认参数
+        <a href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8/" target="_self">
+          popen里面使用&amp;把进程放后台问题
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2023/12/14/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0/" target="_self">
+        <a href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8/" target="_self">
           
-          关键字：可变参数，可变长参数 疑惑open函数为什么可以两个参数，也可以三个参数。如下是man open看到的声明： 12int open(const char *pathname, int flags);int open(const char *pathname, int flags, mode_t mode); c语言本身不支持重载，它是怎么做到的呢？ 下面来一个简单的实现。利用逗号表达式和宏
+          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&amp;#123;	char line[128];	FILE *fp &#x3D; popen(&quot;ping 1
         </a>
       </p>
 
@@ -203,12 +203,19 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-14 09:35" pubdate>
-              2023-12-14
+            <time datetime="2022-09-07 02:22" pubdate>
+              2022-09-07
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/c/">c</a>
+            
+          </div>
         
       </div>
     </article>
@@ -236,7 +243,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-09 05:55" pubdate>
+            <time datetime="2022-09-09 13:55" pubdate>
               2022-09-09
             </time>
           </div>
@@ -253,15 +260,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" target="_self">
-          gcc选项跟踪函数调用
+        <a href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8&amp;%E6%8A%8A%E8%BF%9B%E7%A8%8B%E6%94%BE%E5%90%8E%E5%8F%B0%E9%97%AE%E9%A2%98/" target="_self">
+          popen里面使用&amp;把进程放后台问题
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" target="_self">
+        <a href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8&amp;%E6%8A%8A%E8%BF%9B%E7%A8%8B%E6%94%BE%E5%90%8E%E5%8F%B0%E9%97%AE%E9%A2%98/" target="_self">
           
-          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
+          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&amp;#123;	char line[128];	FILE *fp &#x3D; popen(&quot;ping 1
         </a>
       </p>
 
@@ -269,8 +276,48 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-08-28 11:27" pubdate>
-              2023-08-28
+            <time datetime="2022-09-07 10:22" pubdate>
+              2022-09-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/c/">c</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/20/perl%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E7%AC%AC%E5%85%AD%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_self">
+          perl语言入门第六版读书笔记
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/20/perl%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E7%AC%AC%E5%85%AD%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_self">
+          
+          perl语言入门第六版简介 本书涵盖的最低版本5.8 CPAN,perl综合典藏网，里面包含扩展，文档等 perl解析器能一次完成编译和运行这两个动作。（注意是有先编译，即运行前就可以检查到整个代码的语法错误）  标量数据 perl每个语句必须以分号；结束 perl的数字可以通过下划线分割，方便理解0x1234_2222_ffff perl虽然都是浮点数，但是支持取模运算（%） 如果源代码中有as
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-20 20:08" pubdate>
+              2022-02-20
             </time>
           </div>
         
@@ -286,13 +333,86 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/06/08/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
+        <a href="/2022/09/04/cut%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/" target="_self">
+          cut命令使用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/09/04/cut%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/" target="_self">
+          
+          cut命令使用 cut的作用主要是对每一行进行剪切，然后输出。可以按三种方式剪切：-b 以字节的形式，-c 以字符的形式，-f 通过分隔符按域。分隔符按域的功能比较弱，可用awk替代。  实例1234567891011# 1，3-7字符leon@home-ubuntu22:~$ echo 12345678 | cut -c 1,3-7134567# 第4个字符到结束leon@home-ubuntu
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-04 22:27" pubdate>
+              2022-09-04
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%91%BD%E4%BB%A4/">命令</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/09/03/sed%E4%BD%BF%E7%94%A8/" target="_self">
+          sed使用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/09/03/sed%E4%BD%BF%E7%94%A8/" target="_self">
+          
+          关键字：用法 sed使用语法1sed [option] [address]command [input file] 如果没有输入文件，那么从标准输入中读取。 option   option 作用    -n 阻止输入行的自动输出(如需打印得需要p命令)   -f 使用脚本文件而不是命令行输入命令   -e 说明后面跟命令，命令行输入多个命令时使用。也可以使用大括号来实现   -E 使用扩展的正则
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-03 14:44" pubdate>
+              2022-09-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/14/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
           obsidian插件使用
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2023/06/08/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
+        <a href="/2022/05/14/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
           
           高级表格使用tab和enter，自动对齐，比较方便，还可以排序等    fdsf fdsf sdfsdf    ss sssssssssssssss dddddddddddddd   fdsffdsfdsfdsfs fdsfds s   admonition更美观的东西 1不清楚为啥有问题  自定义标题和默认折叠（折叠这个功能很有用，可以折叠大段代码） 12345678910111213title
         </a>
@@ -302,8 +422,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-06-08 08:30" pubdate>
-              2023-06-08
+            <time datetime="2022-05-14 15:35" pubdate>
+              2022-05-14
             </time>
           </div>
         
@@ -335,7 +455,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-20 15:54" pubdate>
+            <time datetime="2022-04-20 23:54" pubdate>
               2022-04-20
             </time>
           </div>
@@ -359,15 +479,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/03/30/ubuntu%20xfce%E6%A1%8C%E9%9D%A2%E5%8D%87%E7%BA%A7%E5%90%8E%E9%94%81%E5%B1%8F%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E7%99%BB%E5%BD%95%E9%97%AE%E9%A2%98/" target="_self">
-          ubuntu xfce桌面升级后锁屏无法输入登录问题
+        <a href="/2020/10/14/git%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" target="_self">
+          git用法总结
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2023/03/30/ubuntu%20xfce%E6%A1%8C%E9%9D%A2%E5%8D%87%E7%BA%A7%E5%90%8E%E9%94%81%E5%B1%8F%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E7%99%BB%E5%BD%95%E9%97%AE%E9%A2%98/" target="_self">
+        <a href="/2020/10/14/git%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" target="_self">
           
-          问题系统更新后，发现xfce桌面超时锁屏后，密码处无法输入字符。无法登录。只能重启。重启后桌面超时锁屏后又无法登录。 网上看到一篇文章 https:&#x2F;&#x2F;bugzilla.redhat.com&#x2F;show_bug.cgi?id&#x3D;1955993 ，说是有两个锁屏在运行，导致出现问题。xfce4-screensaverxscreensaver 可以ps查看一下这两个进程是否存在，如果存在那么可能就是同一个
+          git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le
         </a>
       </p>
 
@@ -375,41 +495,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-30 08:32" pubdate>
-              2023-03-30
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/21/valgrind%E4%BD%BF%E7%94%A8/" target="_self">
-          valgrind使用
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/valgrind%E4%BD%BF%E7%94%A8/" target="_self">
-          
-          valgrind使用编译如下是编译armv7的版本 1234.&#x2F;configure --prefix&#x3D;&#96;pwd&#96;&#x2F;llm CC&#x3D;&#x2F;projects&#x2F;hnd&#x2F;tools&#x2F;bcm&#x2F;crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1&#x2F;usr&#x2F;bin&#x2F;arm-buildroot-linux-gnueabi-gcc --host&#x3D;armv7
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 08:16" pubdate>
-              2020-08-21
+            <time datetime="2020-10-14 18:16" pubdate>
+              2020-10-14
             </time>
           </div>
         
@@ -448,7 +535,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-22 07:16" pubdate>
+            <time datetime="2022-03-22 15:16" pubdate>
               2022-03-22
             </time>
           </div>
@@ -459,86 +546,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8/" target="_self">
-          popen里面使用&amp;把进程放后台问题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8/" target="_self">
-          
-          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&amp;#123;	char line[128];	FILE *fp &#x3D; popen(&quot;ping 1
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-07 02:22" pubdate>
-              2022-09-07
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/c/">c</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8&amp;%E6%8A%8A%E8%BF%9B%E7%A8%8B%E6%94%BE%E5%90%8E%E5%8F%B0%E9%97%AE%E9%A2%98/" target="_self">
-          popen里面使用&amp;把进程放后台问题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/09/07/popen%E9%87%8C%E9%9D%A2%E4%BD%BF%E7%94%A8&amp;%E6%8A%8A%E8%BF%9B%E7%A8%8B%E6%94%BE%E5%90%8E%E5%8F%B0%E9%97%AE%E9%A2%98/" target="_self">
-          
-          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&amp;#123;	char line[128];	FILE *fp &#x3D; popen(&quot;ping 1
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-07 02:22" pubdate>
-              2022-09-07
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/c/">c</a>
             
           </div>
         
