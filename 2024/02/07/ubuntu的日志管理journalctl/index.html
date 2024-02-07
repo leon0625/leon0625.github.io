@@ -24,7 +24,7 @@
 <meta property="og:description" content="在 Linux 系统中，journalctl 是管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r 查看实时日志输出: journalctl -f，这将">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-07T11:15:00.000Z">
-<meta property="article:modified_time" content="2024-02-07T11:41:00.000Z">
+<meta property="article:modified_time" content="2024-02-07T11:50:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -205,7 +205,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      7 分钟
     </span>
   
 
@@ -282,7 +282,7 @@
 </ul>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ol>
 <li>并不是所有日志都在journal中，标准调用syslog，进程的直接输出都在journal中。有一些进程会有自己的日志文件，就在journal中查不到。如&#x2F;var&#x2F;log&#x2F;auth.log等。</li>
-<li>有些进程可能会疯狂写日志，如linux版迅雷，钉钉，微信。4G的日志，它们可能占3.5G。基本属于垃圾日志，它们会。journal目前并不支持配置丢弃掉某些特殊日志。</li>
+<li>有些进程可能会疯狂写日志，如linux版迅雷，钉钉，微信。4G的日志，它们可能占3.5G。基本属于垃圾日志，它们可能会刷掉其他日志。journal目前并不支持配置丢弃掉某些特殊日志。需要自己找到他们的启动脚本把输出重定向到&#x2F;dev&#x2F;null。</li>
 </ol>
 
             </div>
