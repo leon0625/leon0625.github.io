@@ -187,6 +187,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2024/02/26/nautilus%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%A4%87%E6%B3%A8%E5%8A%9F%E8%83%BD/" target="_self">
+          nautilus文件管理器添加文件备注功能
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/02/26/nautilus%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%A4%87%E6%B3%A8%E5%8A%9F%E8%83%BD/" target="_self">
+          
+          有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~&#x2F;.local&#x2F;share&#x2F;nautilus&#x2F;scripts目录下创建一个脚本，内容如下： 1234567891011121314#!&#x2F;bin&#x2F;bashTMP_FILE&#x3D;&#96;mktemp&#96;gio info --attributes&#x3D;metadata::annotation &quot;$1&quot; |
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-26 15:40" pubdate>
+              2024-02-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2024/02/22/vscode%20clangd%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
           vscode clangd插件使用
         </a>
@@ -476,39 +509,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2024-01-04 15:24" pubdate>
               2024-01-04
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/" target="_self">
-          flock使用体会
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/" target="_self">
-          
-          简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-29 07:44" pubdate>
-              2023-12-29
             </time>
           </div>
         

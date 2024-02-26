@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>nautilus文件管理器添加文件备注功能</title>
+    <link href="/2024/02/26/nautilus%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%A4%87%E6%B3%A8%E5%8A%9F%E8%83%BD/"/>
+    <url>/2024/02/26/nautilus%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%A4%87%E6%B3%A8%E5%8A%9F%E8%83%BD/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。</p></blockquote><p>在<code>~/.local/share/nautilus/scripts</code>目录下创建一个脚本，内容如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>TMP_FILE=`<span class="hljs-built_in">mktemp</span>`<br>gio info --attributes=metadata::annotation <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> | sed <span class="hljs-string">&#x27;&#123;1,4 d;s/  metadata::annotation: //&#125;&#x27;</span> &gt; <span class="hljs-variable">$TMP_FILE</span><br><br>newnotes=`zenity --text-info --title=备注 --editable --width=500 --height=300 --filename=<span class="hljs-variable">$TMP_FILE</span>`<br><br><span class="hljs-keyword">if</span> [ $? = 1 ]; <span class="hljs-keyword">then</span><br>  <span class="hljs-built_in">rm</span> <span class="hljs-variable">$TMP_FILE</span><br>  <span class="hljs-built_in">exit</span><br><span class="hljs-keyword">fi</span><br><br>gio <span class="hljs-built_in">set</span> -t string <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> metadata::annotation <span class="hljs-string">&quot;<span class="hljs-variable">$newnotes</span>&quot;</span><br><span class="hljs-built_in">rm</span> <span class="hljs-variable">$TMP_FILE</span><br></code></pre></td></tr></table></figure><p>然后右键-&gt;脚本选择你的脚本就行了。</p><p>数据存在gio中，文件管理器层面移动文件，该属性还在，如果命令行mv这种移动就不行了。这些属性保存在<code>~/.local/share/gvfs-metadata/</code>下面。</p><p><strong>参考</strong><br><a href="https://askubuntu.com/questions/90853/file-notes-tab-gone-in-nautilus-3-2-1">File notes tab gone in Nautilus 3.2.1</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>vscode clangd插件使用</title>
     <link href="/2024/02/22/vscode%20clangd%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
     <url>/2024/02/22/vscode%20clangd%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/</url>
