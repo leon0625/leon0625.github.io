@@ -16,15 +16,15 @@
   <meta name="author" content="leon.liu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd 也可">
+    <meta name="description" content="以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vscode clangd插件使用">
 <meta property="og:url" content="http://example.com/2024/02/22/vscode%20clangd%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="leon的博客">
-<meta property="og:description" content="以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd 也可">
+<meta property="og:description" content="以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-22T10:33:00.000Z">
-<meta property="article:modified_time" content="2024-02-23T18:06:00.000Z">
+<meta property="article:modified_time" content="2024-03-04T11:51:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -246,7 +246,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2024年2月23日 晚上
+                  本文最后更新于：2024年3月4日 中午
                 
               </p>
             
@@ -258,7 +258,7 @@
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>（1）vscode安装clangd插件</p>
 <p>（2）ubuntu上安装clangd。</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> clangd<br></code></pre></td></tr></table></figure>
-<p>也可以不安装，vscode里面会提示你安装，会装在vscode目录。vscode里面安装的clangd版本会更高一些。建议使用这种。</p>
+<p>ubuntu上也可以不安装clangd，vscode里面会提示你安装，会装在vscode目录。vscode里面安装的clangd版本会更高一些。建议使用这种。</p>
 <h1 id="配置clangd"><a href="#配置clangd" class="headerlink" title="配置clangd"></a>配置clangd</h1><h2 id="compile-commands-json路径"><a href="#compile-commands-json路径" class="headerlink" title="compile_commands.json路径"></a>compile_commands.json路径</h2><p>装上之后可能第一个需要配置的就是compile_commands.json 位置，默认会在工程路径下查找。如果需要单独指定，那么配置clangd的命令行参数。<br><code>--compile-commands-dir=your_dir</code></p>
 <h2 id="分析代码的核心数"><a href="#分析代码的核心数" class="headerlink" title="分析代码的核心数"></a>分析代码的核心数</h2><p>配置命令行参数<code>-j=10</code></p>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs prolog"><span class="hljs-string">&quot;clangd.arguments&quot;</span>: [<br>			<span class="hljs-string">&quot;-j=10&quot;</span>,<br>		]<br></code></pre></td></tr></table></figure>
