@@ -24,7 +24,7 @@
 <meta property="og:description" content="在 Linux 系统中，journalctl 是管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r 查看实时日志输出: journalctl -f，这将">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-07T11:15:00.000Z">
-<meta property="article:modified_time" content="2024-03-14T15:50:00.000Z">
+<meta property="article:modified_time" content="2024-03-14T15:52:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -275,7 +275,7 @@
 <li><strong>按优先级查看日志</strong>: <code>journalctl -p [优先级]</code>，比如 <code>journalctl -p err</code> 将查看所有错误级别的日志。</li>
 <li><strong>按字段过滤日志</strong>: <code>journalctl [字段名]=[字段值]</code>，比如 <code>journalctl _COMM=sshd</code> 将查看所有来自 sshd 进程的日志。字段名可通过<code>journalctl -o verbose</code>得到</li>
 <li><strong>查看特定进程的日志</strong>: <code>journalctl _PID=[进程ID]</code>，例如 <code>journalctl _PID=1</code> 将查看 PID 为 1 的进程的所有日志。</li>
-<li><strong>按syslog表示过滤日志：</strong> <code>journalctl -t ddns</code>，查看标签为ddns的日志。</li>
+<li><strong>按syslog表示过滤日志：</strong> <code>journalctl -t ddns</code>，查看标签为ddns的日志，该标签为<code>SYSLOG_IDENTIFIER</code>字段，可通过logger -t ddns添加。</li>
 </ol>
 <h1 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h1><ul>
 <li>查看日志占用磁盘空间： <code>journalctl --disk-usage</code></li>
