@@ -187,6 +187,72 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2024/03/15/BPF%E5%8C%85%E8%BF%87%E6%BB%A4%E8%A7%84%E5%88%99%E8%AF%AD%E6%B3%95/" target="_self">
+          BPF包过滤规则语法
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/03/15/BPF%E5%8C%85%E8%BF%87%E6%BB%A4%E8%A7%84%E5%88%99%E8%AF%AD%E6%B3%95/" target="_self">
+          
+          BPF(Berkeley Packet Filter)全称为伯克利包过滤,是一种功能非常强大的过滤语法.这个语法被广泛应用于多种数据包嗅探软件,因为大部分数据包嗅探软件都依赖于使用BPF的libpcap&#x2F;WinPcap库.诸如tcpdump,wireshark等等。  语法使用BPF语法创建的过滤器被称为表达式,并且每个表达式包含一个或多个原语。原语是对网络协议标头中的字段（例如，主机
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-15 15:49" pubdate>
+              2024-03-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/03/15/sock_filter%E4%B9%8Bbpf/" target="_self">
+          sock_filter之bpf
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/03/15/sock_filter%E4%B9%8Bbpf/" target="_self">
+          
+          在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-15 16:21" pubdate>
+              2024-03-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2024/02/07/ubuntu%E7%9A%84%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86journalctl/" target="_self">
           ubuntu的日志管理journalctl
         </a>
@@ -443,72 +509,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2024-01-17 18:36" pubdate>
               2024-01-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2024/01/05/%E5%86%85%E5%AD%98%E7%A2%8E%E7%89%87%E7%A0%94%E7%A9%B6/" target="_self">
-          内存碎片研究
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2024/01/05/%E5%86%85%E5%AD%98%E7%A2%8E%E7%89%87%E7%A0%94%E7%A9%B6/" target="_self">
-          
-          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-05 14:38" pubdate>
-              2024-01-05
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2024/01/04/ss%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8Bsocket%E4%B8%8A%E5%8C%85%E7%9A%84%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98/" target="_self">
-          ss命令查看socket上包的占用内存
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2024/01/04/ss%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8Bsocket%E4%B8%8A%E5%8C%85%E7%9A%84%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98/" target="_self">
-          
-          统计socket接收发送队列上的数据长度一般情况下使用只会显示接收发送队列的包数 12345678910# .&#x2F;ss -ntpState      Recv-Q Send-Q  Local Address:Port    Peer Address:Port Process                             ESTAB      0      0      192.168.66
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-04 15:24" pubdate>
-              2024-01-04
             </time>
           </div>
         
