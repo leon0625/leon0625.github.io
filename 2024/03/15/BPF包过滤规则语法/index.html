@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2024-03/15-155355-c033-leon.png?x-image-process=image/quality,q_65">
 <meta property="article:published_time" content="2024-03-15T15:49:00.000Z">
-<meta property="article:modified_time" content="2024-03-18T10:22:00.000Z">
+<meta property="article:modified_time" content="2024-03-18T10:32:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2024-03/15-155355-c033-leon.png?x-image-process=image/quality,q_65">
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.9k 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      10 分钟
     </span>
   
 
@@ -261,7 +261,10 @@
 <p><strong>dir 限定符</strong><br><code>Dir</code> 限定符指定与标识相关的传输方向。 例如，dir 限定符可能是 src、dst 或 src or dst。</p>
 <p><strong>proto 限定符</strong><br><code>proto</code> 限定符将协议匹配限制于特定协议。 可能的协议包括 ether、fddi、tr、wlan、ip、ip6、arp、rarp、decnet、TCP 或 UDP。</p>
 <p><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2024-03/15-155355-c033-leon.png?x-image-process=image/quality,q_65" srcset="/img/loading.gif" lazyload></p>
-<p><strong>操作符</strong><br>操作符有（），！&#x3D;，&amp;&amp;，||。</p>
+<p><strong>操作符</strong><br>操作符有（），！&#x3D;，&amp;&amp;，||。<br>英文有and,or,not。推荐使用英文，而非符号，因为使用符号需要加单引号，不然与shell的符号冲突。<br>比如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 使用and，过滤目的地址为192.168.66.247的tcp 80端口数据</span><br><span class="hljs-attribute">tcpdump</span> -i br0 -n dst host <span class="hljs-number">192.168.66.247</span> and tcp port <span class="hljs-number">80</span><br><br><span class="hljs-comment"># 使用&amp;&amp;符号，需要用单引号包过滤器语法括起来</span><br><span class="hljs-attribute">tcpdump</span> -i br0 -n &#x27;dst host <span class="hljs-number">192.168.66.247</span> &amp;&amp; tcp port <span class="hljs-number">80</span>&#x27;<br><br><span class="hljs-comment"># 使用括号，同样需要使用单引号。过滤目的地址为192.168.66.247的http，https数据</span><br><span class="hljs-attribute">tcpdump</span> -i br0 -n &#x27;dst host <span class="hljs-number">192.168.66.247</span> &amp;&amp; (tcp port <span class="hljs-number">80</span> || tcp port <span class="hljs-number">443</span>)&#x27;<br></code></pre></td></tr></table></figure>
+
+
 <h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><h3 id="host-IP过滤"><a href="#host-IP过滤" class="headerlink" title="host IP过滤"></a>host IP过滤</h3><p><code>[src|dst] host &lt;host&gt;</code> </p>
 <ul>
 <li><code>dst host 192.168.1.2</code>  过滤IP地址</li>
