@@ -16,20 +16,20 @@
   <meta name="author" content="leon.liu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以">
+    <meta name="description" content="命令 作用    f 上下键移动；显示(不显示)选中列按d；按选中列排序按s；右键表示要移动该列的位置，然后按上下键移动，移动完成后按Enter键   e 进程的内存单位调整，多次按e，调整不同的单位   E 顶部摘要信息的内存单位   Enter&#x2F;Spaces 立即刷新   H 摘要区域显示线程数，默认显示进程数   k 杀死一个任务，后面可以跟pid号。不跟表示杀死当前提示的进">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sock_filter之bpf">
-<meta property="og:url" content="http://example.com/2024/03/15/sock_filter%E4%B9%8Bbpf/index.html">
+<meta property="og:title" content="top交互式命令">
+<meta property="og:url" content="http://example.com/2024/03/26/top%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="leon的博客">
-<meta property="og:description" content="在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以">
+<meta property="og:description" content="命令 作用    f 上下键移动；显示(不显示)选中列按d；按选中列排序按s；右键表示要移动该列的位置，然后按上下键移动，移动完成后按Enter键   e 进程的内存单位调整，多次按e，调整不同的单位   E 顶部摘要信息的内存单位   Enter&#x2F;Spaces 立即刷新   H 摘要区域显示线程数，默认显示进程数   k 杀死一个任务，后面可以跟pid号。不跟表示杀死当前提示的进">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-15T16:21:00.000Z">
-<meta property="article:modified_time" content="2024-03-15T16:56:00.000Z">
+<meta property="article:published_time" content="2024-03-26T15:49:00.000Z">
+<meta property="article:modified_time" content="2024-03-26T19:11:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>sock_filter之bpf - leon的博客</title>
+  <title>top交互式命令 - leon的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="sock_filter之bpf">
+            <span class="h2" id="subtitle" title="top交互式命令">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-03-15 16:21" pubdate>
-        2024年3月15日 下午
+      <time datetime="2024-03-26 15:49" pubdate>
+        2024年3月26日 下午
       </time>
     </span>
   
@@ -196,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      325 字
     </span>
   
 
@@ -205,7 +205,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10 分钟
+      2 分钟
     </span>
   
 
@@ -242,29 +242,87 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">sock_filter之bpf</h1>
+            <h1 style="display: none">top交互式命令</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2024年3月15日 下午
+                  本文最后更新于：2024年3月26日 晚上
                 
               </p>
             
             <div class="markdown-body">
-              <blockquote>
-<p>在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。<br>如指定的<code>ETH_P_ALL</code>，那么所有包都会收上来，如果指定<code>IPPROTO_ICMPV6</code>,那么只会收icmpv6的报文。<br>有时我们想过滤部分数据包怎么办呢？<br><strong>使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。</strong></p>
-</blockquote>
-<h1 id="SO-ATTACH-FILTER使用"><a href="#SO-ATTACH-FILTER使用" class="headerlink" title="SO_ATTACH_FILTER使用"></a>SO_ATTACH_FILTER使用</h1><p>通过SO_ATTACH_FILTER选项，可以把我们设置的filter发送到内核，内核运行filter之后再决定是否把数据包收到应用层。<br>一般性的代码为:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/socket.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;arpa/inet.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;linux/if_ether.h&gt;</span></span><br><span class="hljs-comment">/* ... */</span><br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sock_filter</span> <span class="hljs-title">code</span>[] =</span> &#123;<br>	....<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sock_fprog</span> <span class="hljs-title">bpf</span> =</span> &#123;<br>	.len = ARRAY_SIZE(code),<br>	.filter = code,<br>&#125;;<br><br>sock = socket(PF_PACKET, SOCK_RAW, htons(ETH_P_ALL));<br><span class="hljs-keyword">if</span> (sock &lt; <span class="hljs-number">0</span>)<br>	<span class="hljs-comment">/* ... bail out ... */</span><br><br>ret = setsockopt(sock, SOL_SOCKET, SO_ATTACH_FILTER, &amp;bpf, <span class="hljs-keyword">sizeof</span>(bpf));<br><span class="hljs-keyword">if</span> (ret &lt; <span class="hljs-number">0</span>)<br>	<span class="hljs-comment">/* ... bail out ... */</span><br><br><span class="hljs-comment">/* ... */</span><br>close(sock);<br></code></pre></td></tr></table></figure>
-
-<p><strong>重点在于sock_filter这个结构怎么填充，怎么写，语法如何。</strong></p>
-<h2 id="使用tcpdump生成过滤器代码"><a href="#使用tcpdump生成过滤器代码" class="headerlink" title="使用tcpdump生成过滤器代码"></a>使用tcpdump生成过滤器代码</h2><p>使用tcpdump的<code>-dd</code>参数命令，可以直接生成sock_filter的代码，例如过滤icmpv6的NS和NA报文。</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"># tcpdump icmp6[0]==135 or icmp6[0]==136 -dd</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x28, 0, 0, 0x0000000e &#125;</span><span class="language-xml">,</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x15, 0, 6, 0x000086dd &#125;</span><span class="language-xml">,</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x30, 0, 0, 0x00000016 &#125;</span><span class="language-xml">,</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x15, 0, 4, 0x0000003a &#125;</span><span class="language-xml">,</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x30, 0, 0, 0x00000038 &#125;</span><span class="language-xml">,</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x15, 1, 0, 0x00000087 &#125;</span><span class="language-xml">,</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x15, 0, 1, 0x00000088 &#125;</span><span class="language-xml">,</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x6, 0, 0, 0x00040000 &#125;</span><span class="language-xml">,</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123; 0x6, 0, 0, 0x00000000 &#125;</span><span class="language-xml">,</span><br></code></pre></td></tr></table></figure>
-<p>这种方法最简单，但是代码不易读，需要写注释用什么产生的。</p>
-<h2 id="手写过滤器代码"><a href="#手写过滤器代码" class="headerlink" title="手写过滤器代码"></a>手写过滤器代码</h2><p>实例如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// Filter ICMPv6 messages of type neighbor soliciation</span><br><span class="hljs-type">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sock_filter</span> <span class="hljs-title">bpf</span>[] =</span> &#123;<br>	BPF_STMT(BPF_LD | BPF_B | BPF_ABS, offsetof(<span class="hljs-keyword">struct</span> ip6_hdr, ip6_nxt)), <span class="hljs-comment">// 获取ip6_hdr的ip6_nxt偏移的一个字节</span><br>	BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, IPPROTO_ICMPV6, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>),	<span class="hljs-comment">//如果不是icmpv6协议，跳5行，否则继续执行下一行</span><br>	BPF_STMT(BPF_LD | BPF_B | BPF_ABS, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">struct</span> ip6_hdr) +<br>			offsetof(<span class="hljs-keyword">struct</span> icmp6_hdr, icmp6_type)),	<span class="hljs-comment">//提取icmp6 type偏移的一个字节</span><br>	BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, ND_NEIGHBOR_SOLICIT, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-comment">// 如果不是NS，跳1行</span><br>	BPF_STMT(BPF_RET | BPF_K, <span class="hljs-number">0xffffffff</span>),	<span class="hljs-comment">//返回接收</span><br>	BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, ND_NEIGHBOR_ADVERT, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-comment">// 如果不是NA，跳1行</span><br>	BPF_STMT(BPF_RET | BPF_K, <span class="hljs-number">0xffffffff</span>),	<span class="hljs-comment">//返回接收</span><br>	BPF_STMT(BPF_RET | BPF_K, <span class="hljs-number">0</span>),	<span class="hljs-comment">//返回拒绝</span><br>&#125;;<br></code></pre></td></tr></table></figure>
-<p>这个规则比较复杂。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[# <a target="_blank" rel="noopener" href="https://www.cnblogs.com/pwl999/p/15535023.html">Linux bpf 3.1、Berkeley Packet Filter (BPF) (Kernel Document)</a></p>
+              <table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>f</td>
+<td>上下键移动；显示(不显示)选中列按d；按选中列排序按s；右键表示要移动该列的位置，然后按上下键移动，移动完成后按Enter键</td>
+</tr>
+<tr>
+<td>e</td>
+<td>进程的内存单位调整，多次按e，调整不同的单位</td>
+</tr>
+<tr>
+<td>E</td>
+<td>顶部摘要信息的内存单位</td>
+</tr>
+<tr>
+<td>Enter&#x2F;Spaces</td>
+<td>立即刷新</td>
+</tr>
+<tr>
+<td>H</td>
+<td>摘要区域显示线程数，默认显示进程数</td>
+</tr>
+<tr>
+<td>k</td>
+<td>杀死一个任务，后面可以跟pid号。不跟表示杀死当前提示的进程号</td>
+</tr>
+<tr>
+<td>W</td>
+<td>将当前的配置写入配置文件，下次top就会看到当前一样的效果</td>
+</tr>
+<tr>
+<td>c</td>
+<td>切换显示进程的命令行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>过滤用户的进程</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>左移，右移排序字段</td>
+</tr>
+<tr>
+<td>R</td>
+<td>逆序</td>
+</tr>
+<tr>
+<td>M</td>
+<td>按%MEM(RES内存百分比)内存排序</td>
+</tr>
+<tr>
+<td>b,x,y</td>
+<td>b-开启条形图加粗，x-列突出(加粗)显示，排序的列会加粗，y-行突出显示</td>
+</tr>
+<tr>
+<td>L</td>
+<td>搜索字符串</td>
+</tr>
+<tr>
+<td>d</td>
+<td>设置更新时间</td>
+</tr>
+<tr>
+<td>?</td>
+<td>简要的帮助信息</td>
+</tr>
+</tbody></table>
 
             </div>
             <hr>
@@ -285,18 +343,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/26/top%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%91%BD%E4%BB%A4/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">top交互式命令</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/15/BPF%E5%8C%85%E8%BF%87%E6%BB%A4%E8%A7%84%E5%88%99%E8%AF%AD%E6%B3%95/">
-                        <span class="hidden-mobile">BPF包过滤规则语法</span>
+                      <a href="/2024/03/15/sock_filter%E4%B9%8Bbpf/">
+                        <span class="hidden-mobile">sock_filter之bpf</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
