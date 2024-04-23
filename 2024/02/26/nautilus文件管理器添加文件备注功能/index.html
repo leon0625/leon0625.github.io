@@ -24,7 +24,7 @@
 <meta property="og:description" content="关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~&#x2F;.local&#x2F;share&#x2F;nautilus&#x2F;scripts目录下创建一个脚本，内容如下： 1234567891011121314#!&#x2F;bin&#x2F;bashTMP_FILE&#x3D;&#96;mktemp&#96;gio info --attributes&#x3D;metadata::annotation &quot;$1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-26T15:40:00.000Z">
-<meta property="article:modified_time" content="2024-04-21T09:48:00.000Z">
+<meta property="article:modified_time" content="2024-04-23T20:44:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -196,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      605 字
+      617 字
     </span>
   
 
@@ -246,7 +246,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2024年4月21日 上午
+                  本文最后更新于：2024年4月23日 晚上
                 
               </p>
             
@@ -261,6 +261,7 @@
 <p>然后右键-&gt;脚本选择你的脚本就行了。</p>
 <p>数据存在gio中，文件管理器层面移动文件，该属性还在，如果命令行mv这种移动就不行了。这些属性保存在<code>~/.local/share/gvfs-metadata/</code>下面。</p>
 <p><strong>参考</strong><br><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/90853/file-notes-tab-gone-in-nautilus-3-2-1">File notes tab gone in Nautilus 3.2.1</a></p>
+<p>有bug，特殊字符有问题</p>
 
             </div>
             <hr>
