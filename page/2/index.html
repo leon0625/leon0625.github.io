@@ -187,6 +187,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2024/03/15/sock_filter%E4%B9%8Bbpf/" target="_self">
+          sock_filter之bpf
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/03/15/sock_filter%E4%B9%8Bbpf/" target="_self">
+          
+          在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-15 16:21" pubdate>
+              2024-03-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2024/02/07/ubuntu%E7%9A%84%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86journalctl/" target="_self">
           ubuntu的日志管理journalctl
         </a>
@@ -469,39 +502,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2024-01-04 15:24" pubdate>
               2024-01-04
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/" target="_self">
-          flock使用体会
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/" target="_self">
-          
-          简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-29 07:44" pubdate>
-              2023-12-29
             </time>
           </div>
         
