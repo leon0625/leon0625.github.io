@@ -24,7 +24,7 @@
 <meta property="og:description" content="本文介绍add_custom_target和add_custom_command和execute_process命令。  cmake构建可粗分为配置、生成阶段和构建阶段。配置、生成阶段。 配置阶段时执行命令execute_process原型如下： 1234567891011121314151617181920execute_process(COMMAND &lt;cmd1&gt; [&lt;ar">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-05T21:39:00.000Z">
-<meta property="article:modified_time" content="2024-06-05T22:28:00.000Z">
+<meta property="article:modified_time" content="2024-07-18T14:16:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -196,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.4k 字
+      4.5k 字
     </span>
   
 
@@ -246,7 +246,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2024年6月5日 晚上
+                  本文最后更新于：2024年7月18日 下午
                 
               </p>
             
@@ -279,7 +279,7 @@
 <h3 id="作用1–生成构建所需文件"><a href="#作用1–生成构建所需文件" class="headerlink" title="作用1–生成构建所需文件"></a>作用1–生成构建所需文件</h3><p>生成文件需要指定OUTPUT，它的参数如下</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs inform7">add_custom_command(OUTPUT output1 <span class="hljs-comment">[output2 ...]</span> 生成的文件<br>                   COMMAND command1 <span class="hljs-comment">[ARGS]</span> <span class="hljs-comment">[args1...]</span><br>                   <span class="hljs-comment">[COMMAND command2 <span class="hljs-comment">[ARGS]</span> <span class="hljs-comment">[args2...]</span> ...]</span><br>                   <span class="hljs-comment">[MAIN_DEPENDENCY depend]</span><br>                   <span class="hljs-comment">[DEPENDS <span class="hljs-comment">[depends...]</span>]</span>  依赖<br>                   <span class="hljs-comment">[BYPRODUCTS <span class="hljs-comment">[files...]</span>]</span><br>                   <span class="hljs-comment">[IMPLICIT_DEPENDS &lt;lang1&gt; depend1</span><br><span class="hljs-comment">                                    <span class="hljs-comment">[&lt;lang2&gt; depend2]</span> ...]</span><br>                   <span class="hljs-comment">[WORKING_DIRECTORY dir]</span><br>                   <span class="hljs-comment">[COMMENT comment]</span><br>                   <span class="hljs-comment">[DEPFILE depfile]</span><br>                   <span class="hljs-comment">[JOB_POOL job_pool]</span><br>                   <span class="hljs-comment">[JOB_SERVER_AWARE &lt;bool&gt;]</span><br>                   <span class="hljs-comment">[VERBATIM]</span> <span class="hljs-comment">[APPEND]</span> <span class="hljs-comment">[USES_TERMINAL]</span><br>                   <span class="hljs-comment">[COMMAND_EXPAND_LISTS]</span><br>                   <span class="hljs-comment">[DEPENDS_EXPLICIT_ONLY]</span>)<br></code></pre></td></tr></table></figure>
 
-<p><strong>注意：</strong><br>（1）该命令仅用于定义如何生成文件，但生成规则对应的命令并不会立即执行，因此文件也不会在命令调用后立即生成。<strong>只有当该命令指定的&lt;生成文件&gt;在构建过程中被引用时</strong>，这些生成规则对应的命令才会执行，文件才会被生成</p>
+<p><strong>注意：</strong><br>（1）该命令仅用于定义如何生成文件，但生成规则对应的命令并不会立即执行，因此文件也不会在命令调用后立即生成。<strong>只有当该命令指定的&lt;生成文件&gt;在构建过程中被引用时</strong>，这些生成规则对应的命令才会执行，文件才会被生成<br>（2）BYPRODUCTS用于指定副生成文件，主生成的文件和副生成的文件在执行make clean时都会被删除</p>
 <p><strong>举例：生成编译所需的c文件：</strong></p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">add_custom_command</span>(<br>  OUTPUT out.c<br>  <span class="hljs-keyword">COMMAND</span> someTool -i <span class="hljs-variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/in.txt -o out.c<br>  DEPENDS <span class="hljs-variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/in.txt)<br><span class="hljs-keyword">add_library</span>(myLib out.c)<br></code></pre></td></tr></table></figure>
 <p>out.c由自定义命令生成</p>
