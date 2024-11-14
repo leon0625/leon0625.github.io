@@ -24,7 +24,7 @@
 <meta property="og:description" content="Cmake可见性实验  原理从 modern cmake(&gt;&#x3D;3.0) 开始，使用的范式从 director-oriented 转换到了 target-oriented。 这其中最重要的有三个概念：  target   target相应的properties   可见性  所谓target就是编译的目标，一般就三种：    静态库: 使用add_library() 动态库: 使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-05T13:34:00.000Z">
-<meta property="article:modified_time" content="2024-11-07T09:38:43.000Z">
+<meta property="article:modified_time" content="2024-11-07T09:40:08.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -196,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.9k 字
     </span>
   
 
@@ -205,7 +205,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      10 分钟
     </span>
   
 
@@ -292,7 +292,9 @@
 <p>如上，Eigen库只有头文件，target sources也是一种属性，会传递给exe1。exe1链接时，就能使用到这些源文件。</p>
 <p>（2）一些库会导出一些专门给别人用的头文件，而自己不会用。那么应该也是可以通过INTERFACE来指定的。<br>（3）没有任何代码文件的形式上的库，只用于定义公共的编译宏，编译标志。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">add_library</span><span class="hljs-params">(my_build_flag INTERFACE)</span></span><br><span class="hljs-function"><span class="hljs-title">target_link_options</span><span class="hljs-params">(my_build_flag -Wall)</span></span><br></code></pre></td></tr></table></figure>
-<p>如上，这样只要链接了这个库的人，编译都会加上-Wall标志<br>（4）封装一个第三方编译的库<br>比如一个工程里面有一个</p>
+<p>如上，这样只要链接了这个库的人，编译都会加上-Wall标志<br>（4）封装一个第三方编译的库<br>比如一个工程里面有一个configure配置编译的库，其他地方要引用它，需要指定库路径和头文件路径。这时就可以定义一个interface，interface配置好相关信息，其他地方只需要调用target_link_libraries就行了。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">add_library</span><span class="hljs-params">(libevent INTERFACE)</span></span><br><span class="hljs-function"><span class="hljs-title">add_dependencies</span><span class="hljs-params">(libevent build_libevent)</span></span>   <br><span class="hljs-function"><span class="hljs-title">target_link_libraries</span><span class="hljs-params">(libevent INTERFACE event)</span></span><br><span class="hljs-function"><span class="hljs-title">target_link_directories</span><span class="hljs-params">(libevent INTERFACE $&#123;CONFIG_BUILD_FS_DIR&#125;/lib)</span></span><br><span class="hljs-function"><span class="hljs-title">target_include_directories</span><span class="hljs-params">(libevent INTERFACE $&#123;CONFIG_BUILD_FS_DIR&#125;/include)</span></span><br></code></pre></td></tr></table></figure>
+
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://chunleili.github.io/cmake/understanding-INTERFACE">彻底弄懂cmake中的 INTEFACE 可见性&#x2F;传递性 问题</a></p>
 <hr>
 <div style="text-align:center;width:100%;">

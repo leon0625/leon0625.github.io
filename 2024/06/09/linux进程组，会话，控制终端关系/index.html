@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2024-06/09-111032-e9cc-leon.png?x-image-process=image/quality,q_65">
 <meta property="article:published_time" content="2024-06-09T03:10:00.000Z">
-<meta property="article:modified_time" content="2024-08-04T01:48:20.000Z">
+<meta property="article:modified_time" content="2024-11-14T09:34:32.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2024-06/09-111032-e9cc-leon.png?x-image-process=image/quality,q_65">
@@ -248,7 +248,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2024年8月4日 上午
+                  本文最后更新于：2024年11月14日 下午
                 
               </p>
             
@@ -257,8 +257,8 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs stylus">$ ping www<span class="hljs-selector-class">.baidu</span><span class="hljs-selector-class">.com</span> &amp;<br>$ (ping www<span class="hljs-selector-class">.qq</span><span class="hljs-selector-class">.com</span> &amp;)<br></code></pre></td></tr></table></figure>
 <p>我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。<br>如果此时我关闭当前终端，这两个ping程序会如何。</p>
 <p><strong>结论：</strong><br>ping baidu会停止。<br>ping qq会持续运行，但是没有输出。</p>
-<h1 id="进程组、会话、控制终端"><a href="#进程组、会话、控制终端" class="headerlink" title="进程组、会话、控制终端"></a>进程组、会话、控制终端</h1><h2 id="进程组"><a href="#进程组" class="headerlink" title="进程组"></a>进程组</h2><p>每个进程都属于一个进程组，进程组是一个或多个进程的集合。进程组一般也可理解为作业。<br>进程组有一个组长进程，组长进程的ID也是进程组ID。组长创建改组中的进程后可以退出，进程组中只要有一个进程存在，进程组就存在，和组长进程是否退出无关。</p>
-<h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><p>会话由一个或多个进程组组成。进程可以调用setsid函数建立一个新的会话。<br>调用setsid的进程如果不是一个进程组的组长，那么创建会话成功，或者失败。所以创建守护进程前会先fork，然后在子进程中调用setsid。<br>setsid创建新会话成功后，它会做如下的事情：<br>（1）该进程新会话的会话首进程（session leader）<br>（2）该进程成为一个新进程组的组长进程。<br>（3）<strong>该进程脱离控制终端</strong>。</p>
+<h1 id="进程组、会话、控制终端"><a href="#进程组、会话、控制终端" class="headerlink" title="进程组、会话、控制终端"></a>进程组、会话、控制终端</h1><h2 id="进程组"><a href="#进程组" class="headerlink" title="进程组"></a>进程组</h2><p>每个进程都属于一个进程组，进程组是一个或多个进程的集合。进程组一般也可理解为作业。<br>进程组有一个组长进程，组长进程的ID也是进程组ID。组长创建该组中的进程后可以退出，进程组中只要有一个进程存在，进程组就存在，和组长进程是否退出无关。</p>
+<h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><p>会话由一个或多个进程组组成。进程可以调用setsid函数建立一个新的会话。<br>调用setsid的进程如果不是一个进程组的组长，那么创建会话成功，否则失败。所以创建守护进程前会先fork，然后在子进程中调用setsid。<br>setsid创建新会话成功后，它会做如下的事情：<br>（1）该进程新会话的会话首进程（session leader）<br>（2）该进程成为一个新进程组的组长进程。<br>（3）<strong>该进程脱离控制终端</strong>。</p>
 <h2 id="控制终端"><a href="#控制终端" class="headerlink" title="控制终端"></a>控制终端</h2><p>（1）一个会话可以有一个控制终端，这个控制终端通常是终端设备（终端登录），或者伪终端设备（网络登录）。<br>（2）建立与终端连接的会话首进程成为控制进程<br>（3）一个会话中的进程组分为前台进程组和后台进程组<br>（4）<strong>一个会话如果有控制终端，那么它有一个前台进程组</strong>，其他的为后台进程组<br>（5）终端发出的信号（如ctrl + c， ctrl + z）将送到前台进程组的所有进程</p>
 <h2 id="后台进程组与控制终端"><a href="#后台进程组与控制终端" class="headerlink" title="后台进程组与控制终端"></a>后台进程组与控制终端</h2><p>后台进程组如何与控制终端交互呢？<br>如果<strong>后台进程组要从终端读取输入，那么会产生SIGTTIN信号</strong>，默认动作时暂停该进程。串口会有打印，表明该进程已暂停。我们可通过作业控制把该进程放回前台。<br>如下：（fg是作业控制命令）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">read</span> &amp;      <br>[1] 72715<br>[1]  + 72715 suspended (<span class="hljs-built_in">tty</span> input)  <span class="hljs-built_in">read</span>                                                                                                                                                                            <br>$ <span class="hljs-built_in">fg</span>     <br>[1]  + 72715 continued  <span class="hljs-built_in">read</span><br>fdasfdsf<br></code></pre></td></tr></table></figure>

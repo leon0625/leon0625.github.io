@@ -187,6 +187,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" target="_self">
+          gcc选项跟踪函数调用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" target="_self">
+          
+          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-28 19:27" pubdate>
+              2023-08-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2023/12/12/malloc%E4%BD%95%E6%97%B6%E8%BF%94%E5%9B%9E%E5%A4%B1%E8%B4%A5/" target="_self">
           malloc何时返回失败
         </a>
@@ -490,39 +523,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2024-01-17 18:36" pubdate>
               2024-01-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2024/01/25/ipv6%E6%BA%90%E5%9C%B0%E5%9D%80%E9%80%89%E6%8B%A9%E5%8E%9F%E7%90%86/" target="_self">
-          ipv6源地址选择原理
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2024/01/25/ipv6%E6%BA%90%E5%9C%B0%E5%9D%80%E9%80%89%E6%8B%A9%E5%8E%9F%E7%90%86/" target="_self">
-          
-          引言一个接口通常有多个ipv6地址（比如可能存在多个全球地址，多个链路本地地址）。那么设备从接口发包时它会使用哪个地址作为源地址呢？ 假设场景如下：我们设备是路由器，br0有两个链路本地地址：fe80::1&#x2F;64, fe80::2&#x2F;64。路由器下的PC发送dns查询，目的地址为fe80::1，路由器的dns server回包时会使用哪个源地址，fe80::1,还是fe80::2
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-25 14:52" pubdate>
-              2024-01-25
             </time>
           </div>
         
