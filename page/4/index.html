@@ -187,72 +187,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2024/02/07/ubuntu%E7%9A%84%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86journalctl/" target="_self">
-          ubuntu的日志管理journalctl
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2024/02/07/ubuntu%E7%9A%84%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86journalctl/" target="_self">
-          
-          在 Linux 系统中，journalctl 是管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r 查看实时日志输出: journalctl -f，这将
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-07 11:15" pubdate>
-              2024-02-07
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2024/02/22/vscode%20clangd%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
-          vscode clangd插件使用
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2024/02/22/vscode%20clangd%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
-          
-          以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-22 10:33" pubdate>
-              2024-02-22
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2024/04/17/%E5%86%85%E6%A0%B8%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F/" target="_self">
           内核运行一个用户程序
         </a>
@@ -286,13 +220,79 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/06/08/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
+        <a href="/2022/04/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/" target="_self">
+          博客使用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/" target="_self">
+          
+          博客使用搭建过程略，这种东西搭一次要用好久，下一次再搭时，方法已经过时了，找官方搭建方法即可(官方的过时很久了，有坑) 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server  hexo安装后，安装了fluid主题。然后配置了一下。 hexo官方文档fluid官方文档 目录结构12public -- 这是生成的
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-04 11:41" pubdate>
+              2022-04-04
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/09/09/%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AESTP%E7%AE%97%E6%B3%95/" target="_self">
+          生成树协议STP算法
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/09/09/%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AESTP%E7%AE%97%E6%B3%95/" target="_self">
+          
+          生成树协议STP算法 以太网网桥使用生成树协议STP(Spanning Tree Protocol)，可以在提高网络可靠性的同时，又避免环路带来的各种问题。  生成树算法STA(Spanning Tree Algorithm)是生成树协议的核心。它的目的是：在包含有物理环路的网络中，构建出一个能够连通全网各个节点的树形无环路逻辑拓扑。 生成树算法三步骤（1）选举根网桥（2）选举根端口（3）选举指定
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-09 13:55" pubdate>
+              2022-09-09
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/01/19/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
           obsidian插件使用
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2023/06/08/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
+        <a href="/2024/01/19/obsidian%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" target="_self">
           
           高级表格使用tab和enter，自动对齐，比较方便，还可以排序等    fdsf fdsf sdfsdf    ss sssssssssssssss dddddddddddddd   fdsffdsfdsfdsfs fdsfds s   admonition更美观的东西 1不清楚为啥有问题  自定义标题和默认折叠（折叠这个功能很有用，可以折叠大段代码） 12345678910111213title
         </a>
@@ -302,8 +302,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-06-08 16:30" pubdate>
-              2023-06-08
+            <time datetime="2024-01-19 20:05" pubdate>
+              2024-01-19
             </time>
           </div>
         
