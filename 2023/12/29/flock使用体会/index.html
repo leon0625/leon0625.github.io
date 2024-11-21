@@ -19,7 +19,7 @@
     <meta name="description" content="简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flock使用体会">
-<meta property="og:url" content="http://example.com/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/index.html">
+<meta property="og:url" content="https://leon0625.github.io/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/index.html">
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.">
 <meta property="og:locale" content="zh_CN">
@@ -66,7 +66,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>

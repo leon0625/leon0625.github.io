@@ -19,7 +19,7 @@
     <meta name="description" content="关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gcc选项跟踪函数调用">
-<meta property="og:url" content="http://example.com/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/index.html">
+<meta property="og:url" content="https://leon0625.github.io/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/index.html">
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite">
 <meta property="og:locale" content="zh_CN">
@@ -66,7 +66,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>

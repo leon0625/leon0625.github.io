@@ -19,7 +19,7 @@
     <meta name="description" content="从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux进程组，会话，控制终端关系">
-<meta property="og:url" content="http://example.com/2024/06/09/linux%E8%BF%9B%E7%A8%8B%E7%BB%84%EF%BC%8C%E4%BC%9A%E8%AF%9D%EF%BC%8C%E6%8E%A7%E5%88%B6%E7%BB%88%E7%AB%AF%E5%85%B3%E7%B3%BB/index.html">
+<meta property="og:url" content="https://leon0625.github.io/2024/06/09/linux%E8%BF%9B%E7%A8%8B%E7%BB%84%EF%BC%8C%E4%BC%9A%E8%AF%9D%EF%BC%8C%E6%8E%A7%E5%88%B6%E7%BB%88%E7%AB%AF%E5%85%B3%E7%B3%BB/index.html">
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进">
 <meta property="og:locale" content="zh_CN">
@@ -68,7 +68,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>

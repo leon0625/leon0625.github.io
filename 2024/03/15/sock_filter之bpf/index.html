@@ -19,7 +19,7 @@
     <meta name="description" content="在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sock_filter之bpf">
-<meta property="og:url" content="http://example.com/2024/03/15/sock_filter%E4%B9%8Bbpf/index.html">
+<meta property="og:url" content="https://leon0625.github.io/2024/03/15/sock_filter%E4%B9%8Bbpf/index.html">
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以">
 <meta property="og:locale" content="zh_CN">
@@ -66,7 +66,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
