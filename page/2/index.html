@@ -187,39 +187,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" target="_self">
-          gcc选项跟踪函数调用
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/08/28/gcc%E9%80%89%E9%A1%B9%E8%B7%9F%E8%B8%AA%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" target="_self">
-          
-          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-08-28 19:27" pubdate>
-              2023-08-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2020/10/14/git%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" target="_self">
           git用法总结
         </a>
@@ -249,6 +216,39 @@
               <a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
             
           </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/" target="_self">
+          flock使用体会
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/12/29/flock%E4%BD%BF%E7%94%A8%E4%BD%93%E4%BC%9A/" target="_self">
+          
+          简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-29 07:44" pubdate>
+              2023-12-29
+            </time>
+          </div>
+        
+        
         
       </div>
     </article>
