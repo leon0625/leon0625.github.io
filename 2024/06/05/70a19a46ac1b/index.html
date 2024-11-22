@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="leon.liu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文介绍add_custom_target和add_custom_command和execute_process命令。  cmake构建可粗分为配置、生成阶段和构建阶段。配置、生成阶段。 配置阶段时执行命令execute_process原型如下： 1234567891011121314151617181920execute_process(COMMAND &lt;cmd1&gt; [&lt;ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmake执行命令详解">
+<meta property="og:url" content="https://leon0625.github.io/2024/06/05/70a19a46ac1b/index.html">
+<meta property="og:site_name" content="leon的博客">
+<meta property="og:description" content="本文介绍add_custom_target和add_custom_command和execute_process命令。  cmake构建可粗分为配置、生成阶段和构建阶段。配置、生成阶段。 配置阶段时执行命令execute_process原型如下： 1234567891011121314151617181920execute_process(COMMAND &lt;cmd1&gt; [&lt;ar">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-05T13:39:00.000Z">
+<meta property="article:modified_time" content="2024-08-04T01:48:20.000Z">
+<meta property="article:author" content="leon.liu">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>cmake执行命令详解 - leon的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>leon的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="cmake执行命令详解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-05 21:39" pubdate>
+          2024年6月5日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">cmake执行命令详解</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2024年8月4日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>本文介绍add_custom_target和add_custom_command和execute_process命令。</p>
+</blockquote>
+<p>cmake构建可粗分为配置、生成阶段和构建阶段。配置、生成阶段。</p>
+<h1 id="配置阶段时执行命令"><a href="#配置阶段时执行命令" class="headerlink" title="配置阶段时执行命令"></a>配置阶段时执行命令</h1><h2 id="execute-process"><a href="#execute-process" class="headerlink" title="execute_process"></a>execute_process</h2><p>原型如下：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><pre><code class="hljs inform7">execute_process(COMMAND &lt;cmd1&gt; <span class="hljs-comment">[&lt;arguments&gt;]</span><br>                <span class="hljs-comment">[COMMAND &lt;cmd2&gt; <span class="hljs-comment">[&lt;arguments&gt;]</span>]</span>...<br>                <span class="hljs-comment">[WORKING_DIRECTORY &lt;directory&gt;]</span>  工作目录<br>                <span class="hljs-comment">[TIMEOUT &lt;seconds&gt;]</span> 超时时间<br>                <span class="hljs-comment">[RESULT_VARIABLE &lt;variable&gt;]</span><br>                <span class="hljs-comment">[RESULTS_VARIABLE &lt;variable&gt;]</span><br>                <span class="hljs-comment">[OUTPUT_VARIABLE &lt;variable&gt;]</span> 标准输出变量<br>                <span class="hljs-comment">[ERROR_VARIABLE &lt;variable&gt;]</span> 错误输出道变量<br>                <span class="hljs-comment">[INPUT_FILE &lt;file&gt;]</span><br>                <span class="hljs-comment">[OUTPUT_FILE &lt;file&gt;]</span><br>                <span class="hljs-comment">[ERROR_FILE &lt;file&gt;]</span><br>                <span class="hljs-comment">[OUTPUT_QUIET]</span><br>                <span class="hljs-comment">[ERROR_QUIET]</span><br>                <span class="hljs-comment">[COMMAND_ECHO &lt;where&gt;]</span><br>                <span class="hljs-comment">[OUTPUT_STRIP_TRAILING_WHITESPACE]</span><br>                <span class="hljs-comment">[ERROR_STRIP_TRAILING_WHITESPACE]</span><br>                <span class="hljs-comment">[ENCODING &lt;name&gt;]</span> 输出编码<br>                <span class="hljs-comment">[ECHO_OUTPUT_VARIABLE]</span><br>                <span class="hljs-comment">[ECHO_ERROR_VARIABLE]</span><br>                <span class="hljs-comment">[COMMAND_ERROR_IS_FATAL &lt;ANY|LAST&gt;]</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意</strong><br>（1）当有多个COMMAND时，命令会以管道的形式组合起来<br>（2）虽然多个命令会以管道连接，但是<strong>命令的执行是并性的</strong>。例如写三个sleep 3的命令，配置阶段整个只会睡眠3s，而不是9s。<br>（3）如果要顺序执行多个命令，可多次调用execute_process命令，且每一个命令中仅使用一个COMMAND参数指定一个命令。<br>（4）如果想要命令既能输出到终端中，又可以存入变量中，那么就需要设置下面这两个参数ECHO_OUTPUT_VARIABLE，ECHO_ERROR_VARIABLE<br>（5）要删除命令输出结尾处的空白，可以设置OUTPUT_STRIP_TRAILING_WHITESPACE<br>（6）<strong>命令只在配置时运行</strong>，构建时不会运行。即修改c源代码，make时不会运行命令。但是修改CMakeLists.txt后，会重新配置，它才会运行。<br>（7）执行awk，用双引号包裹：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">COMMAND /bin/bash -c <span class="hljs-string">&quot;awk &#x27;/^#/&#123;printf \&quot;-Wl,--wrap=%s \&quot;, <span class="hljs-variable">$2</span>&#125;&#x27; <span class="hljs-variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/impl_list.txt&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>举例：将当前日期存入变量</strong></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment"># 把程序结果输出到一个变量</span><br><span class="hljs-keyword">execute_process</span>(<span class="hljs-keyword">COMMAND</span> date OUTPUT_VARIABLE cur_data)<br><span class="hljs-comment"># 打印这个变量</span><br><span class="hljs-keyword">message</span>(<span class="hljs-string">&quot;cur_data: $&#123;cur_data&#125;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="构建阶段执行命令"><a href="#构建阶段执行命令" class="headerlink" title="构建阶段执行命令"></a>构建阶段执行命令</h2><h2 id="add-custom-target"><a href="#add-custom-target" class="headerlink" title="add_custom_target"></a>add_custom_target</h2><p>[官方文档][<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/command/add_custom_target.html#add-custom-target]">https://cmake.org/cmake/help/latest/command/add_custom_target.html#add-custom-target]</a></p>
+<p>add_custom_target用于指定类似makefile里面的伪目标，它不生成文件，而且cmake也认为它一直是过时的，即如果有目标依赖它，它总是会执行。</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs inform7">add_custom_target(Name <span class="hljs-comment">[ALL]</span> <span class="hljs-comment">[command1 <span class="hljs-comment">[args1...]</span>]</span><br>                  <span class="hljs-comment">[COMMAND command2 <span class="hljs-comment">[args2...]</span> ...]</span><br>                  <span class="hljs-comment">[DEPENDS depend depend depend ... ]</span><br>                  <span class="hljs-comment">[BYPRODUCTS <span class="hljs-comment">[files...]</span>]</span><br>                  <span class="hljs-comment">[WORKING_DIRECTORY dir]</span><br>                  <span class="hljs-comment">[COMMENT comment]</span><br>                  <span class="hljs-comment">[JOB_POOL job_pool]</span><br>                  <span class="hljs-comment">[JOB_SERVER_AWARE &lt;bool&gt;]</span><br>                  <span class="hljs-comment">[VERBATIM]</span> <span class="hljs-comment">[USES_TERMINAL]</span><br>                  <span class="hljs-comment">[COMMAND_EXPAND_LISTS]</span><br>                  <span class="hljs-comment">[SOURCES src1 <span class="hljs-comment">[src2...]</span>]</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong><br>（1）默认情况下，没有任何目标依赖于自定义目标，换句话说，它不会被触发执行（除非手动指定构建它：cmake –build . –target yourtarget）.<br>因此它一般与add_dependencies，add_custom_command结合起来使用。<br>（2）添加ALL参数后，这个目标会添加到all的依赖里面。<br>（3）<strong>只要有人依赖它，命令就总是执行，不管DEPENDS是否更新</strong><br>（4）指定VERBATIM参数后，CMake会针对不同构建系统将&lt;命令行参数&gt;自动转义，以确保最终调用的命令行参数与该命令参数一致。推荐始终指定VERBATIM参数<br>（5）所有的命令公用一个工作目录，要不同的命令使用不同的目录，要借助<code>$&#123;CMAKE_COMMAND&#125; -E chdir</code>命令来执行</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">add_custom_target</span>(<span class="hljs-keyword">test</span><br>    <span class="hljs-keyword">COMMAND</span> <span class="hljs-variable">$&#123;CMAKE_COMMAND&#125;</span> -E chdir /etc pwd<br>    <span class="hljs-keyword">COMMAND</span> <span class="hljs-variable">$&#123;CMAKE_COMMAND&#125;</span> -E chdir /tmp pwd<br>)<br></code></pre></td></tr></table></figure>
+<p>（6）设置命令执行的环境变量也可通过<code>$&#123;CMAKE_COMMAND&#125; -E env AA=aa</code>指定</p>
+<p><strong>举例-解压配置代码</strong><br>有时需要在编译前先下载源码</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">add_custom_target</span>(pre_build<br>    <span class="hljs-keyword">COMMAND</span> tar -xf yourcode.tar.gz<br>    <span class="hljs-keyword">COMMAND</span> &#123;CMAKE_COMMAND&#125; -E chdir yourcode ./configure<br>)<br><span class="hljs-keyword">add_executable</span>(<span class="hljs-keyword">test</span> main.c)<br><span class="hljs-keyword">add_dependencies</span>(<span class="hljs-keyword">test</span> pre_build)<br></code></pre></td></tr></table></figure>
+
+<h2 id="add-custom-command"><a href="#add-custom-command" class="headerlink" title="add_custom_command"></a>add_custom_command</h2><p><a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/command/add_custom_command.html#command:add_custom_command">官方文档</a></p>
+<h3 id="作用1–生成构建所需文件"><a href="#作用1–生成构建所需文件" class="headerlink" title="作用1–生成构建所需文件"></a>作用1–生成构建所需文件</h3><p>生成文件需要指定OUTPUT，它的参数如下</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs inform7">add_custom_command(OUTPUT output1 <span class="hljs-comment">[output2 ...]</span> 生成的文件<br>                   COMMAND command1 <span class="hljs-comment">[ARGS]</span> <span class="hljs-comment">[args1...]</span><br>                   <span class="hljs-comment">[COMMAND command2 <span class="hljs-comment">[ARGS]</span> <span class="hljs-comment">[args2...]</span> ...]</span><br>                   <span class="hljs-comment">[MAIN_DEPENDENCY depend]</span><br>                   <span class="hljs-comment">[DEPENDS <span class="hljs-comment">[depends...]</span>]</span>  依赖<br>                   <span class="hljs-comment">[BYPRODUCTS <span class="hljs-comment">[files...]</span>]</span><br>                   <span class="hljs-comment">[IMPLICIT_DEPENDS &lt;lang1&gt; depend1</span><br><span class="hljs-comment">                                    <span class="hljs-comment">[&lt;lang2&gt; depend2]</span> ...]</span><br>                   <span class="hljs-comment">[WORKING_DIRECTORY dir]</span><br>                   <span class="hljs-comment">[COMMENT comment]</span><br>                   <span class="hljs-comment">[DEPFILE depfile]</span><br>                   <span class="hljs-comment">[JOB_POOL job_pool]</span><br>                   <span class="hljs-comment">[JOB_SERVER_AWARE &lt;bool&gt;]</span><br>                   <span class="hljs-comment">[VERBATIM]</span> <span class="hljs-comment">[APPEND]</span> <span class="hljs-comment">[USES_TERMINAL]</span><br>                   <span class="hljs-comment">[COMMAND_EXPAND_LISTS]</span><br>                   <span class="hljs-comment">[DEPENDS_EXPLICIT_ONLY]</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong><br>（1）该命令仅用于定义如何生成文件，但生成规则对应的命令并不会立即执行，因此文件也不会在命令调用后立即生成。<strong>只有当该命令指定的&lt;生成文件&gt;在构建过程中被引用时</strong>，这些生成规则对应的命令才会执行，文件才会被生成<br>（2）BYPRODUCTS用于指定副生成文件，主生成的文件和副生成的文件在执行make clean时都会被删除</p>
+<p><strong>举例：生成编译所需的c文件：</strong></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">add_custom_command</span>(<br>  OUTPUT out.c<br>  <span class="hljs-keyword">COMMAND</span> someTool -i <span class="hljs-variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/in.txt -o out.c<br>  DEPENDS <span class="hljs-variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/in.txt)<br><span class="hljs-keyword">add_library</span>(myLib out.c)<br></code></pre></td></tr></table></figure>
+<p>out.c由自定义命令生成</p>
+<p><strong>举例：生成编译所需的.h文件</strong></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment"># 添加生成out.h的命令</span><br><span class="hljs-keyword">add_custom_command</span>(<br>  OUTPUT out.h<br>  <span class="hljs-keyword">COMMAND</span> someTool -i <span class="hljs-variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/in.txt -o out.h<br>  DEPENDS <span class="hljs-variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/in.txt)<br><span class="hljs-comment"># 添加target</span><br><span class="hljs-keyword">add_custom_target</span>(GenerateHeader DEPENDS out.h)<br><span class="hljs-keyword">add_library</span>(myLib out.c)<br><span class="hljs-comment"># 添加依赖</span><br><span class="hljs-keyword">add_dependencies</span>(myLib GenerateHeader)<br></code></pre></td></tr></table></figure>
+<p>和.c文件不一样的是，.h文件需要手动指定依赖<br>注意：为何不直接在add_custom_target内运行命令来生成？这样的话，每次都会重新生成这个文件了。</p>
+<h3 id="作用2-构建事件发生时，执行命令"><a href="#作用2-构建事件发生时，执行命令" class="headerlink" title="作用2 - 构建事件发生时，执行命令"></a>作用2 - 构建事件发生时，执行命令</h3><p>在target本身构建之前或者之后运行，如果目标已经构建，那么不会运行。</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs inform7">add_custom_command(TARGET &lt;target&gt;<br>                   PRE_BUILD | PRE_LINK | POST_BUILD<br>                   COMMAND command1 <span class="hljs-comment">[ARGS]</span> <span class="hljs-comment">[args1...]</span><br>                   <span class="hljs-comment">[COMMAND command2 <span class="hljs-comment">[ARGS]</span> <span class="hljs-comment">[args2...]</span> ...]</span><br>                   <span class="hljs-comment">[BYPRODUCTS <span class="hljs-comment">[files...]</span>]</span><br>                   <span class="hljs-comment">[WORKING_DIRECTORY dir]</span><br>                   <span class="hljs-comment">[COMMENT comment]</span><br>                   <span class="hljs-comment">[VERBATIM]</span><br>                   <span class="hljs-comment">[COMMAND_EXPAND_LISTS]</span>)<br></code></pre></td></tr></table></figure>
+
+<p>PRE_BUILD对Visual Studio 生成器有独特的语法，其他生成器作用和PRE_LINK一样。<br>PRE_LINK 表示源代码编译之后，但在二进制目标链接前。<br>POST_BUILD 表示构建之后运行，不指定时，默认是这个。</p>
+<p><strong>举例：编译完成后，运行软件</strong></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.0</span>.<span class="hljs-number">0</span>)<br><span class="hljs-keyword">project</span>(<span class="hljs-keyword">test</span>)<br><span class="hljs-keyword">add_executable</span>(<span class="hljs-keyword">test</span> main.c)<br><span class="hljs-keyword">add_custom_command</span>(<span class="hljs-keyword">TARGET</span> <span class="hljs-keyword">test</span><br>    <span class="hljs-keyword">COMMAND</span> <span class="hljs-keyword">test</span><br>)<br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<div style="text-align:center;width:100%;">
+  <span>人生苦短，远离bug</span>
+  <span style="float: right;">Leon, 2024-06-05</span>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>cmake执行命令详解</div>
+      <div>https://leon0625.github.io/2024/06/05/70a19a46ac1b/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>leon.liu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/09/9f0cd45aea89/" title="linux进程组，会话，控制终端关系">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">linux进程组，会话，控制终端关系</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/05/4d0c83e66cb5/" title="Cmake属性的可见性">
+                        <span class="hidden-mobile">Cmake属性的可见性</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","appKey":"K6nBN6bvf3Kv7DI1c2M7eHiQ","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.13.10/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      人生苦短，远离bug
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
