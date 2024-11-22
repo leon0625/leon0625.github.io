@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://leon0625.github.io/2022/09/07/popen%E5%90%8E%E5%8F%B0%E6%89%A7%E8%A1%8C%E8%BF%9B%E7%A8%8B%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2024-11-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://leon0625.github.io/2024/11/13/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
     
     <lastmod>2024-11-20</lastmod>
@@ -319,7 +328,7 @@
 
   <url>
     <loc>https://leon0625.github.io/</loc>
-    <lastmod>2024-11-21</lastmod>
+    <lastmod>2024-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -327,28 +336,35 @@
   
   <url>
     <loc>https://leon0625.github.io/tags/%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2024-11-21</lastmod>
+    <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://leon0625.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2024-11-21</lastmod>
+    <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://leon0625.github.io/tags/%E5%86%85%E5%AD%98/</loc>
-    <lastmod>2024-11-21</lastmod>
+    <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://leon0625.github.io/tags/ubuntu/</loc>
-    <lastmod>2024-11-21</lastmod>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://leon0625.github.io/tags/c/</loc>
+    <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
