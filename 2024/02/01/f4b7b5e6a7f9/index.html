@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          622 字
+          218 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          4 分钟
+          2 分钟
         
       </span>
     
@@ -316,7 +316,7 @@
 <ul>
 <li><code>-n</code> 仅打印替换效果，不做实际替换</li>
 </ul>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 将123替换为2</span><br>$ rename -n <span class="hljs-string">&#x27;s/123/2/&#x27;</span> 123-456.txt <br>rename(123-456.txt, 2-456.txt)<br><br><span class="hljs-comment"># 也可以使用其他字符分割</span><br>$ rename -n <span class="hljs-string">&#x27;s@123@C2@&#x27;</span> 123-456.txt <br>rename(123-456.txt, C2-456.txt)<br><br><span class="hljs-comment"># 默认只替换文件名里面的一次，替换多次</span><br>$ rename -n <span class="hljs-string">&#x27;s@123@C@g&#x27;</span> 123-123-456.txt <br>rename(123-123-456.txt, C-C-456.txt)<br><br><span class="hljs-comment"># 正则分组替换</span><br>$ rename -n <span class="hljs-string">&#x27;s/(12)3/a$1a/g&#x27;</span> 123-123-456.txt <br>rename(123-123-456.txt, a12a-a12a-456.txt)<br><br><span class="hljs-comment"># 一次替换个多文件</span><br>$ rename -n <span class="hljs-string">&#x27;s/(12)3/a$1a/g&#x27;</span> *.txt <br>rename(123-123-456.txt, a12a-a12a-456.txt)<br>rename(123-555.txt, a12a-555.txt)<br></code></pre></td></tr></table></figure>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 将123替换为2</span><br>$ rename -n <span class="hljs-string">&#x27;s/123/2/&#x27;</span> 123-456.txt <br>rename(123-456.txt, 2-456.txt)<br><br><span class="hljs-comment"># 也可以使用其他字符分割</span><br>$ rename -n <span class="hljs-string">&#x27;s@123@C2@&#x27;</span> 123-456.txt <br>rename(123-456.txt, C2-456.txt)<br><br><span class="hljs-comment"># 默认只替换文件名里面的一次，替换多次</span><br>$ rename -n <span class="hljs-string">&#x27;s@123@C@g&#x27;</span> 123-123-456.txt <br>rename(123-123-456.txt, C-C-456.txt)<br><br><span class="hljs-comment"># 正则分组替换</span><br>$ rename -n <span class="hljs-string">&#x27;s/(12)3/a$1a/g&#x27;</span> 123-123-456.txt <br>rename(123-123-456.txt, a12a-a12a-456.txt)<br><br><span class="hljs-comment"># 一次替换个多文件</span><br>$ rename -n <span class="hljs-string">&#x27;s/(12)3/a$1a/g&#x27;</span> *.txt <br>rename(123-123-456.txt, a12a-a12a-456.txt)<br>rename(123-555.txt, a12a-555.txt)<br></code></pre></td></tr></table></figure>
 
 
                 

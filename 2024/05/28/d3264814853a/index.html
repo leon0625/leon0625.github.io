@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          492 字
+          297 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          3 分钟
+          2 分钟
         
       </span>
     
@@ -314,7 +314,7 @@
 <h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>嵌入式调试时抓包，有时只能在机内使用tcpdump，如果直接dump到终端，分析不方便。如果直接保存到内存，内存又怕不够。需要一种把抓到的包实时发送到远端保存解析的方法。</p>
 <h1 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h1><p><strong>原理：</strong><br>tcpdump抓包保存到标准输出，通过管道发送到远程主机。远程主机wireshark通过管道从标准输入读取数据解析。</p>
 <h2 id="实现1"><a href="#实现1" class="headerlink" title="实现1"></a>实现1</h2><p>解析的主机上先运行：</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs 1c">nc -l -p <span class="hljs-number">22122</span> <span class="hljs-string">| wireshark -k -i -</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">nc <span class="hljs-punctuation">-</span>l <span class="hljs-punctuation">-</span>p <span class="hljs-number">22122</span> <span class="hljs-string">| wireshark -k -i -</span><br></code></pre></td></tr></table></figure>
 <p><code>-k -i - </code>表示立即开始从标准输入抓包</p>
 <p>然后在抓包的主机上运行抓包：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tcpdump</span> -i eth0.<span class="hljs-number">1</span> -U -w - | nc <span class="hljs-number">192.168.10.123</span> <span class="hljs-number">22122</span><br></code></pre></td></tr></table></figure>

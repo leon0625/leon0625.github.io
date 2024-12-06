@@ -240,7 +240,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          527 字
+          271 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
           <!-- compatible with older versions-->
-          3 分钟
+          2 分钟
         
       </span>
     
@@ -317,7 +317,7 @@
 <p>xfce桌面环境据说比较轻量，快捷，linus大神都是用这个</p>
 </blockquote>
 <h2 id="安装xfce4桌面"><a href="#安装xfce4桌面" class="headerlink" title="安装xfce4桌面"></a>安装xfce4桌面</h2><p>使用如下命令安装：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs bash">sudo apt install xfce4 xfce4-terminal<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install xfce4 xfce4-terminal<br></code></pre></td></tr></table></figure>
 
 
 <p>xfce4-terminal一并装上，不然桌面终端会使用xterm，xterm实在太简陋了（主要是字体太小，还不好调（ctrl+右键可以临时调一下））。</p>
@@ -328,12 +328,12 @@
 <p>如果图形化不方便，还可以使用远程桌面</p>
 </blockquote>
 <p>安装xrdp</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> xrdp<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install xrdp<br></code></pre></td></tr></table></figure>
 
 <p>配置默认会话使用xfce4（不然登录上自动断开了）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> xfce4-session &gt;~/.xsession<br></code></pre></td></tr></table></figure>
 <p>如果不是用的xfce桌面，可以执行下面命令看下有那些session管理器</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">update</span>-alternatives <span class="hljs-comment">--display x-session-manager</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">update-alternatives <span class="hljs-attr">--display</span> <span class="hljs-attribute">x</span>-session-manager<br></code></pre></td></tr></table></figure>
 <p>然后使用windows自带的远程桌面软件远程。</p>
 <p><strong>只支持同一用户拥有一个会话，即本地用户登录后，远程用户便无法登录，必须要logout一个后才能登录。</strong></p>
 

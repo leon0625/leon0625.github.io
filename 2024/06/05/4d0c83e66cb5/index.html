@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.9k 字
+          770 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          10 分钟
+          4 分钟
         
       </span>
     
@@ -345,7 +345,7 @@
 <p>PRIVATE的意思就是 目标B的属性 不会传递，只给目标B自己使用。</p>
 <p>而INTERFACE则极为特殊：它的属性都 不会自己使用，只传递给目标A。</p>
 <h2 id="什么情况下会使用INTERFACE呢"><a href="#什么情况下会使用INTERFACE呢" class="headerlink" title="什么情况下会使用INTERFACE呢"></a>什么情况下会使用INTERFACE呢</h2><p>（1）如纯头文件的库，自己不会生成任何文件。</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">add_library</span>(Eigen INTERFACE)<br><br><span class="hljs-keyword">target_sources</span>(Eigen INTERFACE<br>  FILE_SET HEADERS<br>    BASE_DIRS src<br>    FILES src/eigen.h src/vector.h src/matrix.h<br>)<br><br><span class="hljs-keyword">add_executable</span>(exe1 exe1.cpp)<br><span class="hljs-keyword">target_link_libraries</span>(exe1 Eigen)<br></code></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">add_library</span>(Eigen INTERFACE)<br><br><span class="hljs-keyword">target_sources</span>(Eigen INTERFACE<br>  FILE_SET HEADERS<br>    BASE_DIRS src<br>    FILES src/eigen.h src/vector.h src/matrix.h<br>)<br><br><span class="hljs-keyword">add_executable</span>(exe1 exe1.cpp)<br><span class="hljs-keyword">target_link_libraries</span>(exe1 Eigen)<br></code></pre></td></tr></table></figure>
 <p>如上，Eigen库只有头文件，target sources也是一种属性，会传递给exe1。exe1链接时，就能使用到这些源文件。</p>
 <p>（2）一些库会导出一些专门给别人用的头文件，而自己不会用。那么应该也是可以通过INTERFACE来指定的。<br>（3）没有任何代码文件的形式上的库，只用于定义公共的编译宏，编译标志。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">add_library</span><span class="hljs-params">(my_build_flag INTERFACE)</span></span><br><span class="hljs-function"><span class="hljs-title">target_link_options</span><span class="hljs-params">(my_build_flag -Wall)</span></span><br></code></pre></td></tr></table></figure>

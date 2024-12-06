@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.1k 字
+          1.1k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          16 分钟
+          6 分钟
         
       </span>
     
@@ -313,7 +313,7 @@
 <p><strong>本文主要围绕上面问题来分析地址选择，而略过其他场景下的选择。</strong></p>
 <h1 id="内核选择算法"><a href="#内核选择算法" class="headerlink" title="内核选择算法"></a>内核选择算法</h1><p>选择源地址的函数从<code>ipv6_dev_get_saddr</code>开始。</p>
 <h2 id="use-oif-addrs-only"><a href="#use-oif-addrs-only" class="headerlink" title="use_oif_addrs_only"></a><code>use_oif_addrs_only</code></h2><p>如果目的地址是组播、链路本地地址、或者接口的use_oif_addrs_only配置为1，那么源地址只会从发包接口选择。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs awk">cat <span class="hljs-regexp">/proc/</span>sys<span class="hljs-regexp">/net/i</span>pv6<span class="hljs-regexp">/conf/</span>enp3s0/use_oif_addrs_only <br><span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> /proc/sys/net/ipv6/conf/enp3s0/use_oif_addrs_only <br>0<br></code></pre></td></tr></table></figure>
 <p>use_oif_addrs_only默认为0，即使用全球地址通信时，源地址不一定是出接口上的IP地址。</p>
 <h2 id="ipv6-dev-get-saddr"><a href="#ipv6-dev-get-saddr" class="headerlink" title="__ipv6_dev_get_saddr"></a><code>__ipv6_dev_get_saddr</code></h2><blockquote>
 <p>评选出接口上评分最高的地址。这是选择地址的核心。</p>

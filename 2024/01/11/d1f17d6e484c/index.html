@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          17k 字
+          10k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          84 分钟
+          51 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
 <li><strong>erase counter header</strong><br>  擦除计数器头（或 EC 头），其中包含物理擦除块 (PEB) 的擦除计数器以及其他信息；</li>
 <li><strong>volume identifier header</strong><br>  卷标识符头（或 VID 头），其中存储卷 ID 和此 PEB 所属的逻辑擦除块 (LEB) 编号。</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ubi_ec_hdr</span> &#123;</span><br>	__be32  magic;  <span class="hljs-comment">// UBI#</span><br>	__u8    version;<br>	__u8    padding1[<span class="hljs-number">3</span>];<br>	__be64  ec; <span class="hljs-comment">/* Warning: the current limit is 31-bit anyway! */</span><br>	__be32  vid_hdr_offset;<br>	__be32  data_offset;<br>	__be32  image_seq;<br>	__u8    padding2[<span class="hljs-number">32</span>];<br>	__be32  hdr_crc;<br>&#125; __packed;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ubi_vid_hdr</span> &#123;</span><br>	__be32  magic;   <span class="hljs-comment">// UBI!</span><br>	__u8    version;<br>	__u8    vol_type;<br>	__u8    copy_flag;<br>	__u8    compat;<br>	__be32  vol_id;<br>	__be32  lnum;<br>	__u8    padding1[<span class="hljs-number">4</span>];<br>	__be32  data_size;<br>	__be32  used_ebs;<br>	__be32  data_pad;<br>	__be32  data_crc;<br>	__u8    padding2[<span class="hljs-number">4</span>];<br>	__be64  sqnum;<br>	__u8    padding3[<span class="hljs-number">12</span>];<br>	__be32  hdr_crc;<br>&#125; __packed;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ubi_ec_hdr</span> &#123;</span><br>	__be32  magic;  <span class="hljs-comment">// UBI#</span><br>	__u8    version;<br>	__u8    padding1[<span class="hljs-number">3</span>];<br>	__be64  ec; <span class="hljs-comment">/* Warning: the current limit is 31-bit anyway! */</span><br>	__be32  vid_hdr_offset;<br>	__be32  data_offset;<br>	__be32  image_seq;<br>	__u8    padding2[<span class="hljs-number">32</span>];<br>	__be32  hdr_crc;<br>&#125; __packed;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ubi_vid_hdr</span> &#123;</span><br>	__be32  magic;   <span class="hljs-comment">// UBI!</span><br>	__u8    version;<br>	__u8    vol_type;<br>	__u8    copy_flag;<br>	__u8    compat;<br>	__be32  vol_id;<br>	__be32  lnum;<br>	__u8    padding1[<span class="hljs-number">4</span>];<br>	__be32  data_size;<br>	__be32  used_ebs;<br>	__be32  data_pad;<br>	__be32  data_crc;<br>	__u8    padding2[<span class="hljs-number">4</span>];<br>	__be64  sqnum;<br>	__u8    padding3[<span class="hljs-number">12</span>];<br>	__be32  hdr_crc;<br>&#125; __packed;<br></code></pre></td></tr></table></figure>
 
 <p>这就是为什么逻辑擦除块小于物理擦除块的原因 - 头部占用了一些闪存空间。</p>
 <p>所有 UBI 头都受 <code>CRC-32</code> 校验和保护。有关头内容的更多信息，请参阅 Linux 内核中的 <code>drivers/mtd/ubi/ubi-media.h</code> 文件。</p>
@@ -437,9 +437,9 @@
 <ul>
 <li>对于具有 1 字节最小 I&#x2F;O 单元的 NOR 闪存，VID 头位于偏移量 64；</li>
 <li>对于没有子页面的 NAND 闪存，VID 头位于第二个 NAND 页；</li>
-<li>对于具有子页面的 NAND 闪存，VID 头位于第二个子页面。<h2 id="1-10-Flash-space-overhead-闪存空间开销"><a href="#1-10-Flash-space-overhead-闪存空间开销" class="headerlink" title="1.10. Flash space overhead 闪存空间开销"></a>1.10. Flash space overhead 闪存空间开销</h2></li>
+<li>对于具有子页面的 NAND 闪存，VID 头位于第二个子页面。</li>
 </ul>
-<p>UBI 将一些闪存空间用于其自身目的，从而减少了可供 UBI 用户使用的闪存空间。即：</p>
+<h2 id="1-10-Flash-space-overhead-闪存空间开销"><a href="#1-10-Flash-space-overhead-闪存空间开销" class="headerlink" title="1.10. Flash space overhead 闪存空间开销"></a>1.10. Flash space overhead 闪存空间开销</h2><p>UBI 将一些闪存空间用于其自身目的，从而减少了可供 UBI 用户使用的闪存空间。即：</p>
 <ul>
 <li>2 个 PEB 用于存储卷表；</li>
 <li>1 个 PEB 用于磨损均衡目的；</li>
@@ -577,7 +577,7 @@
 <p>内核的调用先后大致为：<br>（1）start_kernel–&gt;rest_init–&gt;kernel_thread(kernel_init, NULL, CLONE_FS)<br>（2）kernel_init–&gt;kernel_init_freeable–&gt;kernel_init_freeable –&gt; do_basic_setup –&gt; do_initcalls（初始化ubi）<br>（3）ubi初始化完， prepare_namespace –&gt; mount_block_root</p>
 <h1 id="2-参考"><a href="#2-参考" class="headerlink" title="2. 参考"></a>2. 参考</h1><p><a target="_blank" rel="noopener" href="http://www.linux-mtd.infradead.org/doc/ubi.html">UBI - Unsorted Block Images</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24835087/article/details/125336305">【NAND文件系统】UBI介绍</a></p>
 <h1 id="3-挂载ubifs"><a href="#3-挂载ubifs" class="headerlink" title="3. 挂载ubifs"></a>3. 挂载ubifs</h1><p>把ubi卷挂载到文件系统，很简单，只需要创建卷，然后挂载就行。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">ubimkvol <span class="hljs-regexp">/dev/u</span>bi0 -N test -s <span class="hljs-number">2</span>MiB<br>mount -vt ubifs ubi:test <span class="hljs-regexp">/mnt/</span>test<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ubimkvol /dev/ubi0 -N <span class="hljs-built_in">test</span> -s 2MiB<br>mount -vt ubifs ubi:<span class="hljs-built_in">test</span> /mnt/test<br></code></pre></td></tr></table></figure>
 <p>根据我的测试，挂文件系统的分区最小需要2MiB的大小，不然挂载时报不合法的参数</p>
 <h2 id="3-1-更改文件系统大小"><a href="#3-1-更改文件系统大小" class="headerlink" title="3.1 更改文件系统大小"></a>3.1 更改文件系统大小</h2><p>使用ubirsvol改过卷大小之后，然后重新挂载文件系统,df -h看到的可用空间不会变。需要清空一下数据</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">ubiupdatevol <span class="hljs-regexp">/dev/u</span>bi0_13 -t<br></code></pre></td></tr></table></figure>

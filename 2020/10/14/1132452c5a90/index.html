@@ -239,7 +239,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          9.6k 字
+          3.8k 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
           <!-- compatible with older versions-->
-          48 分钟
+          20 分钟
         
       </span>
     
@@ -317,7 +317,7 @@
 </blockquote>
 <p>[toc]</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>（1）初次配置用户名邮箱</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&quot;leon&quot;</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span> xxx@xxx<br></code></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&quot;leon&quot;</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span> xxx@xxx<br></code></pre></td></tr></table></figure>
 
 <p>（2）解决git status中文文件名乱码</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">git config --global core.quotepath <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
@@ -512,7 +512,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git svn <span class="hljs-built_in">log</span><br>git svn info<br></code></pre></td></tr></table></figure>
 
 <p>（6）添加svn分支（针对不规则命名情况）<br>参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/h2zZhou/p/6136948.html">git-svn：通过git来管理svn代码</a><br>通过如下命令来添加分支<br><code>git config --add svn-remote.&lt;远程分支名称&gt;.url &lt;svn地址，要包含具体分支路径&gt;</code><br><code>git config --add svn-remote.&lt;远程分支名称&gt;.fetch :refs/remotes/&lt;远程分支名称&gt;</code><br>实例如下：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">git config --add svn-remote.svn<span class="hljs-regexp">/AX5410.url http:/</span><span class="hljs-regexp">/172.20.1.217/</span>svn<span class="hljs-regexp">/bcm-ax3000-ctcc/</span>branches<span class="hljs-regexp">/products/</span>FY-AX5410<br>git config --add svn-remote.svn<span class="hljs-regexp">/AX5410.fetch :refs/</span>remotes<span class="hljs-regexp">/svn/</span>AX5410<br></code></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">git config --add svn-remote.svn/<span class="hljs-variable constant_">AX5410</span>.url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/172.20.1.217/svn</span><span class="hljs-regexp">/bcm-ax3000-ctcc/branches</span><span class="hljs-regexp">/products/</span><span class="hljs-variable constant_">FY</span>-<span class="hljs-variable constant_">AX5410</span><br>git config --add svn-remote.svn/<span class="hljs-variable constant_">AX5410</span>.fetch <span class="hljs-symbol">:refs/remotes/svn/AX5410</span><br></code></pre></td></tr></table></figure>
 <p>然后下载分支代码</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">git svn fetch <span class="hljs-variable">&lt;远程分支名称&gt;</span>   <span class="hljs-comment">#如 git svn fetch svn/AX5410</span><br></code></pre></td></tr></table></figure>
 <p>（7）如何同时在两个svn分支上开发</p>

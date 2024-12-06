@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          950 字
+          324 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          5 分钟
+          2 分钟
         
       </span>
     
@@ -315,7 +315,7 @@
 <h1 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h1><p>网络唤醒需要两台电脑，一台待唤醒电脑，一台唤醒别人的电脑。</p>
 <h2 id="待唤醒电脑配置"><a href="#待唤醒电脑配置" class="headerlink" title="待唤醒电脑配置"></a>待唤醒电脑配置</h2><p>待唤醒电脑需要开启wake-on-lan功能。<br>（1）设置主板bios，开启wake-on-lan。</p>
 <p>（2）得到网卡的mac地址</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">leon</span>@leon-ssd:~$ ifconfig eth2 | grep ether<br>        <span class="hljs-attribute">ether</span> f4:<span class="hljs-number">6</span>b:<span class="hljs-number">8</span>c:<span class="hljs-number">65</span>:<span class="hljs-number">61</span>:<span class="hljs-number">0</span>f  txqueuelen <span class="hljs-number">1000</span>  (以太网)<br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">leon</span>@leon-ssd:~$ ifconfig eth2 | grep ether<br>        <span class="hljs-attribute">ether</span> f4:<span class="hljs-number">6</span>b:<span class="hljs-number">8</span>c:<span class="hljs-number">65</span>:<span class="hljs-number">61</span>:<span class="hljs-number">0</span>f  txqueuelen <span class="hljs-number">1000</span>  (以太网)<br></code></pre></td></tr></table></figure>
 
 <p>（3）设置网卡的wake-on-lan为magic packet激活。<br>查看当前状态</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dart">leon<span class="hljs-meta">@leon</span>-ssd:~$ sudo ethtool eth2 | grep Wake-<span class="hljs-keyword">on</span><br>        Supports Wake-<span class="hljs-keyword">on</span>: pumbg<br>        Wake-<span class="hljs-keyword">on</span>: g<br></code></pre></td></tr></table></figure>
@@ -330,12 +330,12 @@
 <li><strong>g:</strong> Magic Packet Activity</li>
 </ul>
 <p><strong>设置为magic激活:</strong></p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">sudo</span> ethtool -s eth2 wol g<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> ethtool -s eth2 wol g<br></code></pre></td></tr></table></figure>
 
 <p>（4）开机自动设置wake-on-lan<br><code>sudo vi /lib/systemd/system/wakeonlan.service</code>， 写入如下内容</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=Enable Wake <span class="hljs-literal">On</span> Lan<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=<span class="hljs-literal">on</span>eshot<br><span class="hljs-attr">ExecStart</span>=/usr/sbin/ethtool -s eth2 wol g<br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=basic.target<br></code></pre></td></tr></table></figure>
 <p>再执行</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo systemctl <span class="hljs-built_in">enable</span> wakeonlan.service<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> wakeonlan.service<br></code></pre></td></tr></table></figure>
 <h2 id="唤醒方法"><a href="#唤醒方法" class="headerlink" title="唤醒方法"></a>唤醒方法</h2><p>同一个lan网络下的其他设备，如ubuntu系统，安装wakeonlan，然后执行如下命令即可：<br>mac为待唤醒设备的mac。</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">wakeonlan</span> f4:<span class="hljs-number">6</span>b:<span class="hljs-number">8</span>c:<span class="hljs-number">65</span>:<span class="hljs-number">61</span>:<span class="hljs-number">0</span>f<br></code></pre></td></tr></table></figure>
 

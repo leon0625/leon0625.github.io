@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          282 字
+          126 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          2 分钟
+          1 分钟
         
       </span>
     
@@ -312,7 +312,7 @@
 <p>网上看到一篇文章 <a target="_blank" rel="noopener" href="https://bugzilla.redhat.com/show_bug.cgi?id=1955993">https://bugzilla.redhat.com/show_bug.cgi?id=1955993</a> ，说是有两个锁屏在运行，导致出现问题。<br>xfce4-screensaver<br>xscreensaver</p>
 <p>可以ps查看一下这两个进程是否存在，如果存在那么可能就是同一个问题。</p>
 <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>卸载掉xscreensaver，然后重启一下lightdm</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs routeros">sudo apt <span class="hljs-built_in">remove</span> xscreensaver<br>sudo<span class="hljs-built_in"> service </span>lightdm restart <br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo apt <span class="hljs-built_in">remove</span> xscreensaver<br>sudo<span class="hljs-built_in"> service </span>lightdm restart <br></code></pre></td></tr></table></figure>
 
                 
               </div>

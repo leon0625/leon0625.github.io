@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.9k 字
+          882 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          10 分钟
+          5 分钟
         
       </span>
     
@@ -314,7 +314,7 @@
 <h1 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h1><p>clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>（1）vscode安装clangd插件</p>
 <p>（2）ubuntu上安装clangd。</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> clangd<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install clangd<br></code></pre></td></tr></table></figure>
 <p>ubuntu上也可以不安装clangd，vscode里面会提示你安装，会装在vscode目录。vscode里面安装的clangd版本会更高一些。建议使用这种。</p>
 <h1 id="配置clangd"><a href="#配置clangd" class="headerlink" title="配置clangd"></a>配置clangd</h1><h2 id="compile-commands-json路径"><a href="#compile-commands-json路径" class="headerlink" title="compile_commands.json路径"></a>compile_commands.json路径</h2><p>装上之后可能第一个需要配置的就是compile_commands.json 位置，默认会在工程路径下查找。如果需要单独指定，那么配置clangd的命令行参数。<br><code>--compile-commands-dir=your_dir</code></p>
 <h2 id="分析代码的核心数"><a href="#分析代码的核心数" class="headerlink" title="分析代码的核心数"></a>分析代码的核心数</h2><p>配置命令行参数<code>-j=10</code></p>
@@ -324,7 +324,7 @@
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">--header-insertion</span>=never<br></code></pre></td></tr></table></figure>
 
 <h2 id="format"><a href="#format" class="headerlink" title="format"></a>format</h2><p>禁用c&#x2F;c++插件后，格式化不能用了，需要选择clang。默认的clang格式化风格跟自己的不符。需要配置。<br><code>--fallback-style=Microsoft</code><br>也可以使用自定义格式，如下方法，在工作区生成.clang-format。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install clang-format<br><br><span class="hljs-comment"># 工作区运行生成.clang-format文件</span><br>clang-format --style=Microsoft --dump-config &gt; .clang-format<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install clang-format<br><br><span class="hljs-comment"># 工作区运行生成.clang-format文件</span><br>clang-format --style=Microsoft --dump-config &gt; .clang-format<br></code></pre></td></tr></table></figure>
 <p>这样就可以了，也可以根据需要深入修改这个文件。</p>
 <h2 id="clang-tidy"><a href="#clang-tidy" class="headerlink" title="clang-tidy"></a>clang-tidy</h2><p>没看出来作用。简单的malloc,fopen描述符泄露都看不出来。</p>
 <h1 id="和微软的c-x2F-c-插件共存"><a href="#和微软的c-x2F-c-插件共存" class="headerlink" title="和微软的c&#x2F;c++插件共存"></a>和微软的c&#x2F;c++插件共存</h1><p>网上有人说二者冲突，要禁用c&#x2F;c++插件，实则没有。只是两个都启用时，都会分析代码，无疑是多余的。<br>只需要关闭c&#x2F;c++插件的代码分析和补全就好了。</p>

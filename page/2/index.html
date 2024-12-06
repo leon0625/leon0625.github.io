@@ -236,6 +236,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/12/29/987d260b4c15/" target="_self">
+          flock使用体会
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/29/987d260b4c15/" target="_self">
+        <div>
+          简介它的API很简单，如下 123#include &lt;sys/file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs/locks.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-29 07:44" pubdate>
+              2023-12-29
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/08/28/b38c13ae5dd0/" target="_self">
           gcc选项跟踪函数调用
         </a>
@@ -309,39 +342,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/12/29/987d260b4c15/" target="_self">
-          flock使用体会
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/29/987d260b4c15/" target="_self">
-        <div>
-          简介它的API很简单，如下 123#include &lt;sys/file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs/locks.
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-29 07:44" pubdate>
-              2023-12-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2024/01/25/d6c93a55c9e0/" target="_self">
           ipv6源地址选择原理
         </a>
@@ -360,6 +360,39 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2024-01-25 14:52" pubdate>
               2024-01-25
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/02/26/09c61c706b1b/" target="_self">
+          nautilus文件管理器添加文件备注功能
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/26/09c61c706b1b/" target="_self">
+        <div>
+          关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~/.local/share/nautilus/scripts目录下创建一个脚本，内容如下： 1234567891011121314#!/bin/bashTMP_FILE=`mktemp`gio info --attributes=metadata::annotation &quot;$1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-26 15:40" pubdate>
+              2024-02-26
             </time>
           </div>
         
@@ -404,39 +437,6 @@
               <a href="/tags/%E5%86%85%E5%AD%98/">#内存</a>
             
           </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/02/26/09c61c706b1b/" target="_self">
-          nautilus文件管理器添加文件备注功能
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/26/09c61c706b1b/" target="_self">
-        <div>
-          关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~/.local/share/nautilus/scripts目录下创建一个脚本，内容如下： 1234567891011121314#!/bin/bashTMP_FILE=`mktemp`gio info --attributes=metadata::annotation &quot;$1
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-26 15:40" pubdate>
-              2024-02-26
-            </time>
-          </div>
-        
-        
         
       </div>
     </article>

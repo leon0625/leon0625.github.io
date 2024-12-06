@@ -238,7 +238,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.8k 字
+          1.9k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
           <!-- compatible with older versions-->
-          19 分钟
+          10 分钟
         
       </span>
     
@@ -311,7 +311,7 @@
               <div class="markdown-body">
                 
                 <h1 id="从思考题开始"><a href="#从思考题开始" class="headerlink" title="从思考题开始"></a>从思考题开始</h1><p>先打开一个终端，运行如下命令：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs stylus">$ ping www<span class="hljs-selector-class">.baidu</span><span class="hljs-selector-class">.com</span> &amp;<br>$ (ping www<span class="hljs-selector-class">.qq</span><span class="hljs-selector-class">.com</span> &amp;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">$ ping www<span class="hljs-selector-class">.baidu</span><span class="hljs-selector-class">.com</span> &amp;<br>$ (ping www<span class="hljs-selector-class">.qq</span><span class="hljs-selector-class">.com</span> &amp;)<br></code></pre></td></tr></table></figure>
 <p>我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。<br>如果此时我关闭当前终端，这两个ping程序会如何。</p>
 <p><strong>结论：</strong><br>ping baidu会停止。<br>ping qq会持续运行，但是没有输出。</p>
 <h1 id="进程组、会话、控制终端"><a href="#进程组、会话、控制终端" class="headerlink" title="进程组、会话、控制终端"></a>进程组、会话、控制终端</h1><h2 id="进程组"><a href="#进程组" class="headerlink" title="进程组"></a>进程组</h2><p>每个进程都属于一个进程组，进程组是一个或多个进程的集合。进程组一般也可理解为作业。<br>进程组有一个组长进程，组长进程的ID也是进程组ID。组长创建该组中的进程后可以退出，进程组中只要有一个进程存在，进程组就存在，和组长进程是否退出无关。</p>
@@ -322,7 +322,7 @@
 <p>如果后台进程要从终端输出，默认会直接输出到会话的控制终端。如果会话禁止了后台作业输出至控制终端（命令：stty tostop），那么进程会收到SIGTTOU信号，默认动作是暂停。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">stty</span> tostop <br>$ <span class="hljs-built_in">echo</span> 123 &amp;<br>[3] 75041<br>[3]  + 75041 suspended (<span class="hljs-built_in">tty</span> output)  <span class="hljs-built_in">echo</span> 123                                                                                                                                                                       <br>$ <span class="hljs-built_in">fg</span><br>[3]    75041 continued  <span class="hljs-built_in">echo</span> 123<br>123<br></code></pre></td></tr></table></figure>
 <p><em>stty  -tostop 可以开启后台作业输出到控制终端，默认就是开启的</em><br>如果**后台进程组要设置控制终端，那么也会遇到SIGTTOU信号(也有可能是SIGSTOP信号)**，默认动作也是暂停该进程。<br>比如top命令就会设置终端。</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade">$ <span class="hljs-built_in">top</span> -n1 &gt; <span class="hljs-regexp">/dev/</span><span class="hljs-literal">null</span> &amp;<br>[<span class="hljs-number">3</span>] <span class="hljs-number">88773</span><br>[<span class="hljs-number">3</span>]  + <span class="hljs-number">88773</span> suspended (signal)  <span class="hljs-built_in">top</span> -n1 &gt; <span class="hljs-regexp">/dev/</span><span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">$ top -n1 &gt; /dev/<span class="hljs-literal">null</span> &amp;<br><span class="hljs-string">[3]</span> <span class="hljs-number">88773</span><br><span class="hljs-string">[3]</span>  + <span class="hljs-number">88773</span> suspended (signal)  top -n1 &gt; /dev/<span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="孤儿进程组"><a href="#孤儿进程组" class="headerlink" title="孤儿进程组"></a>孤儿进程组</h2><p>进程组中的所有进程的父进程都不在所属的会话中，那么这个进程组就是孤儿进程组。<br>因为孤儿进程组的父进程（init进程，ubuntu中为systemd进程）不在它所属的会话中，所以如果孤儿进程暂停后，会导致没有人去唤醒它。所以给孤儿进程发送SIGTTIO，SIGTTOU，SIGSTOP都没有意义。</p>
 <ul>

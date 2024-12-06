@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.3k 字
+          753 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          7 分钟
+          4 分钟
         
       </span>
     
@@ -309,7 +309,7 @@
               <div class="markdown-body">
                 
                 <p>关键字：用法</p>
-<h1 id="sed使用"><a href="#sed使用" class="headerlink" title="sed使用"></a>sed使用</h1><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight cmake"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs cmake">sed [<span class="hljs-keyword">option</span>] [address]<span class="hljs-keyword">command</span> [input <span class="hljs-keyword">file</span>]<br></code></pre></td></tr></table></figure>
+<h1 id="sed使用"><a href="#sed使用" class="headerlink" title="sed使用"></a>sed使用</h1><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sed [<span class="hljs-keyword">option</span>] [address]<span class="hljs-keyword">command</span> [input <span class="hljs-keyword">file</span>]<br></code></pre></td></tr></table></figure>
 <p>如果没有输入文件，那么从标准输入中读取。</p>
 <h4 id="option"><a href="#option" class="headerlink" title="option"></a>option</h4><table>
 <thead>
@@ -377,7 +377,7 @@
 </tbody></table>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">打印匹配的行</span><br>sed -n &#x27;/aaa/p&#x27;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果aaa匹配，那么把这一行替换为bbb</span><br>sed &#x27;/aaa/ cbbbb&#x27;<br></code></pre></td></tr></table></figure>
 
-<h2 id="替换-s"><a href="#替换-s" class="headerlink" title="替换(s)"></a>替换(s)</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">[address] s<span class="hljs-regexp">/pattern/</span>replacement/flags<br></code></pre></td></tr></table></figure>
+<h2 id="替换-s"><a href="#替换-s" class="headerlink" title="替换(s)"></a>替换(s)</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-attr">[address]</span> s/<span class="hljs-selector-tag">pattern</span>/replacement/flags<br></code></pre></td></tr></table></figure>
 <p>模式使用正则表达式，可以用任意字符分割，如果模式里面游<code>/</code>字符，那么使用其他字符分割更清晰，如替换网站协议(使用@分割)：<code>s@https://@http://@</code></p>
 <h3 id="flags"><a href="#flags" class="headerlink" title="flags"></a>flags</h3><table>
 <thead>
@@ -400,7 +400,7 @@
 </tr>
 </tbody></table>
 <h2 id="多重命令与地址嵌套"><a href="#多重命令与地址嵌套" class="headerlink" title="多重命令与地址嵌套"></a>多重命令与地址嵌套</h2><p>多重命令通过大括号包起来，分号分割。<br>地址嵌套就是通过大括号在命令前面再加地址即可。<br>举例如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">把每一行的br0替换为br1, up替换为down</span><br>sed -E &#x27;&#123;s/br0/br1/; s/up/down/&#125;&#x27;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">对1-5行内，删除以<span class="hljs-comment">#开头的行</span></span><br>sed -E &#x27;1,5 &#123;/^#/ d&#125;&#x27;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">对1-6行内，删除包含stp的行，行内包含eth0则进行替换</span><br>sed -E &#x27;1,6 &#123;/stp/ d; /eth0/ s/addif/delif/&#125;&#x27;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">把每一行的br0替换为br1, up替换为down</span><br>sed -E &#x27;&#123;s/br0/br1/; s/up/down/&#125;&#x27;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">对1-5行内，删除以#开头的行</span><br>sed -E &#x27;1,5 &#123;/^#/ d&#125;&#x27;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">对1-6行内，删除包含stp的行，行内包含eth0则进行替换</span><br>sed -E &#x27;1,6 &#123;/stp/ d; /eth0/ s/addif/delif/&#125;&#x27;<br></code></pre></td></tr></table></figure>
                 
               </div>
             

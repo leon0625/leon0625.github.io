@@ -236,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.1k 字
+          702 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          6 分钟
+          4 分钟
         
       </span>
     
@@ -313,12 +313,12 @@
 </blockquote>
 <h1 id="为什么需要虚拟环境"><a href="#为什么需要虚拟环境" class="headerlink" title="为什么需要虚拟环境"></a>为什么需要虚拟环境</h1><p>解决项目依赖特定版本库的问题。<br>比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目A运行，项目B就不能运行。<br>要想同时开发这两个项目，要么让他们二者使用相同的版本库，要么使用虚拟环境。</p>
 <p>有了虚拟环境，这些就都不是问题了。</p>
-<h1 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h1><figure class="highlight cmake"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> python3-venv<br></code></pre></td></tr></table></figure>
+<h1 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install python3-venv<br></code></pre></td></tr></table></figure>
 
 <h1 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h1><p>（1）进入项目目录<br>（2）先创建一个虚拟环境</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">python -m venv <span class="hljs-string">.venv</span><br></code></pre></td></tr></table></figure>
 <p>最后一个参数.venv是虚拟环境的名字，可以随意命名，它会在当前目录创建这么一个文件夹，存放虚拟环境所需的文件<br>（3）激活虚拟环境</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">source</span> .venv<span class="hljs-regexp">/bin/</span>activate<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> .venv/bin/activate<br></code></pre></td></tr></table></figure>
 <p>激活之后看到终端的前面会带这个名字,如：</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams">(.venv) leon-ssd <span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>
 
@@ -335,9 +335,9 @@
 <h1 id="不想用虚拟环境？"><a href="#不想用虚拟环境？" class="headerlink" title="不想用虚拟环境？"></a>不想用虚拟环境？</h1><p>说了这么多，要是你还是不喜欢使用虚拟环境。你也不开发东西。只是用别人的脚本或者程序。怎么办呢？</p>
 <p><strong>虚拟环境是为了解决库版本冲突和安装管理问题，不想用就得面临这些问题！</strong></p>
 <p>不想破坏系统级的python环境，如下一些做法是稳妥的。<br>（1）使用apt安装python库，如安装requests库</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> python3-requests<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install python3-requests<br></code></pre></td></tr></table></figure>
 <p>如果apt没有这个库，那还是没有版本。<br>（2）使用pipx安装python应用。pipx不需要root权限，它为安装的应用都创建了虚拟环境。<br>第一步想安装pipx</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> pipx<br>pipx ensurepath<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install pipx<br>pipx ensurepath<br></code></pre></td></tr></table></figure>
 <p>退出终端，重新打开使其生效。<br>第二步安装应用,如：</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">pipx install ruff <br>ruff <span class="hljs-comment">--help</span><br></code></pre></td></tr></table></figure>
 <p><strong>注意：pipx只是用于安装应用</strong></p>

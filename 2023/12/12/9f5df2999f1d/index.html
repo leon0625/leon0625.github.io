@@ -237,7 +237,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4.3k 字
+          1.5k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
           <!-- compatible with older versions-->
-          22 分钟
+          8 分钟
         
       </span>
     
@@ -316,7 +316,7 @@
 <h2 id="情况1-使用brk"><a href="#情况1-使用brk" class="headerlink" title="情况1 - 使用brk"></a>情况1 - 使用brk</h2><p>因为小内存分配才调用brk， brk只是推数据段的指针，而数据段的虚拟地址限制是很长的（多长以后再来填坑）。所以brk调用不会失败，即malloc不会失败。</p>
 <p>系统调用的实现函数：<code>SYSCALL_DEFINE1(brk, unsigned long, brk)</code></p>
 <h2 id="情况2-使用mmap"><a href="#情况2-使用mmap" class="headerlink" title="情况2 - 使用mmap"></a>情况2 - 使用mmap</h2><p>mmap的内核实现很复杂，梳理出检查内存的大致路线为：</p>
-<figure class="highlight xl"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">do_mmap</span> --&gt;</span> <span class="hljs-function"><span class="hljs-title">mmap_region</span> --&gt;</span> <span class="hljs-function"><span class="hljs-title">security_vm_enough_memory_mm</span> --&gt;</span> __vm_enough_memory<br></code></pre></td></tr></table></figure>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">do_mmap</span> --&gt;</span> <span class="hljs-function"><span class="hljs-title">mmap_region</span> --&gt;</span> <span class="hljs-function"><span class="hljs-title">security_vm_enough_memory_mm</span> --&gt;</span> __vm_enough_memory<br></code></pre></td></tr></table></figure>
 
 <p><code>__vm_enough_memory</code>只是检查”剩余可用内存”，而mmap次数限制，地址空间限制在前面的流程就检查了。</p>
 <p>那么函数<code>__vm_enough_memory</code>何时返回ENOMEM呢？</p>
