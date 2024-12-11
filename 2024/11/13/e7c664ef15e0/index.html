@@ -27,7 +27,7 @@
 <meta property="og:description" content="在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。  为什么需要虚拟环境解决项目依赖特定版本库的问题。比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-13T07:27:00.000Z">
-<meta property="article:modified_time" content="2024-11-20T11:17:41.000Z">
+<meta property="article:modified_time" content="2024-12-11T06:27:29.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -289,7 +289,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2024年11月20日 晚上
+                    本文最后更新于：2024年12月11日 下午
                   
                 
               </p>
@@ -302,7 +302,7 @@
 </blockquote>
 <h1 id="为什么需要虚拟环境"><a href="#为什么需要虚拟环境" class="headerlink" title="为什么需要虚拟环境"></a>为什么需要虚拟环境</h1><p>解决项目依赖特定版本库的问题。<br>比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目A运行，项目B就不能运行。<br>要想同时开发这两个项目，要么让他们二者使用相同的版本库，要么使用虚拟环境。</p>
 <p>有了虚拟环境，这些就都不是问题了。</p>
-<h1 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install python3-venv<br></code></pre></td></tr></table></figure>
+<h1 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install python3-venv <br></code></pre></td></tr></table></figure>
 
 <h1 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h1><p>（1）进入项目目录<br>（2）先创建一个虚拟环境</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">python -m venv <span class="hljs-string">.venv</span><br></code></pre></td></tr></table></figure>
