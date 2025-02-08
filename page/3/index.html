@@ -212,15 +212,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/01/04/f4cdb5edc080/" target="_self">
-          ss命令查看socket上包的占用内存
+        <a href="/2023/12/12/9f5df2999f1d/" target="_self">
+          malloc何时返回失败
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/04/f4cdb5edc080/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/12/9f5df2999f1d/" target="_self">
         <div>
-          统计socket接收发送队列上的数据长度一般情况下使用只会显示接收发送队列的包数 12345678910# ./ss -ntpState      Recv-Q Send-Q  Local Address:Port    Peer Address:Port Process                             ESTAB      0      0      192.168.66
+          关键字：内存分配机制 在 [[linux是怎样工作的-内存管理]]中怀疑过malloc返回值的意义，感觉它从来不会失败。下面来分析一下应用层的内存分配机制。 应用层机制从系统层面看，进程分配内存有两种方式，brk和mmap（暂不考虑共享内存）。1、brk是将数据段(.data)的最高地址指针_edata往高地址推；2、mmap是在进程的虚拟地址空间中（堆和栈中间，称为文件映射区域的地方）找一块空闲
         </div>
       </a>
 
@@ -228,107 +228,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-04 15:24" pubdate>
-              2024-01-04
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/28/d3264814853a/" target="_self">
-          tcpdump抓包实时发送到远程主机解析
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/28/d3264814853a/" target="_self">
-        <div>
-          将tcpdump抓到的包实时发送到另一台主机上，另一台主机通过wireshark实时解析。  使用场景嵌入式调试时抓包，有时只能在机内使用tcpdump，如果直接dump到终端，分析不方便。如果直接保存到内存，内存又怕不够。需要一种把抓到的包实时发送到远端保存解析的方法。 实现方法原理：tcpdump抓包保存到标准输出，通过管道发送到远程主机。远程主机wireshark通过管道从标准输入读取数据
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-28 14:30" pubdate>
-              2024-05-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/03/26/26ebe4616e90/" target="_self">
-          top交互式命令
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/26/26ebe4616e90/" target="_self">
-        <div>
-          命令 作用    f 上下键移动；显示(不显示)选中列按d；按选中列排序按s；右键表示要移动该列的位置，然后按上下键移动，移动完成后按Enter键   e 进程的内存单位调整，多次按e，调整不同的单位   E 顶部摘要信息的内存单位   Enter&#x2F;Spaces 立即刷新   H 摘要区域显示线程数，默认显示进程数   k 杀死一个任务，后面可以跟pid号。不跟表示杀死当前提示的进
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-26 15:49" pubdate>
-              2024-03-26
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/04/20/9027c38cc919/" target="_self">
-          ubuntu server安装xfce4桌面
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/20/9027c38cc919/" target="_self">
-        <div>
-          ubuntu server安装xfce4桌面 一般而言不需要使用桌面环境，只是为了使用gitk看log，通过smaba共享，在windows上看log比较慢。 xfce桌面环境据说比较轻量，快捷，linus大神都是用这个  安装xfce4桌面使用如下命令安装： 1sudo apt install xfce4 xfce4-terminal   xfce4-terminal一并装上，不然桌面终端会使用
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-20 23:54" pubdate>
-              2022-04-20
+            <time datetime="2023-12-12 13:50" pubdate>
+              2023-12-12
             </time>
           </div>
         
@@ -337,7 +238,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/ubuntu/">#ubuntu</a>
+              <a href="/tags/%E5%86%85%E5%AD%98/">#内存</a>
             
           </div>
         
@@ -351,15 +252,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/05/03/9515f721ea62/" target="_self">
-          ubuntu生成GUI对话框工具zenity
+        <a href="/2024/06/09/9f0cd45aea89/" target="_self">
+          linux进程组，会话，控制终端关系
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/03/9515f721ea62/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/09/9f0cd45aea89/" target="_self">
         <div>
-          有时候我们编写的脚本需要弹出GUI对话框提示用户进行下一步操作，或者显示一些信息，或者获取用户的输入。zenity就是这么一个工具，输入一条命令，弹出一个对话框。  支持的对话框类型有如下：1234567891011121314151617应用程序选项：  --calendar                             显示日历对话框  --entry
+          从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进
         </div>
       </a>
 
@@ -367,8 +268,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-03 09:43" pubdate>
-              2024-05-03
+            <time datetime="2024-06-09 11:10" pubdate>
+              2024-06-09
             </time>
           </div>
         
@@ -384,15 +285,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/02/07/c818df9bd2ba/" target="_self">
-          ubuntu的日志管理journalctl
+        <a href="/2024/02/26/09c61c706b1b/" target="_self">
+          nautilus文件管理器添加文件备注功能
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/07/c818df9bd2ba/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/26/09c61c706b1b/" target="_self">
         <div>
-          在 Linux 系统中，journalctl 是管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r 查看实时日志输出: journalctl -f，这将
+          关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~/.local/share/nautilus/scripts目录下创建一个脚本，内容如下： 1234567891011121314#!/bin/bashTMP_FILE=`mktemp`gio info --attributes=metadata::annotation &quot;$1
         </div>
       </a>
 
@@ -400,8 +301,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-07 11:15" pubdate>
-              2024-02-07
+            <time datetime="2024-02-26 15:40" pubdate>
+              2024-02-26
             </time>
           </div>
         
@@ -417,15 +318,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/01/17/73144aec8858/" target="_self">
-          ubuntu设置远程唤醒(wakeonlan)
+        <a href="/2022/09/07/9c818c7ca46e/" target="_self">
+          popen后台执行进程问题
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/17/73144aec8858/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/07/9c818c7ca46e/" target="_self">
         <div>
-          关键字：远程开机  一般的主板都有网络唤醒功能(wake-on-lan)，但从来没有使用过。这个功能可以让一台关机的设备收到特定包后唤醒开机。本文主要介绍linux下的操作，windows上同理也支持，只是设置方法不一样。  设置方法网络唤醒需要两台电脑，一台待唤醒电脑，一台唤醒别人的电脑。 待唤醒电脑配置待唤醒电脑需要开启wake-on-lan功能。（1）设置主板bios，开启wake-on-l
+          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&#123;	char line[128];	FILE *fp = popen(&quot;ping 1
         </div>
       </a>
 
@@ -433,8 +334,48 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-17 18:36" pubdate>
-              2024-01-17
+            <time datetime="2022-09-07 10:22" pubdate>
+              2022-09-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/c/">#c</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/05/70a19a46ac1b/" target="_self">
+          cmake执行命令详解
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/70a19a46ac1b/" target="_self">
+        <div>
+          本文介绍add_custom_target和add_custom_command和execute_process命令。  cmake构建可粗分为配置、生成阶段和构建阶段。配置、生成阶段。 配置阶段时执行命令execute_process原型如下： 1234567891011121314151617181920execute_process(COMMAND &lt;cmd1&gt; [&lt;ar
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-05 21:39" pubdate>
+              2024-06-05
             </time>
           </div>
         
@@ -450,15 +391,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2020/08/21/25d4a948ddf5/" target="_self">
-          valgrind使用
+        <a href="/2022/09/04/5f598beeb2a8/" target="_self">
+          cut命令使用
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/21/25d4a948ddf5/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/04/5f598beeb2a8/" target="_self">
         <div>
-          valgrind使用编译如下是编译armv7的版本 1234./configure --prefix=`pwd`/llm CC=/projects/hnd/tools/bcm/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin/arm-buildroot-linux-gnueabi-gcc --host=armv7
+          cut命令使用 cut的作用主要是对每一行进行剪切，然后输出。可以按三种方式剪切：-b 以字节的形式，-c 以字符的形式，-f 通过分隔符按域。分隔符按域的功能比较弱，可用awk替代。  实例1234567891011# 1，3-7字符leon@home-ubuntu22:~$ echo 12345678 | cut -c 1,3-7134567# 第4个字符到结束leon@home-ubuntu
         </div>
       </a>
 
@@ -466,8 +407,114 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 16:16" pubdate>
-              2020-08-21
+            <time datetime="2022-09-04 22:27" pubdate>
+              2022-09-04
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%91%BD%E4%BB%A4/">#命令</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/29/987d260b4c15/" target="_self">
+          flock使用体会
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/29/987d260b4c15/" target="_self">
+        <div>
+          简介它的API很简单，如下 123#include &lt;sys/file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs/locks.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-29 07:44" pubdate>
+              2023-12-29
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/28/b38c13ae5dd0/" target="_self">
+          gcc选项跟踪函数调用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/28/b38c13ae5dd0/" target="_self">
+        <div>
+          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-28 19:27" pubdate>
+              2023-08-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2020/10/14/1132452c5a90/" target="_self">
+          git用法总结
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/10/14/1132452c5a90/" target="_self">
+        <div>
+          git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-14 18:16" pubdate>
+              2020-10-14
             </time>
           </div>
         
@@ -490,15 +537,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/02/22/5086bb846897/" target="_self">
-          vscode clangd插件使用
+        <a href="/2024/01/11/d1f17d6e484c/" target="_self">
+          UBI简介
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/22/5086bb846897/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/11/d1f17d6e484c/" target="_self">
         <div>
-          以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub
+          主要是翻译和自己的碎碎念   1. UBI - Unsorted Block Images1.1. 注意人们经常对 UBI 感到困惑，这就是创建此部分的原因。请注意：  UBI 不是闪存转换层 (FTL)，它与 FTL 无关； UBI 与裸闪存配合使用，不适用于 MMC 、 RS-MMC 、 eMMC 、 SD 、 mini-SD 、 micro-SD 、 CompactFlash 、 Memo
         </div>
       </a>
 
@@ -506,41 +553,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-22 10:33" pubdate>
-              2024-02-22
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/05/c8daabb7fcee/" target="_self">
-          内存碎片研究
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/c8daabb7fcee/" target="_self">
-        <div>
-          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-05 14:38" pubdate>
-              2024-01-05
+            <time datetime="2024-01-11 17:45" pubdate>
+              2024-01-11
             </time>
           </div>
         
