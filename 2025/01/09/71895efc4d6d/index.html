@@ -19,21 +19,21 @@
   <meta name="author" content="leon.liu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。  为什么需要虚拟环境解决项目依赖特定版本库的问题。比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目">
+    <meta name="description" content="问题现象一个程序运行时，时区信息是固定的。当外部修改时区信息后，程序并不能知道，还是用的缓存的时区。这时程序的时间就是错误的。一般的解决办法是，进程内调用tzset函数，这可以刷新时区信息，使其得到正确的时间。 问题在于我在程序里面调用了tzset，时间还是没有刷新。 原因结论：c库代码有点问题。 tzset的glibc实现里面，会先获取环境变量TZ，如果和缓存的没有区别，那么就直接返回了。关键代">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python虚拟环境">
-<meta property="og:url" content="https://leon0625.github.io/2024/11/13/e7c664ef15e0/index.html">
+<meta property="og:title" content="调用tzset依然无法刷新时区问题">
+<meta property="og:url" content="https://leon0625.github.io/2025/01/09/71895efc4d6d/index.html">
 <meta property="og:site_name" content="leon的博客">
-<meta property="og:description" content="在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。  为什么需要虚拟环境解决项目依赖特定版本库的问题。比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目">
+<meta property="og:description" content="问题现象一个程序运行时，时区信息是固定的。当外部修改时区信息后，程序并不能知道，还是用的缓存的时区。这时程序的时间就是错误的。一般的解决办法是，进程内调用tzset函数，这可以刷新时区信息，使其得到正确的时间。 问题在于我在程序里面调用了tzset，时间还是没有刷新。 原因结论：c库代码有点问题。 tzset的glibc实现里面，会先获取环境变量TZ，如果和缓存的没有区别，那么就直接返回了。关键代">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-13T07:27:00.000Z">
-<meta property="article:modified_time" content="2025-02-08T10:01:38.000Z">
+<meta property="article:published_time" content="2025-01-09T07:57:00.000Z">
+<meta property="article:modified_time" content="2025-02-20T08:33:32.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>python虚拟环境 - leon的博客</title>
+  <title>调用tzset依然无法刷新时区问题 - leon的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -188,7 +188,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="python虚拟环境"></span>
+            <span id="subtitle" data-typed-text="调用tzset依然无法刷新时区问题"></span>
           
         </div>
 
@@ -199,8 +199,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-13 15:27" pubdate>
-          2024年11月13日 下午
+        <time datetime="2025-01-09 15:57" pubdate>
+          2025年1月9日 下午
         </time>
       </span>
     
@@ -212,7 +212,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          702 字
+          404 字
         
       </span>
     
@@ -224,7 +224,7 @@
         
         
           <!-- compatible with older versions-->
-          4 分钟
+          3 分钟
         
       </span>
     
@@ -283,13 +283,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">python虚拟环境</h1>
+            <h1 id="seo-header">调用tzset依然无法刷新时区问题</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2025年2月8日 晚上
+                    本文最后更新于：2025年2月20日 下午
                   
                 
               </p>
@@ -297,44 +297,21 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。</p>
-</blockquote>
-<h1 id="为什么需要虚拟环境"><a href="#为什么需要虚拟环境" class="headerlink" title="为什么需要虚拟环境"></a>为什么需要虚拟环境</h1><p>解决项目依赖特定版本库的问题。<br>比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目A运行，项目B就不能运行。<br>要想同时开发这两个项目，要么让他们二者使用相同的版本库，要么使用虚拟环境。</p>
-<p>有了虚拟环境，这些就都不是问题了。</p>
-<h1 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install python3-venv <br></code></pre></td></tr></table></figure>
-
-<h1 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h1><p>（1）进入项目目录<br>（2）先创建一个虚拟环境</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">python -m venv <span class="hljs-string">.venv</span><br></code></pre></td></tr></table></figure>
-<p>最后一个参数.venv是虚拟环境的名字，可以随意命名，它会在当前目录创建这么一个文件夹，存放虚拟环境所需的文件<br>（3）激活虚拟环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> .venv/bin/activate<br></code></pre></td></tr></table></figure>
-<p>激活之后看到终端的前面会带这个名字,如：</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams">(.venv) leon-ssd <span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>虚拟环境中一个库也不会安装，你使用pip list可以看到是空的</strong></p>
-<h1 id="虚拟环境中安装库"><a href="#虚拟环境中安装库" class="headerlink" title="虚拟环境中安装库"></a>虚拟环境中安装库</h1><p><strong>直接使用pip命令安装即可</strong>，都会安装到虚拟环境这个目录里面。</p>
-<h1 id="导出当前项目的依赖库"><a href="#导出当前项目的依赖库" class="headerlink" title="导出当前项目的依赖库"></a>导出当前项目的依赖库</h1><p>虚拟环境安装完项目所需的库后，可以使用如下命令，导出项目所依赖的库列表。</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">pip <span class="hljs-keyword">freeze</span> &gt; requirements.txt<br></code></pre></td></tr></table></figure>
-<p>我们并不需要在代码库中包含虚拟环境，只需要上传这个库列表文件即可。<br>在另一台电脑上，激活虚拟环境后，可以使用如下命令，很方便的安装</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> -r requirements.txt<br></code></pre></td></tr></table></figure>
-
-<h1 id="退出当前虚拟环境"><a href="#退出当前虚拟环境" class="headerlink" title="退出当前虚拟环境"></a>退出当前虚拟环境</h1><p>运行如下命令即可。</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">deactivate</span><br></code></pre></td></tr></table></figure>
-
-<h1 id="不想用虚拟环境？"><a href="#不想用虚拟环境？" class="headerlink" title="不想用虚拟环境？"></a>不想用虚拟环境？</h1><p>说了这么多，要是你还是不喜欢使用虚拟环境。你也不开发东西。只是用别人的脚本或者程序。怎么办呢？</p>
-<p><strong>虚拟环境是为了解决库版本冲突和安装管理问题，不想用就得面临这些问题！</strong></p>
-<p>不想破坏系统级的python环境，如下一些做法是稳妥的。<br>（1）使用apt安装python库，如安装requests库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install python3-requests<br></code></pre></td></tr></table></figure>
-<p>如果apt没有这个库，那还是没有版本。<br>（2）使用pipx安装python应用。pipx不需要root权限，它为安装的应用都创建了虚拟环境。<br>第一步想安装pipx</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install pipx<br>pipx ensurepath<br></code></pre></td></tr></table></figure>
-<p>退出终端，重新打开使其生效。<br>第二步安装应用,如：</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">pipx install ruff <br>ruff <span class="hljs-comment">--help</span><br></code></pre></td></tr></table></figure>
-<p><strong>注意：pipx只是用于安装应用</strong></p>
-<p>参考：<br><a target="_blank" rel="noopener" href="https://www.freecodecamp.org/chinese/news/how-to-setup-virtual-environments-in-python/"># 如何在 Python 中创建一个虚拟环境，以及为什么需要它</a></p>
+                <h1 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h1><p>一个程序运行时，时区信息是固定的。当外部修改时区信息后，程序并不能知道，还是用的缓存的时区。这时程序的时间就是错误的。<br>一般的解决办法是，进程内调用tzset函数，这可以刷新时区信息，使其得到正确的时间。</p>
+<p><strong>问题在于我在程序里面调用了<code>tzset</code>，时间还是没有刷新。</strong></p>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p><strong>结论：c库代码有点问题。</strong></p>
+<p>tzset的glibc实现里面，会先获取环境变量TZ，如果和缓存的没有区别，那么就直接返回了。关键代码（glibc2.3.3）如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">static</span> <span class="hljs-type">void</span><br>internal_function<br><span class="hljs-title function_">tzset_internal</span> <span class="hljs-params">(always)</span><br>     <span class="hljs-type">int</span> always;<br>&#123;<br>  <span class="hljs-type">static</span> <span class="hljs-type">int</span> is_initialized;<br>  <span class="hljs-keyword">register</span> <span class="hljs-type">const</span> <span class="hljs-type">char</span> *tz;<br>  <span class="hljs-keyword">register</span> <span class="hljs-type">size_t</span> l;<br>  <span class="hljs-type">char</span> *tzbuf;<br>  <span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> <span class="hljs-type">int</span> hh, mm, ss;<br>  <span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> <span class="hljs-type">int</span> whichrule;<br><br>  <span class="hljs-keyword">if</span> (is_initialized &amp;&amp; !always)<br>    <span class="hljs-keyword">return</span>;<br>  is_initialized = <span class="hljs-number">1</span>;<br><br>  <span class="hljs-comment">/* Examine the TZ environment variable.  */</span><br>  tz = getenv (<span class="hljs-string">&quot;TZ&quot;</span>);<br>  <span class="hljs-keyword">if</span> (tz == <span class="hljs-literal">NULL</span>)<br>    <span class="hljs-comment">/* No user specification; use the site-wide default.  */</span><br>    tz = TZDEFAULT;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (*tz == <span class="hljs-string">&#x27;\0&#x27;</span>)<br>    <span class="hljs-comment">/* User specified the empty string; use UTC explicitly.  */</span><br>    tz = <span class="hljs-string">&quot;Universal&quot;</span>;<br><br>  <span class="hljs-comment">/* A leading colon means &quot;implementation defined syntax&quot;.</span><br><span class="hljs-comment">     We ignore the colon and always use the same algorithm:</span><br><span class="hljs-comment">     try a data file, and if none exists parse the 1003.1 syntax.  */</span><br>  <span class="hljs-keyword">if</span> (tz &amp;&amp; *tz == <span class="hljs-string">&#x27;:&#x27;</span>)<br>    ++tz;<br><br>  <span class="hljs-comment">/* Check whether the value changes since the last run.  */</span><br>  <span class="hljs-keyword">if</span> (old_tz != <span class="hljs-literal">NULL</span> &amp;&amp; tz != <span class="hljs-literal">NULL</span> &amp;&amp; <span class="hljs-built_in">strcmp</span> (tz, old_tz) == <span class="hljs-number">0</span>)<br>    <span class="hljs-comment">/* No change, simply return.  */</span><br>    <span class="hljs-keyword">return</span>;<br>.............<br></code></pre></td></tr></table></figure>
+<p>因为我的进程没有这个TZ环境变量(应该大部分进程都没有，我看我的ubuntu下也没有)，所以总是默认值，老的也是默认值。判断相等。直接返回了。</p>
+<p><strong>新一点的glibc库就没有这个问题了。根据看代码，glibc &gt; 2.3.3就改了这里</strong></p>
+<h1 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h1><p>只能曲线救国。人为设置TZ环境变量。多调用两次tzset，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">setenv(<span class="hljs-string">&quot;TZ&quot;</span>, <span class="hljs-string">&quot;UTC&quot;</span>, <span class="hljs-number">1</span>);<br>tzset();<br>unsetenv(<span class="hljs-string">&quot;TZ&quot;</span>);<br>tzset();<br></code></pre></td></tr></table></figure>
+<p>这样就可以通过tzset里面的TZ环境变量判断。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p> <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/79102501/why-does-my-timezone-not-update-in-embedded-linux">Why does my timezone not update in embedded linux?</a></p>
 <hr>
 <div style="text-align:center;width:100%;">
   <span>人生苦短，远离bug</span>
-  <span style="float: right;">Leon, 2024-11-13</span>
+  <span style="float: right;">Leon, 2025-01-09</span>
 </div>
 
                 
@@ -353,8 +330,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>python虚拟环境</div>
-      <div>https://leon0625.github.io/2024/11/13/e7c664ef15e0/</div>
+      <div>调用tzset依然无法刷新时区问题</div>
+      <div>https://leon0625.github.io/2025/01/09/71895efc4d6d/</div>
     </div>
     <div class="license-meta">
       
@@ -366,7 +343,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月13日</div>
+          <div>2025年1月9日</div>
         </div>
       
       
@@ -398,18 +375,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/09/71895efc4d6d/" title="调用tzset依然无法刷新时区问题">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">调用tzset依然无法刷新时区问题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/09/9f0cd45aea89/" title="linux进程组，会话，控制终端关系">
-                        <span class="hidden-mobile">linux进程组，会话，控制终端关系</span>
+                      <a href="/2024/11/13/e7c664ef15e0/" title="python虚拟环境">
+                        <span class="hidden-mobile">python虚拟环境</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

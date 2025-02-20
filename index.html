@@ -212,6 +212,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2025/01/09/71895efc4d6d/" target="_self">
+          调用tzset依然无法刷新时区问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/09/71895efc4d6d/" target="_self">
+        <div>
+          问题现象一个程序运行时，时区信息是固定的。当外部修改时区信息后，程序并不能知道，还是用的缓存的时区。这时程序的时间就是错误的。一般的解决办法是，进程内调用tzset函数，这可以刷新时区信息，使其得到正确的时间。 问题在于我在程序里面调用了tzset，时间还是没有刷新。 原因结论：c库代码有点问题。 tzset的glibc实现里面，会先获取环境变量TZ，如果和缓存的没有区别，那么就直接返回了。关键代
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-09 15:57" pubdate>
+              2025-01-09
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2022/02/20/d716b92474cf/" target="_self">
           perl语言入门第六版读书笔记
         </a>
@@ -505,39 +538,6 @@
               <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
             
           </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/09/03/04910dde347d/" target="_self">
-          sed使用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/03/04910dde347d/" target="_self">
-        <div>
-          关键字：用法 sed使用语法1sed [option] [address]command [input file] 如果没有输入文件，那么从标准输入中读取。 option   option 作用    -n 阻止输入行的自动输出(如需打印得需要p命令)   -f 使用脚本文件而不是命令行输入命令   -e 说明后面跟命令，命令行输入多个命令时使用。也可以使用大括号来实现   -E 使用扩展的正则
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-03 14:44" pubdate>
-              2022-09-03
-            </time>
-          </div>
-        
-        
         
       </div>
     </article>
