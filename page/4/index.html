@@ -212,6 +212,178 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/02/07/c818df9bd2ba/" target="_self">
+          ubuntu的日志管理journalctl
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/07/c818df9bd2ba/" target="_self">
+        <div>
+          在 Linux 系统中，journalctl 是管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r 查看实时日志输出: journalctl -f，这将
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-07 11:15" pubdate>
+              2024-02-07
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/01/17/73144aec8858/" target="_self">
+          ubuntu设置远程唤醒(wakeonlan)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/17/73144aec8858/" target="_self">
+        <div>
+          关键字：远程开机  一般的主板都有网络唤醒功能(wake-on-lan)，但从来没有使用过。这个功能可以让一台关机的设备收到特定包后唤醒开机。本文主要介绍linux下的操作，windows上同理也支持，只是设置方法不一样。  设置方法网络唤醒需要两台电脑，一台待唤醒电脑，一台唤醒别人的电脑。 待唤醒电脑配置待唤醒电脑需要开启wake-on-lan功能。（1）设置主板bios，开启wake-on-l
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-17 18:36" pubdate>
+              2024-01-17
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2020/08/21/25d4a948ddf5/" target="_self">
+          valgrind使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/21/25d4a948ddf5/" target="_self">
+        <div>
+          valgrind使用编译如下是编译armv7的版本 1234./configure --prefix=`pwd`/llm CC=/projects/hnd/tools/bcm/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin/arm-buildroot-linux-gnueabi-gcc --host=armv7
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 16:16" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/02/22/5086bb846897/" target="_self">
+          vscode clangd插件使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/22/5086bb846897/" target="_self">
+        <div>
+          以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-22 10:33" pubdate>
+              2024-02-22
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/01/05/c8daabb7fcee/" target="_self">
+          内存碎片研究
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/c8daabb7fcee/" target="_self">
+        <div>
+          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-05 14:38" pubdate>
+              2024-01-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/04/17/171ada44f455/" target="_self">
           内核运行一个用户程序
         </a>

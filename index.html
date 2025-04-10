@@ -212,6 +212,171 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2025/03/28/4ffd7d75fdff/" target="_self">
+          linux命名空间简介
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/28/4ffd7d75fdff/" target="_self">
+        <div>
+          linux namespace提供了一种进程资源隔离的方法。是docker背后的技术原理。  简介  Mount Namespace - 挂载点隔离，一个空间的挂载卸载不影响另一个空间 UTS Namespace - 隔离nodename和domainname两个系统标识 IPC Namespace - 信号量，消息队列等IPC隔离 PID Namespace - pid 隔离 Network
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-28 15:29" pubdate>
+              2025-03-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/10/23/709e891d88d8/" target="_self">
+          initramfs启动
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/10/23/709e891d88d8/" target="_self">
+        <div>
+          下面代码对应的内核版本：6.2  为何需要initrd,initramfs？早期的文件系统一般只保存在一两种存储设备上，内核只需要把这些存储设备的驱动编译进内核即可。后面存储设备越来越多，把所有存储设备的驱动都编译进内核不划算。编译为模块后，这些模块怎么加载呢？linux使用udev来实现模块的自动加载。但是udev是一个应用程序，根文件系统挂载前，无法执行应用程序。所以需要一个中间过度用的文件
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-10-23 16:15" pubdate>
+              2024-10-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/20/15e1016500d3/" target="_self">
+          lsof使用&amp;交叉编译
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/15e1016500d3/" target="_self">
+        <div>
+          lsof是一个查看进程打开哪些文件的命令，平常使用ls -l /proc/pid/fd也能看。但不如lsof详细，它帮你解析了socket的连接信息等。不用自己去&#x2F;proc&#x2F;net&#x2F;tcp等里面去找了  编译我当前的版本为github上最新版本，约为4.99.4。因为编译不过（rpc库链接找不到），我需要先做修改Configure，删除这几行，强制定义HASNORP
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 16:42" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/25/4aecf8606759/" target="_self">
+          mininet模拟128个客户端
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/25/4aecf8606759/" target="_self">
+        <div>
+          安装软件1234sudo apt install mininetsudo apt install openvswitch-testcontroller# 安装dhclient，新版ubuntu已经没有dhclient了sudo apt install isc-dhcp-client  基础命令使用先运行如下命令，创建一个两个主机连在一个交换机s1下的拓扑。 1sudo mn --topo sing
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-25 14:30" pubdate>
+              2025-03-25
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/01/09/71895efc4d6d/" target="_self">
+          调用tzset依然无法刷新时区问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/09/71895efc4d6d/" target="_self">
+        <div>
+          问题现象一个程序运行时，时区信息是固定的。当外部修改时区信息后，程序并不能知道，还是用的缓存的时区。这时程序的时间就是错误的。一般的解决办法是，进程内调用tzset函数，这可以刷新时区信息，使其得到正确的时间。 问题在于我在程序里面调用了tzset，时间还是没有刷新。 原因结论：c库代码有点问题。 tzset的glibc实现里面，会先获取环境变量TZ，如果和缓存的没有区别，那么就直接返回了。关键代
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-09 15:57" pubdate>
+              2025-01-09
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2020/10/14/1132452c5a90/" target="_self">
           git用法总结
         </a>
@@ -375,178 +540,6 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
             <time datetime="2024-06-05 21:34" pubdate>
-              2024-06-05
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/03/22/0621cfc53e84/" target="_self">
-          ros ipv6配置
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/22/0621cfc53e84/" target="_self">
-        <div>
-          ros ipv6配置官方文档：https://wiki.mikrotik.com/wiki/Manual:TOC 拓扑图flowchart TB 	gm(&quot;光猫(桥模式)&quot;) 	ROS((&quot;ROS&quot;)) 	R1(&quot;Router1&quot;) 	R2(&quot;Router2&quot;) 	R3(&quot;Router3...&quot;)
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-22 15:16" pubdate>
-              2022-03-22
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/03/15/a10497a90091/" target="_self">
-          BPF包过滤规则语法
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/a10497a90091/" target="_self">
-        <div>
-          BPF(Berkeley Packet Filter)全称为伯克利包过滤,是一种功能非常强大的过滤语法.这个语法被广泛应用于多种数据包嗅探软件,因为大部分数据包嗅探软件都依赖于使用BPF的libpcap&#x2F;WinPcap库.诸如tcpdump,wireshark等等。  语法使用BPF语法创建的过滤器被称为表达式,并且每个表达式包含一个或多个原语。原语是对网络协议标头中的字段（例如，主机
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-15 15:49" pubdate>
-              2024-03-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/12/14/b3979ae8f5b4/" target="_self">
-          C语言实现默认参数
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/14/b3979ae8f5b4/" target="_self">
-        <div>
-          关键字：可变参数，可变长参数 疑惑open函数为什么可以两个参数，也可以三个参数。如下是man open看到的声明： 12int open(const char *pathname, int flags);int open(const char *pathname, int flags, mode_t mode); c语言本身不支持重载，它是怎么做到的呢？ 下面来一个简单的实现。利用逗号表达式和宏
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-14 17:35" pubdate>
-              2023-12-14
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/11/d1f17d6e484c/" target="_self">
-          UBI简介
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/11/d1f17d6e484c/" target="_self">
-        <div>
-          主要是翻译和自己的碎碎念   1. UBI - Unsorted Block Images1.1. 注意人们经常对 UBI 感到困惑，这就是创建此部分的原因。请注意：  UBI 不是闪存转换层 (FTL)，它与 FTL 无关； UBI 与裸闪存配合使用，不适用于 MMC 、 RS-MMC 、 eMMC 、 SD 、 mini-SD 、 micro-SD 、 CompactFlash 、 Memo
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-11 17:45" pubdate>
-              2024-01-11
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/05/70a19a46ac1b/" target="_self">
-          cmake执行命令详解
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/70a19a46ac1b/" target="_self">
-        <div>
-          本文介绍add_custom_target和add_custom_command和execute_process命令。  cmake构建可粗分为配置、生成阶段和构建阶段。配置、生成阶段。 配置阶段时执行命令execute_process原型如下： 1234567891011121314151617181920execute_process(COMMAND &lt;cmd1&gt; [&lt;ar
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-05 21:39" pubdate>
               2024-06-05
             </time>
           </div>

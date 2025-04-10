@@ -212,6 +212,171 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/02/26/09c61c706b1b/" target="_self">
+          nautilus文件管理器添加文件备注功能
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/26/09c61c706b1b/" target="_self">
+        <div>
+          关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~/.local/share/nautilus/scripts目录下创建一个脚本，内容如下： 1234567891011121314#!/bin/bashTMP_FILE=`mktemp`gio info --attributes=metadata::annotation &quot;$1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-26 15:40" pubdate>
+              2024-02-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/02/20/d716b92474cf/" target="_self">
+          perl语言入门第六版读书笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/20/d716b92474cf/" target="_self">
+        <div>
+          perl语言入门第六版简介 本书涵盖的最低版本5.8 CPAN,perl综合典藏网，里面包含扩展，文档等 perl解析器能一次完成编译和运行这两个动作。（注意是有先编译，即运行前就可以检查到整个代码的语法错误）  标量数据 perl每个语句必须以分号；结束 perl的数字可以通过下划线分割，方便理解0x1234_2222_ffff perl虽然都是浮点数，但是支持取模运算（%） 如果源代码中有as
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-20 20:08" pubdate>
+              2022-02-20
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
+          raname批量重命名文件
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
+        <div>
+          linux rename命令, 正则批量重命名文件安装：apt install rename  语法man看到的帮助信息不多，根据使用经验来看，正则部分的用法和sed差不多。据查是perl正则。 参数  -n 仅打印替换效果，不做实际替换  实例1234567891011121314151617181920# 将123替换为2$ rename -n &#x27;s/123/2/&#x27; 12
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-01 17:04" pubdate>
+              2024-02-01
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/09/03/04910dde347d/" target="_self">
+          sed使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/03/04910dde347d/" target="_self">
+        <div>
+          关键字：用法 sed使用语法1sed [option] [address]command [input file] 如果没有输入文件，那么从标准输入中读取。 option   option 作用    -n 阻止输入行的自动输出(如需打印得需要p命令)   -f 使用脚本文件而不是命令行输入命令   -e 说明后面跟命令，命令行输入多个命令时使用。也可以使用大括号来实现   -E 使用扩展的正则
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-03 14:44" pubdate>
+              2022-09-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/15/098666119136/" target="_self">
+          sock_filter之bpf
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/098666119136/" target="_self">
+        <div>
+          在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-15 16:21" pubdate>
+              2024-03-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/01/04/f4cdb5edc080/" target="_self">
           ss命令查看socket上包的占用内存
         </a>
@@ -369,178 +534,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2024-05-03 09:43" pubdate>
               2024-05-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/02/07/c818df9bd2ba/" target="_self">
-          ubuntu的日志管理journalctl
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/07/c818df9bd2ba/" target="_self">
-        <div>
-          在 Linux 系统中，journalctl 是管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r 查看实时日志输出: journalctl -f，这将
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-07 11:15" pubdate>
-              2024-02-07
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/17/73144aec8858/" target="_self">
-          ubuntu设置远程唤醒(wakeonlan)
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/17/73144aec8858/" target="_self">
-        <div>
-          关键字：远程开机  一般的主板都有网络唤醒功能(wake-on-lan)，但从来没有使用过。这个功能可以让一台关机的设备收到特定包后唤醒开机。本文主要介绍linux下的操作，windows上同理也支持，只是设置方法不一样。  设置方法网络唤醒需要两台电脑，一台待唤醒电脑，一台唤醒别人的电脑。 待唤醒电脑配置待唤醒电脑需要开启wake-on-lan功能。（1）设置主板bios，开启wake-on-l
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-17 18:36" pubdate>
-              2024-01-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2020/08/21/25d4a948ddf5/" target="_self">
-          valgrind使用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/21/25d4a948ddf5/" target="_self">
-        <div>
-          valgrind使用编译如下是编译armv7的版本 1234./configure --prefix=`pwd`/llm CC=/projects/hnd/tools/bcm/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin/arm-buildroot-linux-gnueabi-gcc --host=armv7
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 16:16" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/02/22/5086bb846897/" target="_self">
-          vscode clangd插件使用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/22/5086bb846897/" target="_self">
-        <div>
-          以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-22 10:33" pubdate>
-              2024-02-22
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/05/c8daabb7fcee/" target="_self">
-          内存碎片研究
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/c8daabb7fcee/" target="_self">
-        <div>
-          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-05 14:38" pubdate>
-              2024-01-05
             </time>
           </div>
         
