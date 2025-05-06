@@ -212,6 +212,185 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2020/10/14/1132452c5a90/" target="_self">
+          git用法总结
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/10/14/1132452c5a90/" target="_self">
+        <div>
+          git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-14 18:16" pubdate>
+              2020-10-14
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/11/13/e7c664ef15e0/" target="_self">
+          python虚拟环境
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/13/e7c664ef15e0/" target="_self">
+        <div>
+          在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。  为什么需要虚拟环境解决项目依赖特定版本库的问题。比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-13 15:27" pubdate>
+              2024-11-13
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/09/07/9c818c7ca46e/" target="_self">
+          popen后台执行进程问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/07/9c818c7ca46e/" target="_self">
+        <div>
+          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&#123;	char line[128];	FILE *fp = popen(&quot;ping 1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-07 10:22" pubdate>
+              2022-09-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/c/">#c</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/09/9f0cd45aea89/" target="_self">
+          linux进程组，会话，控制终端关系
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/09/9f0cd45aea89/" target="_self">
+        <div>
+          从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-09 11:10" pubdate>
+              2024-06-09
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/05/4d0c83e66cb5/" target="_self">
+          Cmake属性的可见性
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/4d0c83e66cb5/" target="_self">
+        <div>
+          Cmake可见性实验  原理从 modern cmake(&gt;&#x3D;3.0) 开始，使用的范式从 director-oriented 转换到了 target-oriented。 这其中最重要的有三个概念：  target   target相应的properties   可见性  所谓target就是编译的目标，一般就三种：    静态库: 使用add_library() 动态库: 使用
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-05 21:34" pubdate>
+              2024-06-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2022/03/22/0621cfc53e84/" target="_self">
           ros ipv6配置
         </a>
@@ -378,190 +557,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/09/04/5f598beeb2a8/" target="_self">
-          cut命令使用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/04/5f598beeb2a8/" target="_self">
-        <div>
-          cut命令使用 cut的作用主要是对每一行进行剪切，然后输出。可以按三种方式剪切：-b 以字节的形式，-c 以字符的形式，-f 通过分隔符按域。分隔符按域的功能比较弱，可用awk替代。  实例1234567891011# 1，3-7字符leon@home-ubuntu22:~$ echo 12345678 | cut -c 1,3-7134567# 第4个字符到结束leon@home-ubuntu
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-04 22:27" pubdate>
-              2022-09-04
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%91%BD%E4%BB%A4/">#命令</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/12/29/987d260b4c15/" target="_self">
-          flock使用体会
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/29/987d260b4c15/" target="_self">
-        <div>
-          简介它的API很简单，如下 123#include &lt;sys/file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs/locks.
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-29 07:44" pubdate>
-              2023-12-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/08/28/b38c13ae5dd0/" target="_self">
-          gcc选项跟踪函数调用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/28/b38c13ae5dd0/" target="_self">
-        <div>
-          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-08-28 19:27" pubdate>
-              2023-08-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/25/d6c93a55c9e0/" target="_self">
-          ipv6源地址选择原理
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/25/d6c93a55c9e0/" target="_self">
-        <div>
-          引言一个接口通常有多个ipv6地址（比如可能存在多个全球地址，多个链路本地地址）。那么设备从接口发包时它会使用哪个地址作为源地址呢？ 假设场景如下：我们设备是路由器，br0有两个链路本地地址：fe80::1&#x2F;64, fe80::2&#x2F;64。路由器下的PC发送dns查询，目的地址为fe80::1，路由器的dns server回包时会使用哪个源地址，fe80::1,还是fe80::2
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-25 14:52" pubdate>
-              2024-01-25
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/12/12/9f5df2999f1d/" target="_self">
-          malloc何时返回失败
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/12/9f5df2999f1d/" target="_self">
-        <div>
-          关键字：内存分配机制 在 [[linux是怎样工作的-内存管理]]中怀疑过malloc返回值的意义，感觉它从来不会失败。下面来分析一下应用层的内存分配机制。 应用层机制从系统层面看，进程分配内存有两种方式，brk和mmap（暂不考虑共享内存）。1、brk是将数据段(.data)的最高地址指针_edata往高地址推；2、mmap是在进程的虚拟地址空间中（堆和栈中间，称为文件映射区域的地方）找一块空闲
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-12 13:50" pubdate>
-              2023-12-12
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%86%85%E5%AD%98/">#内存</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

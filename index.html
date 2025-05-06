@@ -212,6 +212,178 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2025/04/16/556b72b699c2/" target="_self">
+          reboot命令的执行过程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/04/16/556b72b699c2/" target="_self">
+        <div>
+          reboot命令大家很熟，但是究竟是怎么reboot的，为何reboot会reboot出bug来。本文以busybox的reboot版本分析。  问题起源今天碰到一个问题，代码内reboot后系统有bug。命令行reboot后又没有问题。追溯代码发现二者的差异，代码内实际运行的reboot -f命令。多了一个-f参数。这参数的区别是什么呢？ busybox内的reboot流程reboot命令处理
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-04-16 18:00" pubdate>
+              2025-04-16
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/05/28/d3264814853a/" target="_self">
+          tcpdump抓包实时发送到远程主机解析
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/28/d3264814853a/" target="_self">
+        <div>
+          将tcpdump抓到的包实时发送到另一台主机上，另一台主机通过wireshark实时解析。  使用场景嵌入式调试时抓包，有时只能在机内使用tcpdump，如果直接dump到终端，分析不方便。如果直接保存到内存，内存又怕不够。需要一种把抓到的包实时发送到远端保存解析的方法。 实现方法原理：tcpdump抓包保存到标准输出，通过管道发送到远程主机。远程主机wireshark通过管道从标准输入读取数据
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-28 14:30" pubdate>
+              2024-05-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/15/098666119136/" target="_self">
+          sock_filter之bpf
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/098666119136/" target="_self">
+        <div>
+          在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-15 16:21" pubdate>
+              2024-03-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/02/07/c818df9bd2ba/" target="_self">
+          ubuntu的日志管理journalctl
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/07/c818df9bd2ba/" target="_self">
+        <div>
+          在 Linux 系统中，目前主流使用的systemd管理系统，journalctl 是systemd管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-07 11:15" pubdate>
+              2024-02-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/systemd/">#systemd</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/29/987d260b4c15/" target="_self">
+          flock使用体会
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/29/987d260b4c15/" target="_self">
+        <div>
+          简介它的API很简单，如下 123#include &lt;sys/file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs/locks.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-29 07:44" pubdate>
+              2023-12-29
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2025/03/28/4ffd7d75fdff/" target="_self">
           linux命名空间简介
         </a>
@@ -371,190 +543,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2020/10/14/1132452c5a90/" target="_self">
-          git用法总结
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/10/14/1132452c5a90/" target="_self">
-        <div>
-          git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-14 18:16" pubdate>
-              2020-10-14
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/11/13/e7c664ef15e0/" target="_self">
-          python虚拟环境
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/13/e7c664ef15e0/" target="_self">
-        <div>
-          在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。  为什么需要虚拟环境解决项目依赖特定版本库的问题。比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-13 15:27" pubdate>
-              2024-11-13
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/09/07/9c818c7ca46e/" target="_self">
-          popen后台执行进程问题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/07/9c818c7ca46e/" target="_self">
-        <div>
-          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&#123;	char line[128];	FILE *fp = popen(&quot;ping 1
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-07 10:22" pubdate>
-              2022-09-07
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/c/">#c</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/09/9f0cd45aea89/" target="_self">
-          linux进程组，会话，控制终端关系
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/09/9f0cd45aea89/" target="_self">
-        <div>
-          从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-09 11:10" pubdate>
-              2024-06-09
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/05/4d0c83e66cb5/" target="_self">
-          Cmake属性的可见性
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/4d0c83e66cb5/" target="_self">
-        <div>
-          Cmake可见性实验  原理从 modern cmake(&gt;&#x3D;3.0) 开始，使用的范式从 director-oriented 转换到了 target-oriented。 这其中最重要的有三个概念：  target   target相应的properties   可见性  所谓target就是编译的目标，一般就三种：    静态库: 使用add_library() 动态库: 使用
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-05 21:34" pubdate>
-              2024-06-05
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
