@@ -22,7 +22,7 @@
     <meta name="description" content="简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flock使用体会">
-<meta property="og:url" content="https://leon0625.github.io/2023/12/29/987d260b4c15/index.html">
+<meta property="og:url" content="https://blog.621234.xyz/2023/12/29/987d260b4c15/index.html">
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.">
 <meta property="og:locale" content="zh_CN">
@@ -71,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":"https://y6vaabyp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.621234.xyz","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":"https://y6vaabyp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -339,7 +339,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>flock使用体会</div>
-      <div>https://leon0625.github.io/2023/12/29/987d260b4c15/</div>
+      <div>https://blog.621234.xyz/2023/12/29/987d260b4c15/</div>
     </div>
     <div class="license-meta">
       

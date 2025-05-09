@@ -22,7 +22,7 @@
     <meta name="description" content="lsof是一个查看进程打开哪些文件的命令，平常使用ls -l &#x2F;proc&#x2F;pid&#x2F;fd也能看。但不如lsof详细，它帮你解析了socket的连接信息等。不用自己去&#x2F;proc&#x2F;net&#x2F;tcp等里面去找了  编译我当前的版本为github上最新版本，约为4.99.4。因为编译不过（rpc库链接找不到），我需要先做修改Configure，删除这几行，强制定义HASNORP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lsof使用&amp;交叉编译">
-<meta property="og:url" content="https://leon0625.github.io/2025/03/20/15e1016500d3/index.html">
+<meta property="og:url" content="https://blog.621234.xyz/2025/03/20/15e1016500d3/index.html">
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="lsof是一个查看进程打开哪些文件的命令，平常使用ls -l &#x2F;proc&#x2F;pid&#x2F;fd也能看。但不如lsof详细，它帮你解析了socket的连接信息等。不用自己去&#x2F;proc&#x2F;net&#x2F;tcp等里面去找了  编译我当前的版本为github上最新版本，约为4.99.4。因为编译不过（rpc库链接找不到），我需要先做修改Configure，删除这几行，强制定义HASNORP">
 <meta property="og:locale" content="zh_CN">
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":"https://y6vaabyp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.621234.xyz","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":"https://y6vaabyp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -336,7 +336,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>lsof使用&amp;交叉编译</div>
-      <div>https://leon0625.github.io/2025/03/20/15e1016500d3/</div>
+      <div>https://blog.621234.xyz/2025/03/20/15e1016500d3/</div>
     </div>
     <div class="license-meta">
       

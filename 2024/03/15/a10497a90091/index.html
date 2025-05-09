@@ -22,7 +22,7 @@
     <meta name="description" content="BPF(Berkeley Packet Filter)全称为伯克利包过滤,是一种功能非常强大的过滤语法.这个语法被广泛应用于多种数据包嗅探软件,因为大部分数据包嗅探软件都依赖于使用BPF的libpcap&#x2F;WinPcap库.诸如tcpdump,wireshark等等。  语法使用BPF语法创建的过滤器被称为表达式,并且每个表达式包含一个或多个原语。原语是对网络协议标头中的字段（例如，主机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BPF包过滤规则语法">
-<meta property="og:url" content="https://leon0625.github.io/2024/03/15/a10497a90091/index.html">
+<meta property="og:url" content="https://blog.621234.xyz/2024/03/15/a10497a90091/index.html">
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="BPF(Berkeley Packet Filter)全称为伯克利包过滤,是一种功能非常强大的过滤语法.这个语法被广泛应用于多种数据包嗅探软件,因为大部分数据包嗅探软件都依赖于使用BPF的libpcap&#x2F;WinPcap库.诸如tcpdump,wireshark等等。  语法使用BPF语法创建的过滤器被称为表达式,并且每个表达式包含一个或多个原语。原语是对网络协议标头中的字段（例如，主机">
 <meta property="og:locale" content="zh_CN">
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":"https://y6vaabyp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.621234.xyz","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":"https://y6vaabyp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -403,7 +403,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>BPF包过滤规则语法</div>
-      <div>https://leon0625.github.io/2024/03/15/a10497a90091/</div>
+      <div>https://blog.621234.xyz/2024/03/15/a10497a90091/</div>
     </div>
     <div class="license-meta">
       

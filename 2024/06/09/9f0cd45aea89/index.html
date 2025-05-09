@@ -22,7 +22,7 @@
     <meta name="description" content="从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux进程组，会话，控制终端关系">
-<meta property="og:url" content="https://leon0625.github.io/2024/06/09/9f0cd45aea89/index.html">
+<meta property="og:url" content="https://blog.621234.xyz/2024/06/09/9f0cd45aea89/index.html">
 <meta property="og:site_name" content="leon的博客">
 <meta property="og:description" content="从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进">
 <meta property="og:locale" content="zh_CN">
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"leon0625.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":"https://y6vaabyp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.621234.xyz","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":false,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"y6vaAbyprO0CoMHhYKWTlNSo-gzGzoHsz","app_key":"K6nBN6bvf3Kv7DI1c2M7eHiQ","server_url":"https://y6vaabyp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -372,7 +372,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>linux进程组，会话，控制终端关系</div>
-      <div>https://leon0625.github.io/2024/06/09/9f0cd45aea89/</div>
+      <div>https://blog.621234.xyz/2024/06/09/9f0cd45aea89/</div>
     </div>
     <div class="license-meta">
       
