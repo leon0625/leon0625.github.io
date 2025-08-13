@@ -212,6 +212,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2025/03/20/15e1016500d3/" target="_self">
+          lsof使用&amp;交叉编译
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/15e1016500d3/" target="_self">
+        <div>
+          lsof是一个查看进程打开哪些文件的命令，平常使用ls -l /proc/pid/fd也能看。但不如lsof详细，它帮你解析了socket的连接信息等。不用自己去&#x2F;proc&#x2F;net&#x2F;tcp等里面去找了  编译我当前的版本为github上最新版本，约为4.99.4。因为编译不过（rpc库链接找不到），我需要先做修改Configure，删除这几行，强制定义HASNORP
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 16:42" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2025/03/25/4aecf8606759/" target="_self">
           mininet模拟128个客户端
         </a>
@@ -300,46 +333,6 @@
           </div>
         
         
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/09/07/9c818c7ca46e/" target="_self">
-          popen后台执行进程问题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/07/9c818c7ca46e/" target="_self">
-        <div>
-          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&#123;	char line[128];	FILE *fp = popen(&quot;ping 1
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-07 10:22" pubdate>
-              2022-09-07
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/c/">#c</a>
-            
-          </div>
         
       </div>
     </article>
