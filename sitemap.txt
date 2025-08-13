@@ -47,3 +47,4 @@ https://blog.621234.xyz/tags/%E5%86%85%E5%AD%98/
 https://blog.621234.xyz/tags/c/
 https://blog.621234.xyz/tags/ubuntu/
 https://blog.621234.xyz/tags/systemd/
+https://blog.621234.xyz/tags/%E5%B7%A5%E5%85%B7-git/
