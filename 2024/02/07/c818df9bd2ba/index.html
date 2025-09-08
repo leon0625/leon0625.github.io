@@ -27,7 +27,7 @@
 <meta property="og:description" content="在 Linux 系统中，目前主流使用的systemd管理系统，journalctl 是systemd管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-07T03:15:00.000Z">
-<meta property="article:modified_time" content="2025-08-13T10:10:00.000Z">
+<meta property="article:modified_time" content="2025-09-08T06:29:13.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具&#x2F;systemd">
 <meta name="twitter:card" content="summary_large_image">
@@ -213,7 +213,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          745 字
+          753 字
         
       </span>
     
@@ -290,7 +290,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2025年8月13日 晚上
+                    本文最后更新于：2025年9月8日 下午
                   
                 
               </p>
@@ -327,6 +327,7 @@
 <h1 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h1><ul>
 <li>查看日志占用磁盘空间： <code>journalctl --disk-usage</code></li>
 <li>清理老旧日志： <code>sudo journalctl --vacuum-time=2weeks</code>，这将删除所有两周之前的日志消息。</li>
+<li><code>sudo journalctl --vacuum-size=1K</code>，清理日志，</li>
 </ul>
 <h1 id="journalctl与rsyslogd的关系"><a href="#journalctl与rsyslogd的关系" class="headerlink" title="journalctl与rsyslogd的关系"></a>journalctl与rsyslogd的关系</h1><p>在ubuntu上，他们二者是共存的。journalctl接收所有日志（内核和用户进程），进行自己的存储。然后也会把日志(通过syslog产生的)发送给rsyslogd，让rsyslogd根据自己的配置存储在&#x2F;var&#x2F;log&#x2F;或是转发到其他远程服务器。</p>
 <p>例如&#x2F;var&#x2F;log&#x2F;auth.log里面的日志，在journalctl中也能找到。</p>
