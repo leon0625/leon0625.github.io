@@ -27,7 +27,7 @@
 <meta property="og:description" content="在 Linux 系统中，目前主流使用的systemd管理系统，journalctl 是systemd管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-07T03:15:00.000Z">
-<meta property="article:modified_time" content="2025-09-08T06:29:48.000Z">
+<meta property="article:modified_time" content="2025-09-08T06:31:19.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具&#x2F;systemd">
 <meta name="twitter:card" content="summary_large_image">
@@ -213,7 +213,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          791 字
+          809 字
         
       </span>
     
@@ -225,7 +225,7 @@
         
         
           <!-- compatible with older versions-->
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -327,12 +327,14 @@
 <h1 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h1><ul>
 <li>查看日志占用磁盘空间： <code>journalctl --disk-usage</code></li>
 </ul>
-<h2 id="清理日志"><a href="#清理日志" class="headerlink" title="清理日志"></a>清理日志</h2><h2 id="按时间清理"><a href="#按时间清理" class="headerlink" title="按时间清理"></a>按时间清理</h2><p>bash</p>
+<h2 id="清理日志"><a href="#清理日志" class="headerlink" title="清理日志"></a>清理日志</h2><p><strong>按时间清理</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 清理3天前的日志</span><br><span class="hljs-built_in">sudo</span> journalctl --vacuum-time=3d<br><br><span class="hljs-comment"># 清理1周前的日志</span><br><span class="hljs-built_in">sudo</span> journalctl --vacuum-time=7d<br><br><span class="hljs-comment"># 清理1个月前的日志</span><br><span class="hljs-built_in">sudo</span> journalctl --vacuum-time=1month<br></code></pre></td></tr></table></figure>
 
-<h2 id="按大小清理"><a href="#按大小清理" class="headerlink" title="按大小清理"></a>按大小清理</h2><p>bash</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 限制日志总大小为100MB</span><br><span class="hljs-built_in">sudo</span> journalctl --vacuum-size=100M<br><br><span class="hljs-comment"># 限制日志总大小为1GB</span><br><span class="hljs-built_in">sudo</span> journalctl --vacuum-size=1G<br></code></pre></td></tr></table></figure>
+<p><strong>按大小清理</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 限制日志总大小为100MB</span><br><span class="hljs-built_in">sudo</span> journalctl --vacuum-size=100M<br><br><span class="hljs-comment"># 限制日志总大小为1K</span><br><span class="hljs-built_in">sudo</span> journalctl --vacuum-size=1K<br></code></pre></td></tr></table></figure>
 
+<p><strong>永久配置日志文件大小限制</strong><br>编辑<code>/etc/systemd/journald.conf</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
 
 <h1 id="journalctl与rsyslogd的关系"><a href="#journalctl与rsyslogd的关系" class="headerlink" title="journalctl与rsyslogd的关系"></a>journalctl与rsyslogd的关系</h1><p>在ubuntu上，他们二者是共存的。journalctl接收所有日志（内核和用户进程），进行自己的存储。然后也会把日志(通过syslog产生的)发送给rsyslogd，让rsyslogd根据自己的配置存储在&#x2F;var&#x2F;log&#x2F;或是转发到其他远程服务器。</p>
 <p>例如&#x2F;var&#x2F;log&#x2F;auth.log里面的日志，在journalctl中也能找到。</p>
