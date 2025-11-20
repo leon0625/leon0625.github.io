@@ -212,39 +212,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/03/28/4ffd7d75fdff/" target="_self">
-          linux命名空间简介
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/28/4ffd7d75fdff/" target="_self">
-        <div>
-          linux namespace提供了一种进程资源隔离的方法。是docker背后的技术原理。  简介  Mount Namespace - 挂载点隔离，一个空间的挂载卸载不影响另一个空间 UTS Namespace - 隔离nodename和domainname两个系统标识 IPC Namespace - 信号量，消息队列等IPC隔离 PID Namespace - pid 隔离 Network
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-28 15:29" pubdate>
-              2025-03-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2024/10/23/709e891d88d8/" target="_self">
           initramfs启动
         </a>
@@ -278,15 +245,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/03/20/15e1016500d3/" target="_self">
-          lsof使用&amp;交叉编译
+        <a href="/2022/09/04/5f598beeb2a8/" target="_self">
+          cut命令使用
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/15e1016500d3/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/04/5f598beeb2a8/" target="_self">
         <div>
-          lsof是一个查看进程打开哪些文件的命令，平常使用ls -l /proc/pid/fd也能看。但不如lsof详细，它帮你解析了socket的连接信息等。不用自己去&#x2F;proc&#x2F;net&#x2F;tcp等里面去找了  编译我当前的版本为github上最新版本，约为4.99.4。因为编译不过（rpc库链接找不到），我需要先做修改Configure，删除这几行，强制定义HASNORP
+          cut命令使用 cut的作用主要是对每一行进行剪切，然后输出。可以按三种方式剪切：-b 以字节的形式，-c 以字符的形式，-f 通过分隔符按域。分隔符按域的功能比较弱，可用awk替代。  实例1234567891011# 1，3-7字符leon@home-ubuntu22:~$ echo 12345678 | cut -c 1,3-7134567# 第4个字符到结束leon@home-ubuntu
         </div>
       </a>
 
@@ -294,8 +261,88 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-20 16:42" pubdate>
-              2025-03-20
+            <time datetime="2022-09-04 22:27" pubdate>
+              2022-09-04
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%91%BD%E4%BB%A4/">#命令</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/02/22/5086bb846897/" target="_self">
+          vscode clangd插件使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/22/5086bb846897/" target="_self">
+        <div>
+          以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-22 10:33" pubdate>
+              2024-02-22
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7-vscode/">#工具/vscode</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/09/09/04d8542f8bb4/" target="_self">
+          生成树协议STP算法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/09/04d8542f8bb4/" target="_self">
+        <div>
+          生成树协议STP算法 以太网网桥使用生成树协议STP(Spanning Tree Protocol)，可以在提高网络可靠性的同时，又避免环路带来的各种问题。  生成树算法STA(Spanning Tree Algorithm)是生成树协议的核心。它的目的是：在包含有物理环路的网络中，构建出一个能够连通全网各个节点的树形无环路逻辑拓扑。 生成树算法三步骤（1）选举根网桥（2）选举根端口（3）选举指定
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-09 13:55" pubdate>
+              2022-09-09
             </time>
           </div>
         
@@ -311,15 +358,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/03/25/4aecf8606759/" target="_self">
-          mininet模拟128个客户端
+        <a href="/2024/06/09/9f0cd45aea89/" target="_self">
+          linux进程组，会话，控制终端关系
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/25/4aecf8606759/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/09/9f0cd45aea89/" target="_self">
         <div>
-          安装软件1234sudo apt install mininetsudo apt install openvswitch-testcontroller# 安装dhclient，新版ubuntu已经没有dhclient了sudo apt install isc-dhcp-client  基础命令使用先运行如下命令，创建一个两个主机连在一个交换机s1下的拓扑。 1sudo mn --topo sing
+          从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进
         </div>
       </a>
 
@@ -327,8 +374,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-25 14:30" pubdate>
-              2025-03-25
+            <time datetime="2024-06-09 11:10" pubdate>
+              2024-06-09
             </time>
           </div>
         
@@ -377,15 +424,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2020/10/14/1132452c5a90/" target="_self">
-          git用法总结
+        <a href="/2024/01/05/c8daabb7fcee/" target="_self">
+          内存碎片研究
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/10/14/1132452c5a90/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/c8daabb7fcee/" target="_self">
         <div>
-          git使用 git 2.23之后，多了switch和restore命令，git –help已看不到checkout的踪影（还是支持）。因为checkout用法太多，语义的歧义太大了。 但是很多商业公司一直用着老旧的系统，老旧的软件，所以下面基本只会涉及checkout命令。  [toc] 配置（1）初次配置用户名邮箱 12git config --global user.name &quot;le
+          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
         </div>
       </a>
 
@@ -393,8 +440,41 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-14 18:16" pubdate>
-              2020-10-14
+            <time datetime="2024-01-05 14:38" pubdate>
+              2024-01-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/05/28/d3264814853a/" target="_self">
+          tcpdump抓包实时发送到远程主机解析
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/28/d3264814853a/" target="_self">
+        <div>
+          将tcpdump抓到的包实时发送到另一台主机上，另一台主机通过wireshark实时解析。  使用场景嵌入式调试时抓包，有时只能在机内使用tcpdump，如果直接dump到终端，分析不方便。如果直接保存到内存，内存又怕不够。需要一种把抓到的包实时发送到远端保存解析的方法。 实现方法原理：tcpdump抓包保存到标准输出，通过管道发送到远程主机。远程主机wireshark通过管道从标准输入读取数据
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-28 14:30" pubdate>
+              2024-05-28
             </time>
           </div>
         
@@ -403,7 +483,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+              <a href="/tags/%E5%B7%A5%E5%85%B7-tcpdump/">#工具/tcpdump</a>
             
           </div>
         
@@ -417,15 +497,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/11/13/e7c664ef15e0/" target="_self">
-          python虚拟环境
+        <a href="/2024/05/03/9515f721ea62/" target="_self">
+          ubuntu生成GUI对话框工具zenity
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/13/e7c664ef15e0/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/03/9515f721ea62/" target="_self">
         <div>
-          在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。  为什么需要虚拟环境解决项目依赖特定版本库的问题。比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目
+          有时候我们编写的脚本需要弹出GUI对话框提示用户进行下一步操作，或者显示一些信息，或者获取用户的输入。zenity就是这么一个工具，输入一条命令，弹出一个对话框。  支持的对话框类型有如下：1234567891011121314151617应用程序选项：  --calendar                             显示日历对话框  --entry
         </div>
       </a>
 
@@ -433,8 +513,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-13 15:27" pubdate>
-              2024-11-13
+            <time datetime="2024-05-03 09:43" pubdate>
+              2024-05-03
             </time>
           </div>
         
@@ -450,15 +530,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/09/07/9c818c7ca46e/" target="_self">
-          popen后台执行进程问题
+        <a href="/2022/04/04/e4fd2d78b4bb/" target="_self">
+          博客使用
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/07/9c818c7ca46e/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/04/e4fd2d78b4bb/" target="_self">
         <div>
-          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&#123;	char line[128];	FILE *fp = popen(&quot;ping 1
+          博客使用搭建过程略，这种东西搭一次要用好久，下一次再搭时，方法已经过时了，找官方搭建方法即可(官方的过时很久了，有坑) 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server  hexo安装后，安装了fluid主题。然后配置了一下。 hexo官方文档fluid官方文档 目录结构12public -- 这是生成的
         </div>
       </a>
 
@@ -466,81 +546,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-07 10:22" pubdate>
-              2022-09-07
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/c/">#c</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/09/9f0cd45aea89/" target="_self">
-          linux进程组，会话，控制终端关系
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/09/9f0cd45aea89/" target="_self">
-        <div>
-          从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-09 11:10" pubdate>
-              2024-06-09
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/05/4d0c83e66cb5/" target="_self">
-          Cmake属性的可见性
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/4d0c83e66cb5/" target="_self">
-        <div>
-          Cmake可见性实验  原理从 modern cmake(&gt;&#x3D;3.0) 开始，使用的范式从 director-oriented 转换到了 target-oriented。 这其中最重要的有三个概念：  target   target相应的properties   可见性  所谓target就是编译的目标，一般就三种：    静态库: 使用add_library() 动态库: 使用
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-05 21:34" pubdate>
-              2024-06-05
+            <time datetime="2022-04-04 11:41" pubdate>
+              2022-04-04
             </time>
           </div>
         
@@ -554,7 +561,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

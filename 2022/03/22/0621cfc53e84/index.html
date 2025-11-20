@@ -39,9 +39,12 @@
 <meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-03/23-185607-4d96-leon.png">
 <meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-03/23-185817-0b2b-leon.png">
 <meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-03/23-185942-ea98-leon.png">
+<meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2025-11/18-145120-f9e9-leon.png?x-image-process=image/quality,q_65">
+<meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2025-11/18-145157-631a-leon.png?x-image-process=image/quality,q_65">
+<meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2025-11/18-145234-d3cd-leon.png?x-image-process=image/quality,q_65">
 <meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2022-04/22-181049-a72a-leon.png">
 <meta property="article:published_time" content="2022-03-22T07:16:56.000Z">
-<meta property="article:modified_time" content="2024-08-09T05:35:47.000Z">
+<meta property="article:modified_time" content="2025-11-19T07:07:11.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -228,7 +231,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1k 字
+          1.1k 字
         
       </span>
     
@@ -305,7 +308,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2024年8月9日 下午
+                    本文最后更新于：2025年11月19日 下午
                   
                 
               </p>
@@ -372,6 +375,10 @@
 <p><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-03/23-185817-0b2b-leon.png" srcset="/img/loading.gif" lazyload alt="image-20220323185817403"></p>
 <p>配置为LAN后，会自动添加如下配置</p>
 <p><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/image/2022-03/23-185942-ea98-leon.png" srcset="/img/loading.gif" lazyload alt="image-20220323185942930"></p>
+<h3 id="dhcpv6有状态地址配置"><a href="#dhcpv6有状态地址配置" class="headerlink" title="dhcpv6有状态地址配置"></a>dhcpv6有状态地址配置</h3><blockquote>
+<p>最早的ros不支持有状态地址配置，现在新版的(我的7.19.3)已经支持了。</p>
+</blockquote>
+<p>（1）配置ND这儿为有状态<br><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2025-11/18-145120-f9e9-leon.png?x-image-process=image/quality,q_65" srcset="/img/loading.gif" lazyload alt="image.png"><br>（2）dhcpv6地址池配置，prefix length需要配置为128<br><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2025-11/18-145157-631a-leon.png?x-image-process=image/quality,q_65" srcset="/img/loading.gif" lazyload alt="image.png"><br>（3）dhcpv6地址池勾选<br><img src="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2025-11/18-145234-d3cd-leon.png?x-image-process=image/quality,q_65" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
 <li>ROS貌似不支持有状态获取地址。它的文档里面也没有提及有状态获取地址的部分。</li>
 <li>如上的配置不支持路由器下面再接路由器，因为没有可供使用的前缀了。</li>

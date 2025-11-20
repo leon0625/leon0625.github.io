@@ -212,15 +212,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/02/26/09c61c706b1b/" target="_self">
-          nautilus文件管理器添加文件备注功能
+        <a href="/2024/01/04/f4cdb5edc080/" target="_self">
+          ss命令查看socket上包的占用内存
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/26/09c61c706b1b/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/04/f4cdb5edc080/" target="_self">
         <div>
-          关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~/.local/share/nautilus/scripts目录下创建一个脚本，内容如下： 1234567891011121314#!/bin/bashTMP_FILE=`mktemp`gio info --attributes=metadata::annotation &quot;$1
+          统计socket接收发送队列上的数据长度一般情况下使用只会显示接收发送队列的包数 12345678910# ./ss -ntpState      Recv-Q Send-Q  Local Address:Port    Peer Address:Port Process                             ESTAB      0      0      192.168.66
         </div>
       </a>
 
@@ -228,8 +228,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-26 15:40" pubdate>
-              2024-02-26
+            <time datetime="2024-01-04 15:24" pubdate>
+              2024-01-04
             </time>
           </div>
         
@@ -245,15 +245,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/02/20/d716b92474cf/" target="_self">
-          perl语言入门第六版读书笔记
+        <a href="/2025/03/25/4aecf8606759/" target="_self">
+          mininet模拟128个客户端
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/20/d716b92474cf/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/25/4aecf8606759/" target="_self">
         <div>
-          perl语言入门第六版简介 本书涵盖的最低版本5.8 CPAN,perl综合典藏网，里面包含扩展，文档等 perl解析器能一次完成编译和运行这两个动作。（注意是有先编译，即运行前就可以检查到整个代码的语法错误）  标量数据 perl每个语句必须以分号；结束 perl的数字可以通过下划线分割，方便理解0x1234_2222_ffff perl虽然都是浮点数，但是支持取模运算（%） 如果源代码中有as
+          安装软件1234sudo apt install mininetsudo apt install openvswitch-testcontroller# 安装dhclient，新版ubuntu已经没有dhclient了sudo apt install isc-dhcp-client  基础命令使用先运行如下命令，创建一个两个主机连在一个交换机s1下的拓扑。 1sudo mn --topo sing
         </div>
       </a>
 
@@ -261,41 +261,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-20 20:08" pubdate>
-              2022-02-20
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
-          raname批量重命名文件
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
-        <div>
-          linux rename命令, 正则批量重命名文件安装：apt install rename  语法man看到的帮助信息不多，根据使用经验来看，正则部分的用法和sed差不多。据查是perl正则。 参数  -n 仅打印替换效果，不做实际替换  实例1234567891011121314151617181920# 将123替换为2$ rename -n &#x27;s/123/2/&#x27; 12
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-01 17:04" pubdate>
-              2024-02-01
+            <time datetime="2025-03-25 14:30" pubdate>
+              2025-03-25
             </time>
           </div>
         
@@ -344,6 +311,46 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/12/12/9f5df2999f1d/" target="_self">
+          malloc何时返回失败
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/12/9f5df2999f1d/" target="_self">
+        <div>
+          关键字：内存分配机制 在 [[linux是怎样工作的-内存管理]]中怀疑过malloc返回值的意义，感觉它从来不会失败。下面来分析一下应用层的内存分配机制。 应用层机制从系统层面看，进程分配内存有两种方式，brk和mmap（暂不考虑共享内存）。1、brk是将数据段(.data)的最高地址指针_edata往高地址推；2、mmap是在进程的虚拟地址空间中（堆和栈中间，称为文件映射区域的地方）找一块空闲
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-12 13:50" pubdate>
+              2023-12-12
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%8A%80%E6%9C%AF-%E5%86%85%E5%AD%98/">#技术/内存</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/03/15/098666119136/" target="_self">
           sock_filter之bpf
         </a>
@@ -367,6 +374,13 @@
         
         
         
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%8A%80%E6%9C%AF-bpf/">#技术/bpf</a>
+            
+          </div>
+        
       </div>
     </article>
   </div>
@@ -377,15 +391,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/01/04/f4cdb5edc080/" target="_self">
-          ss命令查看socket上包的占用内存
+        <a href="/2024/11/13/e7c664ef15e0/" target="_self">
+          python虚拟环境
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/04/f4cdb5edc080/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/13/e7c664ef15e0/" target="_self">
         <div>
-          统计socket接收发送队列上的数据长度一般情况下使用只会显示接收发送队列的包数 12345678910# ./ss -ntpState      Recv-Q Send-Q  Local Address:Port    Peer Address:Port Process                             ESTAB      0      0      192.168.66
+          在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。  为什么需要虚拟环境解决项目依赖特定版本库的问题。比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目
         </div>
       </a>
 
@@ -393,8 +407,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-04 15:24" pubdate>
-              2024-01-04
+            <time datetime="2024-11-13 15:27" pubdate>
+              2024-11-13
             </time>
           </div>
         
@@ -410,15 +424,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/05/28/d3264814853a/" target="_self">
-          tcpdump抓包实时发送到远程主机解析
+        <a href="/2022/09/07/9c818c7ca46e/" target="_self">
+          popen后台执行进程问题
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/28/d3264814853a/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/07/9c818c7ca46e/" target="_self">
         <div>
-          将tcpdump抓到的包实时发送到另一台主机上，另一台主机通过wireshark实时解析。  使用场景嵌入式调试时抓包，有时只能在机内使用tcpdump，如果直接dump到终端，分析不方便。如果直接保存到内存，内存又怕不够。需要一种把抓到的包实时发送到远端保存解析的方法。 实现方法原理：tcpdump抓包保存到标准输出，通过管道发送到远程主机。远程主机wireshark通过管道从标准输入读取数据
+          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&#123;	char line[128];	FILE *fp = popen(&quot;ping 1
         </div>
       </a>
 
@@ -426,8 +440,48 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-28 14:30" pubdate>
-              2024-05-28
+            <time datetime="2022-09-07 10:22" pubdate>
+              2022-09-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BC%96%E7%A8%8B-c/">#编程/c</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/05/70a19a46ac1b/" target="_self">
+          cmake执行命令详解
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/70a19a46ac1b/" target="_self">
+        <div>
+          本文介绍add_custom_target和add_custom_command和execute_process命令。  cmake构建可粗分为配置、生成阶段和构建阶段。配置、生成阶段。 配置阶段时执行命令execute_process原型如下： 1234567891011121314151617181920execute_process(COMMAND &lt;cmd1&gt; [&lt;ar
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-05 21:39" pubdate>
+              2024-06-05
             </time>
           </div>
         
@@ -476,15 +530,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/04/20/9027c38cc919/" target="_self">
-          ubuntu server安装xfce4桌面
+        <a href="/2024/02/26/09c61c706b1b/" target="_self">
+          nautilus文件管理器添加文件备注功能
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/20/9027c38cc919/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/26/09c61c706b1b/" target="_self">
         <div>
-          ubuntu server安装xfce4桌面 一般而言不需要使用桌面环境，只是为了使用gitk看log，通过smaba共享，在windows上看log比较慢。 xfce桌面环境据说比较轻量，快捷，linus大神都是用这个  安装xfce4桌面使用如下命令安装： 1sudo apt install xfce4 xfce4-terminal   xfce4-terminal一并装上，不然桌面终端会使用
+          关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~/.local/share/nautilus/scripts目录下创建一个脚本，内容如下： 1234567891011121314#!/bin/bashTMP_FILE=`mktemp`gio info --attributes=metadata::annotation &quot;$1
         </div>
       </a>
 
@@ -492,48 +546,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-20 23:54" pubdate>
-              2022-04-20
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/ubuntu/">#ubuntu</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/03/9515f721ea62/" target="_self">
-          ubuntu生成GUI对话框工具zenity
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/03/9515f721ea62/" target="_self">
-        <div>
-          有时候我们编写的脚本需要弹出GUI对话框提示用户进行下一步操作，或者显示一些信息，或者获取用户的输入。zenity就是这么一个工具，输入一条命令，弹出一个对话框。  支持的对话框类型有如下：1234567891011121314151617应用程序选项：  --calendar                             显示日历对话框  --entry
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-03 09:43" pubdate>
-              2024-05-03
+            <time datetime="2024-02-26 15:40" pubdate>
+              2024-02-26
             </time>
           </div>
         
@@ -547,7 +561,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

@@ -28,9 +28,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2023-12/20-155858-1f30-leon.png?x-image-process=image/quality,q_65">
 <meta property="article:published_time" content="2020-10-14T10:16:56.000Z">
-<meta property="article:modified_time" content="2024-12-25T01:32:40.000Z">
+<meta property="article:modified_time" content="2025-11-19T07:04:53.000Z">
 <meta property="article:author" content="leon.liu">
-<meta property="article:tag" content="工具">
+<meta property="article:tag" content="工具&#x2F;git">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pic-0625.obs.cn-south-1.myhuaweicloud.com/2023-12/20-155858-1f30-leon.png?x-image-process=image/quality,q_65">
   
@@ -215,7 +215,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4k 字
+          4.4k 字
         
       </span>
     
@@ -227,7 +227,7 @@
         
         
           <!-- compatible with older versions-->
-          20 分钟
+          23 分钟
         
       </span>
     
@@ -292,7 +292,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2024年12月25日 上午
+                    本文最后更新于：2025年11月19日 下午
                   
                 
               </p>
@@ -395,6 +395,12 @@
 <figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs node-repl">git log --left-right master...experiment<br>&lt; F <br>&lt; E<br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">D</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">C</span><br></code></pre></td></tr></table></figure>
 <p><code>--no-merges</code>将不显示merge的提交<br><code>--cherry-pick</code>将会把cherry-pick的视为相同的提交<br><code>--left-only</code> <code>--right-only</code>将只显示一边的提交<br><code>--cherry-mark</code>将相同的提交用”&#x3D;”号表示，不同的用”+”号标记</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-comment"># 显示foo特有的</span><br>git log <span class="hljs-params">--cherry-pick</span> <span class="hljs-params">--left-only</span> <span class="hljs-params">--no-merges</span>  foo.<span class="hljs-string">..bar</span> <br><span class="hljs-comment"># 显示bar特有的</span><br>git log <span class="hljs-params">--cherry-pick</span> <span class="hljs-params">--right-only</span> <span class="hljs-params">--no-merges</span>  foo.<span class="hljs-string">..bar</span> <br></code></pre></td></tr></table></figure>
+
+<h4 id="cherry-pick大量代码"><a href="#cherry-pick大量代码" class="headerlink" title="cherry-pick大量代码"></a>cherry-pick大量代码</h4><p>master分支上，哪些需要合并到ctc分支</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 检查从2025-3-1日起，哪些带通用的提交，可能需要合并到ctc上</span><br>git <span class="hljs-built_in">log</span> --cherry-pick --left-only --no-merges --grep <span class="hljs-string">&quot;通用&quot;</span> --since <span class="hljs-string">&quot;2025-03-01&quot;</span>  --pretty=format:<span class="hljs-string">&quot;%ad %h %s (%an)&quot;</span> --<span class="hljs-built_in">date</span>=format:<span class="hljs-string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>  master...ctc <br></code></pre></td></tr></table></figure>
+<p>终端还是不方便，借助gitk来使用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">gitk --cherry-pick --left-only --no-merges  --since=<span class="hljs-string">&quot;2025-3-1&quot;</span> master...ctc<br></code></pre></td></tr></table></figure>
+<p>gitk界面搜索”通用”来过滤，右键cherry-pick</p>
 <h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><p>(1) 修改刚提交的日志信息</p>
 <figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-built_in">--amend</span> -<span class="hljs-string">m</span> <span class="hljs-string">&quot;刚修改错了&quot;</span><br></code></pre></td></tr></table></figure>
 
@@ -543,7 +549,18 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/leon0625/practice/trunk/hash_table">https://github.com/leon0625/practice</a><a target="_blank" rel="noopener" href="https://github.com/leon0625/practice/trunk/hash_table">&#x2F;trunk</a>&#x2F;hash_table</p>
 <p>（3）使用svn下载上面的地址</p>
 <p>svn co <a target="_blank" rel="noopener" href="https://github.com/leon0625/practice/trunk/hash_table">https://github.com/leon0625/practice</a><a target="_blank" rel="noopener" href="https://github.com/leon0625/practice/trunk/hash_table">&#x2F;trunk</a>&#x2F;hash_table</p>
+<h1 id="子模块"><a href="#子模块" class="headerlink" title="子模块"></a>子模块</h1><h2 id="添加子模块"><a href="#添加子模块" class="headerlink" title="添加子模块"></a>添加子模块</h2><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs console">git submodule add https://github.com/chaconinc/DbConnector<br></code></pre></td></tr></table></figure>
+<p>添加之后，查看状态会出现一个.gitmodules文件和一个目录，这两个文件都要提交</p>
+<h2 id="克隆包含子模块的项目"><a href="#克隆包含子模块的项目" class="headerlink" title="克隆包含子模块的项目"></a>克隆包含子模块的项目</h2><p>直接clone之后，包含模块目录，但是不包含模块代码。有如下<strong>三种方式</strong>来clone完整代码<br>（1）分步执行</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs console"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/chaconinc/MainProject</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git submodule init</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git submodule update</span><br></code></pre></td></tr></table></figure>
+<p>（2）clone添加参数<code>--recurse-submodules</code></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">clone</span> <span class="hljs-title">--recurse-submodules</span> https://github.com/chaconinc/MainProject<br></code></pre></td></tr></table></figure>
+<p>（3）update添加init,recursive参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/chaconinc/MainProject</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git submodule update --init --recursive</span><br></code></pre></td></tr></table></figure>
 
+<h2 id="更新子模块"><a href="#更新子模块" class="headerlink" title="更新子模块"></a>更新子模块</h2><p>当运行 <code>git submodule update --remote</code> 时，Git 默认会尝试更新 <strong>所有</strong> 子模块， 所以如果有很多子模块的话，你可以传递想要更新的子模块的名字。<br>更新之后，需要提交一下子模块目录，不然远程库上引用的子模块版本不会变</p>
+<h2 id="在子模块上提交"><a href="#在子模块上提交" class="headerlink" title="在子模块上提交"></a>在子模块上提交</h2><p>进入子模块目录，直接操作就好。推到远程库之后，记得在主仓库里面更新一下子模块。然后提交引用。</p>
+<h2 id="删除子模块"><a href="#删除子模块" class="headerlink" title="删除子模块"></a>删除子模块</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">git <span class="hljs-keyword">submodule </span>deinit -f &lt;<span class="hljs-keyword">submodule_path&gt; </span> <br>git rm -f &lt;<span class="hljs-keyword">submodule_path&gt; </span> <br>git commit -m <span class="hljs-string">&quot;Remove submodule &lt;name&gt;&quot;</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -555,7 +572,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B7%A5%E5%85%B7/" class="print-no-link">#工具</a>
+        <a href="/tags/%E5%B7%A5%E5%85%B7-git/" class="print-no-link">#工具/git</a>
       
     </div>
   

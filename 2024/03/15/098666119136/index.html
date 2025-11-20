@@ -27,8 +27,9 @@
 <meta property="og:description" content="在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-15T08:21:00.000Z">
-<meta property="article:modified_time" content="2024-08-04T01:48:20.000Z">
+<meta property="article:modified_time" content="2025-11-19T07:03:01.000Z">
 <meta property="article:author" content="leon.liu">
+<meta property="article:tag" content="技术&#x2F;bpf">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -212,7 +213,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          494 字
+          526 字
         
       </span>
     
@@ -289,7 +290,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2024年8月4日 上午
+                    本文最后更新于：2025年11月19日 下午
                   
                 
               </p>
@@ -310,6 +311,9 @@
 <h2 id="手写过滤器代码"><a href="#手写过滤器代码" class="headerlink" title="手写过滤器代码"></a>手写过滤器代码</h2><p>实例如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// Filter ICMPv6 messages of type neighbor soliciation</span><br><span class="hljs-type">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sock_filter</span> <span class="hljs-title">bpf</span>[] =</span> &#123;<br>	BPF_STMT(BPF_LD | BPF_B | BPF_ABS, offsetof(<span class="hljs-keyword">struct</span> ip6_hdr, ip6_nxt)), <span class="hljs-comment">// 获取ip6_hdr的ip6_nxt偏移的一个字节</span><br>	BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, IPPROTO_ICMPV6, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>),	<span class="hljs-comment">//如果不是icmpv6协议，跳5行，否则继续执行下一行</span><br>	BPF_STMT(BPF_LD | BPF_B | BPF_ABS, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">struct</span> ip6_hdr) +<br>			offsetof(<span class="hljs-keyword">struct</span> icmp6_hdr, icmp6_type)),	<span class="hljs-comment">//提取icmp6 type偏移的一个字节</span><br>	BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, ND_NEIGHBOR_SOLICIT, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-comment">// 如果不是NS，跳1行</span><br>	BPF_STMT(BPF_RET | BPF_K, <span class="hljs-number">0xffffffff</span>),	<span class="hljs-comment">//返回接收</span><br>	BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, ND_NEIGHBOR_ADVERT, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-comment">// 如果不是NA，跳1行</span><br>	BPF_STMT(BPF_RET | BPF_K, <span class="hljs-number">0xffffffff</span>),	<span class="hljs-comment">//返回接收</span><br>	BPF_STMT(BPF_RET | BPF_K, <span class="hljs-number">0</span>),	<span class="hljs-comment">//返回拒绝</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 <p>这个规则比较复杂。</p>
+<h2 id="其他过滤api"><a href="#其他过滤api" class="headerlink" title="其他过滤api"></a>其他过滤api</h2><p>针对icmpv6有一些api可以调用，如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// Filter ICMPv6 package types</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">icmp6_filter</span> <span class="hljs-title">filt</span>;</span><br>ICMP6_FILTER_SETBLOCKALL(&amp;filt);<br>ICMP6_FILTER_SETPASS(ND_ROUTER_ADVERT, &amp;filt);<br>setsockopt(sock, IPPROTO_ICMPV6, ICMP6_FILTER, &amp;filt, <span class="hljs-keyword">sizeof</span>(filt));<br></code></pre></td></tr></table></figure>
+
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[# <a target="_blank" rel="noopener" href="https://www.cnblogs.com/pwl999/p/15535023.html">Linux bpf 3.1、Berkeley Packet Filter (BPF) (Kernel Document)</a></p>
 
                 
@@ -319,6 +323,13 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%80%E6%9C%AF-bpf/" class="print-no-link">#技术/bpf</a>
+      
+    </div>
   
 </div>
 

@@ -27,7 +27,7 @@
 <meta property="og:description" content="简介它的API很简单，如下 123#include &lt;sys&#x2F;file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs&#x2F;locks.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-28T23:44:00.000Z">
-<meta property="article:modified_time" content="2024-08-04T01:48:20.000Z">
+<meta property="article:modified_time" content="2025-11-19T07:04:37.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -212,7 +212,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          574 字
+          633 字
         
       </span>
     
@@ -224,7 +224,7 @@
         
         
           <!-- compatible with older versions-->
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -289,7 +289,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：2024年8月4日 上午
+                    本文最后更新于：2025年11月19日 下午
                   
                 
               </p>
@@ -318,7 +318,10 @@
 <li>单个进程对同一文件open两个fd（file结构不同），在这两个fd上依次加锁会死锁</li>
 <li>关闭文件fd，在该fd上加的锁自动释放</li>
 </ul>
-
+<h1 id="flock命令"><a href="#flock命令" class="headerlink" title="flock命令"></a>flock命令</h1><p>有时一个命令或者脚本需要执行很久，有可能多个同时运行，我们需要串行的执行他们，避免出现问题。可以这样</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">flock <span class="hljs-string">/tmp/xxxx.lock</span> your_<span class="hljs-keyword">command</span><br></code></pre></td></tr></table></figure>
+<p>比如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">flock /tmp/hexo_post<span class="hljs-selector-class">.lock</span> hexo <span class="hljs-selector-tag">g</span> -d<br></code></pre></td></tr></table></figure>
                 
               </div>
             

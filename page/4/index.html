@@ -212,6 +212,72 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/04/17/171ada44f455/" target="_self">
+          内核运行一个用户程序
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/17/171ada44f455/" target="_self">
+        <div>
+          使用call_usermodehelper即可。  函数原型1234567891011121314/** * call_usermodehelper() - prepare and start a usermode application * @path: path to usermode executable * @argv: arg vector for process * @envp: e
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-04-17 14:34" pubdate>
+              2024-04-17
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/28/b38c13ae5dd0/" target="_self">
+          gcc选项跟踪函数调用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/28/b38c13ae5dd0/" target="_self">
+        <div>
+          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-28 19:27" pubdate>
+              2023-08-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/02/07/c818df9bd2ba/" target="_self">
           ubuntu的日志管理journalctl
         </a>
@@ -220,7 +286,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/02/07/c818df9bd2ba/" target="_self">
         <div>
-          在 Linux 系统中，journalctl 是管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r 查看实时日志输出: journalctl -f，这将
+          在 Linux 系统中，目前主流使用的systemd管理系统，journalctl 是systemd管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r
         </div>
       </a>
 
@@ -234,6 +300,13 @@
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7-systemd/">#工具/systemd</a>
+            
+          </div>
         
       </div>
     </article>
@@ -267,6 +340,79 @@
           </div>
         
         
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/01/25/d6c93a55c9e0/" target="_self">
+          ipv6源地址选择原理
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/25/d6c93a55c9e0/" target="_self">
+        <div>
+          引言一个接口通常有多个ipv6地址（比如可能存在多个全球地址，多个链路本地地址）。那么设备从接口发包时它会使用哪个地址作为源地址呢？ 假设场景如下：我们设备是路由器，br0有两个链路本地地址：fe80::1&#x2F;64, fe80::2&#x2F;64。路由器下的PC发送dns查询，目的地址为fe80::1，路由器的dns server回包时会使用哪个源地址，fe80::1,还是fe80::2
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-25 14:52" pubdate>
+              2024-01-25
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/04/20/9027c38cc919/" target="_self">
+          ubuntu server安装xfce4桌面
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/20/9027c38cc919/" target="_self">
+        <div>
+          ubuntu server安装xfce4桌面 一般而言不需要使用桌面环境，只是为了使用gitk看log，通过smaba共享，在windows上看log比较慢。 xfce桌面环境据说比较轻量，快捷，linus大神都是用这个  安装xfce4桌面使用如下命令安装： 1sudo apt install xfce4 xfce4-terminal   xfce4-terminal一并装上，不然桌面终端会使用
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-20 23:54" pubdate>
+              2022-04-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ubuntu/">#ubuntu</a>
+            
+          </div>
         
       </div>
     </article>
@@ -318,15 +464,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/02/22/5086bb846897/" target="_self">
-          vscode clangd插件使用
+        <a href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
+          raname批量重命名文件
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/22/5086bb846897/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
         <div>
-          以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub
+          linux rename命令, 正则批量重命名文件安装：apt install rename  语法man看到的帮助信息不多，根据使用经验来看，正则部分的用法和sed差不多。据查是perl正则。 参数  -n 仅打印替换效果，不做实际替换  实例1234567891011121314151617181920# 将123替换为2$ rename -n &#x27;s/123/2/&#x27; 12
         </div>
       </a>
 
@@ -334,8 +480,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-22 10:33" pubdate>
-              2024-02-22
+            <time datetime="2024-02-01 17:04" pubdate>
+              2024-02-01
             </time>
           </div>
         
@@ -351,15 +497,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/01/05/c8daabb7fcee/" target="_self">
-          内存碎片研究
+        <a href="/2025/03/20/15e1016500d3/" target="_self">
+          lsof使用&amp;交叉编译
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/c8daabb7fcee/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/15e1016500d3/" target="_self">
         <div>
-          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
+          lsof是一个查看进程打开哪些文件的命令，平常使用ls -l /proc/pid/fd也能看。但不如lsof详细，它帮你解析了socket的连接信息等。不用自己去&#x2F;proc&#x2F;net&#x2F;tcp等里面去找了  编译我当前的版本为github上最新版本，约为4.99.4。因为编译不过（rpc库链接找不到），我需要先做修改Configure，删除这几行，强制定义HASNORP
         </div>
       </a>
 
@@ -367,107 +513,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-05 14:38" pubdate>
-              2024-01-05
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/04/17/171ada44f455/" target="_self">
-          内核运行一个用户程序
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/17/171ada44f455/" target="_self">
-        <div>
-          使用call_usermodehelper即可。  函数原型1234567891011121314/** * call_usermodehelper() - prepare and start a usermode application * @path: path to usermode executable * @argv: arg vector for process * @envp: e
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-17 14:34" pubdate>
-              2024-04-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/04/04/e4fd2d78b4bb/" target="_self">
-          博客使用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/04/e4fd2d78b4bb/" target="_self">
-        <div>
-          博客使用搭建过程略，这种东西搭一次要用好久，下一次再搭时，方法已经过时了，找官方搭建方法即可(官方的过时很久了，有坑) 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server  hexo安装后，安装了fluid主题。然后配置了一下。 hexo官方文档fluid官方文档 目录结构12public -- 这是生成的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-04 11:41" pubdate>
-              2022-04-04
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/09/09/04d8542f8bb4/" target="_self">
-          生成树协议STP算法
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/09/04d8542f8bb4/" target="_self">
-        <div>
-          生成树协议STP算法 以太网网桥使用生成树协议STP(Spanning Tree Protocol)，可以在提高网络可靠性的同时，又避免环路带来的各种问题。  生成树算法STA(Spanning Tree Algorithm)是生成树协议的核心。它的目的是：在包含有物理环路的网络中，构建出一个能够连通全网各个节点的树形无环路逻辑拓扑。 生成树算法三步骤（1）选举根网桥（2）选举根端口（3）选举指定
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-09 13:55" pubdate>
-              2022-09-09
+            <time datetime="2025-03-20 16:42" pubdate>
+              2025-03-20
             </time>
           </div>
         
@@ -510,44 +557,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/03/30/cab790f4b84f/" target="_self">
-          ubuntu xfce桌面升级后锁屏无法输入登录问题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/30/cab790f4b84f/" target="_self">
-        <div>
-          问题系统更新后，发现xfce桌面超时锁屏后，密码处无法输入字符。无法登录。只能重启。重启后桌面超时锁屏后又无法登录。 网上看到一篇文章 https://bugzilla.redhat.com/show_bug.cgi?id=1955993 ，说是有两个锁屏在运行，导致出现问题。xfce4-screensaverxscreensaver 可以ps查看一下这两个进程是否存在，如果存在那么可能就是同一个
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-30 16:32" pubdate>
-              2023-03-30
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/5/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
