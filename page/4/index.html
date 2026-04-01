@@ -212,15 +212,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/01/05/c8daabb7fcee/" target="_self">
-          内存碎片研究
+        <a href="/2023/12/14/b3979ae8f5b4/" target="_self">
+          C语言实现默认参数
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/c8daabb7fcee/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/14/b3979ae8f5b4/" target="_self">
         <div>
-          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
+          关键字：可变参数，可变长参数 疑惑open函数为什么可以两个参数，也可以三个参数。如下是man open看到的声明： 12int open(const char *pathname, int flags);int open(const char *pathname, int flags, mode_t mode); c语言本身不支持重载，它是怎么做到的呢？ 下面来一个简单的实现。利用逗号表达式和宏
         </div>
       </a>
 
@@ -228,8 +228,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-05 14:38" pubdate>
-              2024-01-05
+            <time datetime="2023-12-14 17:35" pubdate>
+              2023-12-14
             </time>
           </div>
         
@@ -245,15 +245,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/04/17/171ada44f455/" target="_self">
-          内核运行一个用户程序
+        <a href="/2023/12/12/9f5df2999f1d/" target="_self">
+          malloc何时返回失败
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/17/171ada44f455/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/12/9f5df2999f1d/" target="_self">
         <div>
-          使用call_usermodehelper即可。  函数原型1234567891011121314/** * call_usermodehelper() - prepare and start a usermode application * @path: path to usermode executable * @argv: arg vector for process * @envp: e
+          关键字：内存分配机制 在 [[linux是怎样工作的-内存管理]]中怀疑过malloc返回值的意义，感觉它从来不会失败。下面来分析一下应用层的内存分配机制。 应用层机制从系统层面看，进程分配内存有两种方式，brk和mmap（暂不考虑共享内存）。1、brk是将数据段(.data)的最高地址指针_edata往高地址推；2、mmap是在进程的虚拟地址空间中（堆和栈中间，称为文件映射区域的地方）找一块空闲
         </div>
       </a>
 
@@ -261,8 +261,48 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-17 14:34" pubdate>
-              2024-04-17
+            <time datetime="2023-12-12 13:50" pubdate>
+              2023-12-12
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%8A%80%E6%9C%AF-%E5%86%85%E5%AD%98/">#技术/内存</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/28/b38c13ae5dd0/" target="_self">
+          gcc选项跟踪函数调用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/28/b38c13ae5dd0/" target="_self">
+        <div>
+          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-28 19:27" pubdate>
+              2023-08-28
             </time>
           </div>
         
@@ -278,15 +318,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/04/04/e4fd2d78b4bb/" target="_self">
-          博客使用
+        <a href="/2024/01/19/b17d1fe428c2/" target="_self">
+          obsidian插件使用
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/04/e4fd2d78b4bb/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/19/b17d1fe428c2/" target="_self">
         <div>
-          博客使用搭建过程略，这种东西搭一次要用好久，下一次再搭时，方法已经过时了，找官方搭建方法即可(官方的过时很久了，有坑) 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server  hexo安装后，安装了fluid主题。然后配置了一下。 hexo官方文档fluid官方文档 目录结构12public -- 这是生成的
+          高级表格使用tab和enter，自动对齐，比较方便，还可以排序等    fdsf fdsf sdfsdf    ss sssssssssssssss dddddddddddddd   fdsffdsfdsfdsfs fdsfds s   admonition更美观的东西 1不清楚为啥有问题  自定义标题和默认折叠（折叠这个功能很有用，可以折叠大段代码） 12345678910111213title
         </div>
       </a>
 
@@ -294,8 +334,41 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-04 11:41" pubdate>
-              2022-04-04
+            <time datetime="2024-01-19 20:05" pubdate>
+              2024-01-19
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/03/30/cab790f4b84f/" target="_self">
+          ubuntu xfce桌面升级后锁屏无法输入登录问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/30/cab790f4b84f/" target="_self">
+        <div>
+          问题系统更新后，发现xfce桌面超时锁屏后，密码处无法输入字符。无法登录。只能重启。重启后桌面超时锁屏后又无法登录。 网上看到一篇文章 https://bugzilla.redhat.com/show_bug.cgi?id=1955993 ，说是有两个锁屏在运行，导致出现问题。xfce4-screensaverxscreensaver 可以ps查看一下这两个进程是否存在，如果存在那么可能就是同一个
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-30 16:32" pubdate>
+              2023-03-30
             </time>
           </div>
         
@@ -344,15 +417,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/10/23/709e891d88d8/" target="_self">
-          initramfs启动
+        <a href="/2022/02/20/d716b92474cf/" target="_self">
+          perl语言入门第六版读书笔记
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/10/23/709e891d88d8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/20/d716b92474cf/" target="_self">
         <div>
-          下面代码对应的内核版本：6.2  为何需要initrd,initramfs？早期的文件系统一般只保存在一两种存储设备上，内核只需要把这些存储设备的驱动编译进内核即可。后面存储设备越来越多，把所有存储设备的驱动都编译进内核不划算。编译为模块后，这些模块怎么加载呢？linux使用udev来实现模块的自动加载。但是udev是一个应用程序，根文件系统挂载前，无法执行应用程序。所以需要一个中间过度用的文件
+          perl语言入门第六版简介 本书涵盖的最低版本5.8 CPAN,perl综合典藏网，里面包含扩展，文档等 perl解析器能一次完成编译和运行这两个动作。（注意是有先编译，即运行前就可以检查到整个代码的语法错误）  标量数据 perl每个语句必须以分号；结束 perl的数字可以通过下划线分割，方便理解0x1234_2222_ffff perl虽然都是浮点数，但是支持取模运算（%） 如果源代码中有as
         </div>
       </a>
 
@@ -360,8 +433,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-10-23 16:15" pubdate>
-              2024-10-23
+            <time datetime="2022-02-20 20:08" pubdate>
+              2022-02-20
             </time>
           </div>
         
@@ -377,15 +450,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/03/28/4ffd7d75fdff/" target="_self">
-          linux命名空间简介
+        <a href="/2022/09/04/5f598beeb2a8/" target="_self">
+          cut命令使用
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/28/4ffd7d75fdff/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/04/5f598beeb2a8/" target="_self">
         <div>
-          linux namespace提供了一种进程资源隔离的方法。是docker背后的技术原理。  简介  Mount Namespace - 挂载点隔离，一个空间的挂载卸载不影响另一个空间 UTS Namespace - 隔离nodename和domainname两个系统标识 IPC Namespace - 信号量，消息队列等IPC隔离 PID Namespace - pid 隔离 Network
+          cut命令使用 cut的作用主要是对每一行进行剪切，然后输出。可以按三种方式剪切：-b 以字节的形式，-c 以字符的形式，-f 通过分隔符按域。分隔符按域的功能比较弱，可用awk替代。  实例1234567891011# 1，3-7字符leon@home-ubuntu22:~$ echo 12345678 | cut -c 1,3-7134567# 第4个字符到结束leon@home-ubuntu
         </div>
       </a>
 
@@ -393,8 +466,48 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-28 15:29" pubdate>
-              2025-03-28
+            <time datetime="2022-09-04 22:27" pubdate>
+              2022-09-04
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%91%BD%E4%BB%A4/">#命令</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/09/03/04910dde347d/" target="_self">
+          sed使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/03/04910dde347d/" target="_self">
+        <div>
+          关键字：用法 sed使用语法1sed [option] [address]command [input file] 如果没有输入文件，那么从标准输入中读取。 option   option 作用    -n 阻止输入行的自动输出(如需打印得需要p命令)   -f 使用脚本文件而不是命令行输入命令   -e 说明后面跟命令，命令行输入多个命令时使用。也可以使用大括号来实现   -E 使用扩展的正则
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-03 14:44" pubdate>
+              2022-09-03
             </time>
           </div>
         
@@ -410,15 +523,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/03/20/15e1016500d3/" target="_self">
-          lsof使用&amp;交叉编译
+        <a href="/2022/04/20/9027c38cc919/" target="_self">
+          ubuntu server安装xfce4桌面
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/15e1016500d3/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/20/9027c38cc919/" target="_self">
         <div>
-          lsof是一个查看进程打开哪些文件的命令，平常使用ls -l /proc/pid/fd也能看。但不如lsof详细，它帮你解析了socket的连接信息等。不用自己去&#x2F;proc&#x2F;net&#x2F;tcp等里面去找了  编译我当前的版本为github上最新版本，约为4.99.4。因为编译不过（rpc库链接找不到），我需要先做修改Configure，删除这几行，强制定义HASNORP
+          ubuntu server安装xfce4桌面 一般而言不需要使用桌面环境，只是为了使用gitk看log，通过smaba共享，在windows上看log比较慢。 xfce桌面环境据说比较轻量，快捷，linus大神都是用这个  安装xfce4桌面使用如下命令安装： 1sudo apt install xfce4 xfce4-terminal   xfce4-terminal一并装上，不然桌面终端会使用
         </div>
       </a>
 
@@ -426,111 +539,19 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-20 16:42" pubdate>
-              2025-03-20
+            <time datetime="2022-04-20 23:54" pubdate>
+              2022-04-20
             </time>
           </div>
         
         
         
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/03/25/4aecf8606759/" target="_self">
-          mininet模拟128个客户端
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/25/4aecf8606759/" target="_self">
-        <div>
-          安装软件1234sudo apt install mininetsudo apt install openvswitch-testcontroller# 安装dhclient，新版ubuntu已经没有dhclient了sudo apt install isc-dhcp-client  基础命令使用先运行如下命令，创建一个两个主机连在一个交换机s1下的拓扑。 1sudo mn --topo sing
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-25 14:30" pubdate>
-              2025-03-25
-            </time>
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ubuntu/">#ubuntu</a>
+            
           </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/09/71895efc4d6d/" target="_self">
-          调用tzset依然无法刷新时区问题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/09/71895efc4d6d/" target="_self">
-        <div>
-          问题现象一个程序运行时，时区信息是固定的。当外部修改时区信息后，程序并不能知道，还是用的缓存的时区。这时程序的时间就是错误的。一般的解决办法是，进程内调用tzset函数，这可以刷新时区信息，使其得到正确的时间。 问题在于我在程序里面调用了tzset，时间还是没有刷新。 原因结论：c库代码有点问题。 tzset的glibc实现里面，会先获取环境变量TZ，如果和缓存的没有区别，那么就直接返回了。关键代
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-09 15:57" pubdate>
-              2025-01-09
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/04/16/556b72b699c2/" target="_self">
-          reboot命令的执行过程
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/04/16/556b72b699c2/" target="_self">
-        <div>
-          reboot命令大家很熟，但是究竟是怎么reboot的，为何reboot会reboot出bug来。本文以busybox的reboot版本分析。  问题起源今天碰到一个问题，代码内reboot后系统有bug。命令行reboot后又没有问题。追溯代码发现二者的差异，代码内实际运行的reboot -f命令。多了一个-f参数。这参数的区别是什么呢？ busybox内的reboot流程reboot命令处理
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-04-16 18:00" pubdate>
-              2025-04-16
-            </time>
-          </div>
-        
-        
         
       </div>
     </article>

@@ -212,15 +212,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/11/13/e7c664ef15e0/" target="_self">
-          python虚拟环境
+        <a href="/2024/02/26/09c61c706b1b/" target="_self">
+          nautilus文件管理器添加文件备注功能
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/11/13/e7c664ef15e0/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/26/09c61c706b1b/" target="_self">
         <div>
-          在升级Ubuntu 24.04之后，python pip安装包就开始报错了（error: externally-managed-environment）。问题的原因在于ubuntu 24.04对python的环境进行了强制管控。不让用户随便搞了。  为什么需要虚拟环境解决项目依赖特定版本库的问题。比如项目A依赖库X的1.0版本，但是项目B又是根据X库的2.0版本开发的。两个版本的X库不兼容，项目
+          关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~/.local/share/nautilus/scripts目录下创建一个脚本，内容如下： 1234567891011121314#!/bin/bashTMP_FILE=`mktemp`gio info --attributes=metadata::annotation &quot;$1
         </div>
       </a>
 
@@ -228,8 +228,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-11-13 15:27" pubdate>
-              2024-11-13
+            <time datetime="2024-02-26 15:40" pubdate>
+              2024-02-26
             </time>
           </div>
         
@@ -245,15 +245,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/03/22/0621cfc53e84/" target="_self">
-          ros ipv6配置
+        <a href="/2024/01/11/d1f17d6e484c/" target="_self">
+          UBI简介
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/22/0621cfc53e84/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/11/d1f17d6e484c/" target="_self">
         <div>
-          ros ipv6配置官方文档：https://wiki.mikrotik.com/wiki/Manual:TOC 拓扑图flowchart TB 	gm(&quot;光猫(桥模式)&quot;) 	ROS((&quot;ROS&quot;)) 	R1(&quot;Router1&quot;) 	R2(&quot;Router2&quot;) 	R3(&quot;Router3...&quot;)
+          主要是翻译和自己的碎碎念   1. UBI - Unsorted Block Images1.1. 注意人们经常对 UBI 感到困惑，这就是创建此部分的原因。请注意：  UBI 不是闪存转换层 (FTL)，它与 FTL 无关； UBI 与裸闪存配合使用，不适用于 MMC 、 RS-MMC 、 eMMC 、 SD 、 mini-SD 、 micro-SD 、 CompactFlash 、 Memo
         </div>
       </a>
 
@@ -261,48 +261,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-22 15:16" pubdate>
-              2022-03-22
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/09/03/04910dde347d/" target="_self">
-          sed使用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/03/04910dde347d/" target="_self">
-        <div>
-          关键字：用法 sed使用语法1sed [option] [address]command [input file] 如果没有输入文件，那么从标准输入中读取。 option   option 作用    -n 阻止输入行的自动输出(如需打印得需要p命令)   -f 使用脚本文件而不是命令行输入命令   -e 说明后面跟命令，命令行输入多个命令时使用。也可以使用大括号来实现   -E 使用扩展的正则
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-03 14:44" pubdate>
-              2022-09-03
+            <time datetime="2024-01-11 17:45" pubdate>
+              2024-01-11
             </time>
           </div>
         
@@ -318,15 +278,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/03/15/098666119136/" target="_self">
-          sock_filter之bpf
+        <a href="/2024/04/17/171ada44f455/" target="_self">
+          内核运行一个用户程序
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/098666119136/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/17/171ada44f455/" target="_self">
         <div>
-          在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以
+          使用call_usermodehelper即可。  函数原型1234567891011121314/** * call_usermodehelper() - prepare and start a usermode application * @path: path to usermode executable * @argv: arg vector for process * @envp: e
         </div>
       </a>
 
@@ -334,7 +294,73 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-15 16:21" pubdate>
+            <time datetime="2024-04-17 14:34" pubdate>
+              2024-04-17
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/26/26ebe4616e90/" target="_self">
+          top交互式命令
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/26/26ebe4616e90/" target="_self">
+        <div>
+          命令 作用    f 上下键移动；显示(不显示)选中列按d；按选中列排序按s；右键表示要移动该列的位置，然后按上下键移动，移动完成后按Enter键   e 进程的内存单位调整，多次按e，调整不同的单位   E 顶部摘要信息的内存单位   Enter&#x2F;Spaces 立即刷新   H 摘要区域显示线程数，默认显示进程数   k 杀死一个任务，后面可以跟pid号。不跟表示杀死当前提示的进
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-26 15:49" pubdate>
+              2024-03-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/15/a10497a90091/" target="_self">
+          BPF包过滤规则语法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/a10497a90091/" target="_self">
+        <div>
+          BPF(Berkeley Packet Filter)全称为伯克利包过滤,是一种功能非常强大的过滤语法.这个语法被广泛应用于多种数据包嗅探软件,因为大部分数据包嗅探软件都依赖于使用BPF的libpcap&#x2F;WinPcap库.诸如tcpdump,wireshark等等。  语法使用BPF语法创建的过滤器被称为表达式,并且每个表达式包含一个或多个原语。原语是对网络协议标头中的字段（例如，主机
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-15 15:49" pubdate>
               2024-03-15
             </time>
           </div>
@@ -345,44 +371,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%8A%80%E6%9C%AF-bpf/">#技术/bpf</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/28/d3264814853a/" target="_self">
-          tcpdump抓包实时发送到远程主机解析
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/28/d3264814853a/" target="_self">
-        <div>
-          将tcpdump抓到的包实时发送到另一台主机上，另一台主机通过wireshark实时解析。  使用场景嵌入式调试时抓包，有时只能在机内使用tcpdump，如果直接dump到终端，分析不方便。如果直接保存到内存，内存又怕不够。需要一种把抓到的包实时发送到远端保存解析的方法。 实现方法原理：tcpdump抓包保存到标准输出，通过管道发送到远程主机。远程主机wireshark通过管道从标准输入读取数据
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-28 14:30" pubdate>
-              2024-05-28
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E5%B7%A5%E5%85%B7-tcpdump/">#工具/tcpdump</a>
             
@@ -398,15 +386,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/04/20/9027c38cc919/" target="_self">
-          ubuntu server安装xfce4桌面
+        <a href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
+          raname批量重命名文件
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/20/9027c38cc919/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
         <div>
-          ubuntu server安装xfce4桌面 一般而言不需要使用桌面环境，只是为了使用gitk看log，通过smaba共享，在windows上看log比较慢。 xfce桌面环境据说比较轻量，快捷，linus大神都是用这个  安装xfce4桌面使用如下命令安装： 1sudo apt install xfce4 xfce4-terminal   xfce4-terminal一并装上，不然桌面终端会使用
+          linux rename命令, 正则批量重命名文件安装：apt install rename  语法man看到的帮助信息不多，根据使用经验来看，正则部分的用法和sed差不多。据查是perl正则。 参数  -n 仅打印替换效果，不做实际替换  实例1234567891011121314151617181920# 将123替换为2$ rename -n &#x27;s/123/2/&#x27; 12
         </div>
       </a>
 
@@ -414,48 +402,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-20 23:54" pubdate>
-              2022-04-20
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/ubuntu/">#ubuntu</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/03/9515f721ea62/" target="_self">
-          ubuntu生成GUI对话框工具zenity
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/03/9515f721ea62/" target="_self">
-        <div>
-          有时候我们编写的脚本需要弹出GUI对话框提示用户进行下一步操作，或者显示一些信息，或者获取用户的输入。zenity就是这么一个工具，输入一条命令，弹出一个对话框。  支持的对话框类型有如下：1234567891011121314151617应用程序选项：  --calendar                             显示日历对话框  --entry
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-03 09:43" pubdate>
-              2024-05-03
+            <time datetime="2024-02-01 17:04" pubdate>
+              2024-02-01
             </time>
           </div>
         
@@ -471,15 +419,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/02/07/c818df9bd2ba/" target="_self">
-          ubuntu的日志管理journalctl
+        <a href="/2024/01/25/d6c93a55c9e0/" target="_self">
+          ipv6源地址选择原理
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/07/c818df9bd2ba/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/25/d6c93a55c9e0/" target="_self">
         <div>
-          在 Linux 系统中，目前主流使用的systemd管理系统，journalctl 是systemd管理和查看系统日志的主要工具，提供了许多用于处理日志的选项。以下是一些 journalctl 的常用命令。 查看日志 查看所有日志: journalctl 查看特定服务日志: journalctl -u [服务名]，例如 journalctl -u ssh 逆序查看日志：journalctl -r
+          引言一个接口通常有多个ipv6地址（比如可能存在多个全球地址，多个链路本地地址）。那么设备从接口发包时它会使用哪个地址作为源地址呢？ 假设场景如下：我们设备是路由器，br0有两个链路本地地址：fe80::1&#x2F;64, fe80::2&#x2F;64。路由器下的PC发送dns查询，目的地址为fe80::1，路由器的dns server回包时会使用哪个源地址，fe80::1,还是fe80::2
         </div>
       </a>
 
@@ -487,19 +435,12 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-07 11:15" pubdate>
-              2024-02-07
+            <time datetime="2024-01-25 14:52" pubdate>
+              2024-01-25
             </time>
           </div>
         
         
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B7%A5%E5%85%B7-systemd/">#工具/systemd</a>
-            
-          </div>
         
       </div>
     </article>
@@ -544,15 +485,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/02/22/5086bb846897/" target="_self">
-          vscode clangd插件使用
+        <a href="/2024/01/05/c8daabb7fcee/" target="_self">
+          内存碎片研究
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/22/5086bb846897/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/c8daabb7fcee/" target="_self">
         <div>
-          以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub
+          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
         </div>
       </a>
 
@@ -560,19 +501,45 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-22 10:33" pubdate>
-              2024-02-22
+            <time datetime="2024-01-05 14:38" pubdate>
+              2024-01-05
             </time>
           </div>
         
         
         
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B7%A5%E5%85%B7-vscode/">#工具/vscode</a>
-            
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/01/04/f4cdb5edc080/" target="_self">
+          ss命令查看socket上包的占用内存
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/04/f4cdb5edc080/" target="_self">
+        <div>
+          统计socket接收发送队列上的数据长度一般情况下使用只会显示接收发送队列的包数 12345678910# ./ss -ntpState      Recv-Q Send-Q  Local Address:Port    Peer Address:Port Process                             ESTAB      0      0      192.168.66
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-04 15:24" pubdate>
+              2024-01-04
+            </time>
           </div>
+        
+        
         
       </div>
     </article>
