@@ -212,15 +212,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/10/23/709e891d88d8/" target="_self">
-          initramfs启动
+        <a href="/2026/04/01/5219218f2761/" target="_self">
+          单台设备如何模拟测试数据转发性能
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/10/23/709e891d88d8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/04/01/5219218f2761/" target="_self">
         <div>
-          下面代码对应的内核版本：6.2  为何需要initrd,initramfs？早期的文件系统一般只保存在一两种存储设备上，内核只需要把这些存储设备的驱动编译进内核即可。后面存储设备越来越多，把所有存储设备的驱动都编译进内核不划算。编译为模块后，这些模块怎么加载呢？linux使用udev来实现模块的自动加载。但是udev是一个应用程序，根文件系统挂载前，无法执行应用程序。所以需要一个中间过度用的文件
+          有时候想做快速转发性能优化，奈何本地只有一台电脑，怎么模拟测试性能好做对比呢？本文基于linux的网络命名空间来做设备模拟，使用pktgen模块来测试转发pps。  1. 整体拓扑设计（单机模拟三台机器）在一台 Ubuntu 上模拟：client(ns1)  –&gt;  router(ns2)  –&gt;  server(ns3)用 veth 连接：ns1 &lt;–&gt; ns2 &lt
         </div>
       </a>
 
@@ -228,8 +228,81 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-10-23 16:15" pubdate>
-              2024-10-23
+            <time datetime="2026-04-01 17:51" pubdate>
+              2026-04-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/">#未分类</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/14/b3979ae8f5b4/" target="_self">
+          C语言实现默认参数
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/14/b3979ae8f5b4/" target="_self">
+        <div>
+          关键字：可变参数，可变长参数 疑惑open函数为什么可以两个参数，也可以三个参数。如下是man open看到的声明： 12int open(const char *pathname, int flags);int open(const char *pathname, int flags, mode_t mode); c语言本身不支持重载，它是怎么做到的呢？ 下面来一个简单的实现。利用逗号表达式和宏
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-14 17:35" pubdate>
+              2023-12-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/06/05/70a19a46ac1b/" target="_self">
+          cmake执行命令详解
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/70a19a46ac1b/" target="_self">
+        <div>
+          本文介绍add_custom_target和add_custom_command和execute_process命令。  cmake构建可粗分为配置、生成阶段和构建阶段。配置、生成阶段。 配置阶段时执行命令execute_process原型如下： 1234567891011121314151617181920execute_process(COMMAND &lt;cmd1&gt; [&lt;ar
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-05 21:39" pubdate>
+              2024-06-05
             </time>
           </div>
         
@@ -285,15 +358,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/02/22/5086bb846897/" target="_self">
-          vscode clangd插件使用
+        <a href="/2024/02/26/09c61c706b1b/" target="_self">
+          nautilus文件管理器添加文件备注功能
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/22/5086bb846897/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/26/09c61c706b1b/" target="_self">
         <div>
-          以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub
+          关键字：注释   有时候我们需要对文件进行一个简单的备注，描述这个文件的作用。可以通过如下方法快速实现。  在~/.local/share/nautilus/scripts目录下创建一个脚本，内容如下： 1234567891011121314#!/bin/bashTMP_FILE=`mktemp`gio info --attributes=metadata::annotation &quot;$1
         </div>
       </a>
 
@@ -301,8 +374,74 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-22 10:33" pubdate>
-              2024-02-22
+            <time datetime="2024-02-26 15:40" pubdate>
+              2024-02-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/26/26ebe4616e90/" target="_self">
+          top交互式命令
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/26/26ebe4616e90/" target="_self">
+        <div>
+          命令 作用    f 上下键移动；显示(不显示)选中列按d；按选中列排序按s；右键表示要移动该列的位置，然后按上下键移动，移动完成后按Enter键   e 进程的内存单位调整，多次按e，调整不同的单位   E 顶部摘要信息的内存单位   Enter&#x2F;Spaces 立即刷新   H 摘要区域显示线程数，默认显示进程数   k 杀死一个任务，后面可以跟pid号。不跟表示杀死当前提示的进
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-26 15:49" pubdate>
+              2024-03-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2020/08/21/25d4a948ddf5/" target="_self">
+          valgrind使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/21/25d4a948ddf5/" target="_self">
+        <div>
+          valgrind使用编译如下是编译armv7的版本 1234./configure --prefix=`pwd`/llm CC=/projects/hnd/tools/bcm/crosstools-arm-gcc-5.5-linux-4.1-glibc-2.26-binutils-2.28.1/usr/bin/arm-buildroot-linux-gnueabi-gcc --host=armv7
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 16:16" pubdate>
+              2020-08-21
             </time>
           </div>
         
@@ -311,7 +450,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%B7%A5%E5%85%B7-vscode/">#工具/vscode</a>
+              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
             
           </div>
         
@@ -325,15 +464,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/09/09/04d8542f8bb4/" target="_self">
-          生成树协议STP算法
+        <a href="/2024/01/04/f4cdb5edc080/" target="_self">
+          ss命令查看socket上包的占用内存
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/09/04d8542f8bb4/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/04/f4cdb5edc080/" target="_self">
         <div>
-          生成树协议STP算法 以太网网桥使用生成树协议STP(Spanning Tree Protocol)，可以在提高网络可靠性的同时，又避免环路带来的各种问题。  生成树算法STA(Spanning Tree Algorithm)是生成树协议的核心。它的目的是：在包含有物理环路的网络中，构建出一个能够连通全网各个节点的树形无环路逻辑拓扑。 生成树算法三步骤（1）选举根网桥（2）选举根端口（3）选举指定
+          统计socket接收发送队列上的数据长度一般情况下使用只会显示接收发送队列的包数 12345678910# ./ss -ntpState      Recv-Q Send-Q  Local Address:Port    Peer Address:Port Process                             ESTAB      0      0      192.168.66
         </div>
       </a>
 
@@ -341,8 +480,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-09 13:55" pubdate>
-              2022-09-09
+            <time datetime="2024-01-04 15:24" pubdate>
+              2024-01-04
             </time>
           </div>
         
@@ -358,15 +497,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/06/09/9f0cd45aea89/" target="_self">
-          linux进程组，会话，控制终端关系
+        <a href="/2024/03/15/a10497a90091/" target="_self">
+          BPF包过滤规则语法
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/09/9f0cd45aea89/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/a10497a90091/" target="_self">
         <div>
-          从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进
+          BPF(Berkeley Packet Filter)全称为伯克利包过滤,是一种功能非常强大的过滤语法.这个语法被广泛应用于多种数据包嗅探软件,因为大部分数据包嗅探软件都依赖于使用BPF的libpcap&#x2F;WinPcap库.诸如tcpdump,wireshark等等。  语法使用BPF语法创建的过滤器被称为表达式,并且每个表达式包含一个或多个原语。原语是对网络协议标头中的字段（例如，主机
         </div>
       </a>
 
@@ -374,107 +513,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-09 11:10" pubdate>
-              2024-06-09
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/01/09/71895efc4d6d/" target="_self">
-          调用tzset依然无法刷新时区问题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/01/09/71895efc4d6d/" target="_self">
-        <div>
-          问题现象一个程序运行时，时区信息是固定的。当外部修改时区信息后，程序并不能知道，还是用的缓存的时区。这时程序的时间就是错误的。一般的解决办法是，进程内调用tzset函数，这可以刷新时区信息，使其得到正确的时间。 问题在于我在程序里面调用了tzset，时间还是没有刷新。 原因结论：c库代码有点问题。 tzset的glibc实现里面，会先获取环境变量TZ，如果和缓存的没有区别，那么就直接返回了。关键代
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-01-09 15:57" pubdate>
-              2025-01-09
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/05/c8daabb7fcee/" target="_self">
-          内存碎片研究
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/05/c8daabb7fcee/" target="_self">
-        <div>
-          前言最近在一个项目上，遇到进程随运行时间内存一直增长，增长有10M之多。而且不下降。 123456789101112131415VmPeak:   203528 kBVmSize:   132824 kBVmLck:         0 kBVmPin:         0 kBVmHWM:     16104 kBVmRSS:     13536 kBRssAnon:            86
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-05 14:38" pubdate>
-              2024-01-05
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/05/28/d3264814853a/" target="_self">
-          tcpdump抓包实时发送到远程主机解析
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/28/d3264814853a/" target="_self">
-        <div>
-          将tcpdump抓到的包实时发送到另一台主机上，另一台主机通过wireshark实时解析。  使用场景嵌入式调试时抓包，有时只能在机内使用tcpdump，如果直接dump到终端，分析不方便。如果直接保存到内存，内存又怕不够。需要一种把抓到的包实时发送到远端保存解析的方法。 实现方法原理：tcpdump抓包保存到标准输出，通过管道发送到远程主机。远程主机wireshark通过管道从标准输入读取数据
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-28 14:30" pubdate>
-              2024-05-28
+            <time datetime="2024-03-15 15:49" pubdate>
+              2024-03-15
             </time>
           </div>
         
@@ -482,6 +522,8 @@
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%8A%80%E6%9C%AF-bpf/">#技术/bpf</a>
             
               <a href="/tags/%E5%B7%A5%E5%85%B7-tcpdump/">#工具/tcpdump</a>
             
@@ -497,15 +539,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/05/03/9515f721ea62/" target="_self">
-          ubuntu生成GUI对话框工具zenity
+        <a href="/2024/06/05/4d0c83e66cb5/" target="_self">
+          Cmake属性的可见性
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/03/9515f721ea62/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/4d0c83e66cb5/" target="_self">
         <div>
-          有时候我们编写的脚本需要弹出GUI对话框提示用户进行下一步操作，或者显示一些信息，或者获取用户的输入。zenity就是这么一个工具，输入一条命令，弹出一个对话框。  支持的对话框类型有如下：1234567891011121314151617应用程序选项：  --calendar                             显示日历对话框  --entry
+          Cmake可见性实验  原理从 modern cmake(&gt;&#x3D;3.0) 开始，使用的范式从 director-oriented 转换到了 target-oriented。 这其中最重要的有三个概念：  target   target相应的properties   可见性  所谓target就是编译的目标，一般就三种：    静态库: 使用add_library() 动态库: 使用
         </div>
       </a>
 
@@ -513,41 +555,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-03 09:43" pubdate>
-              2024-05-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/04/04/e4fd2d78b4bb/" target="_self">
-          博客使用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/04/e4fd2d78b4bb/" target="_self">
-        <div>
-          博客使用搭建过程略，这种东西搭一次要用好久，下一次再搭时，方法已经过时了，找官方搭建方法即可(官方的过时很久了，有坑) 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server  hexo安装后，安装了fluid主题。然后配置了一下。 hexo官方文档fluid官方文档 目录结构12public -- 这是生成的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-04 11:41" pubdate>
-              2022-04-04
+            <time datetime="2024-06-05 21:34" pubdate>
+              2024-06-05
             </time>
           </div>
         

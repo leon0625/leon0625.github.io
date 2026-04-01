@@ -245,15 +245,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/06/05/4d0c83e66cb5/" target="_self">
-          Cmake属性的可见性
+        <a href="/2023/12/29/987d260b4c15/" target="_self">
+          flock使用体会
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/05/4d0c83e66cb5/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/29/987d260b4c15/" target="_self">
         <div>
-          Cmake可见性实验  原理从 modern cmake(&gt;&#x3D;3.0) 开始，使用的范式从 director-oriented 转换到了 target-oriented。 这其中最重要的有三个概念：  target   target相应的properties   可见性  所谓target就是编译的目标，一般就三种：    静态库: 使用add_library() 动态库: 使用
+          简介它的API很简单，如下 123#include &lt;sys/file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs/locks.
         </div>
       </a>
 
@@ -261,8 +261,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-05 21:34" pubdate>
-              2024-06-05
+            <time datetime="2023-12-29 07:44" pubdate>
+              2023-12-29
             </time>
           </div>
         
@@ -278,15 +278,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/04/16/556b72b699c2/" target="_self">
-          reboot命令的执行过程
+        <a href="/2023/08/28/b38c13ae5dd0/" target="_self">
+          gcc选项跟踪函数调用
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/04/16/556b72b699c2/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/28/b38c13ae5dd0/" target="_self">
         <div>
-          reboot命令大家很熟，但是究竟是怎么reboot的，为何reboot会reboot出bug来。本文以busybox的reboot版本分析。  问题起源今天碰到一个问题，代码内reboot后系统有bug。命令行reboot后又没有问题。追溯代码发现二者的差异，代码内实际运行的reboot -f命令。多了一个-f参数。这参数的区别是什么呢？ busybox内的reboot流程reboot命令处理
+          关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* callsite
         </div>
       </a>
 
@@ -294,114 +294,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-04-16 18:00" pubdate>
-              2025-04-16
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/03/22/0621cfc53e84/" target="_self">
-          ros ipv6配置
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/22/0621cfc53e84/" target="_self">
-        <div>
-          ros ipv6配置官方文档：https://wiki.mikrotik.com/wiki/Manual:TOC 拓扑图flowchart TB 	gm(&quot;光猫(桥模式)&quot;) 	ROS((&quot;ROS&quot;)) 	R1(&quot;Router1&quot;) 	R2(&quot;Router2&quot;) 	R3(&quot;Router3...&quot;)
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-22 15:16" pubdate>
-              2022-03-22
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/02/20/d716b92474cf/" target="_self">
-          perl语言入门第六版读书笔记
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/20/d716b92474cf/" target="_self">
-        <div>
-          perl语言入门第六版简介 本书涵盖的最低版本5.8 CPAN,perl综合典藏网，里面包含扩展，文档等 perl解析器能一次完成编译和运行这两个动作。（注意是有先编译，即运行前就可以检查到整个代码的语法错误）  标量数据 perl每个语句必须以分号；结束 perl的数字可以通过下划线分割，方便理解0x1234_2222_ffff perl虽然都是浮点数，但是支持取模运算（%） 如果源代码中有as
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-20 20:08" pubdate>
-              2022-02-20
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/12/14/b3979ae8f5b4/" target="_self">
-          C语言实现默认参数
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/14/b3979ae8f5b4/" target="_self">
-        <div>
-          关键字：可变参数，可变长参数 疑惑open函数为什么可以两个参数，也可以三个参数。如下是man open看到的声明： 12int open(const char *pathname, int flags);int open(const char *pathname, int flags, mode_t mode); c语言本身不支持重载，它是怎么做到的呢？ 下面来一个简单的实现。利用逗号表达式和宏
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-14 17:35" pubdate>
-              2023-12-14
+            <time datetime="2023-08-28 19:27" pubdate>
+              2023-08-28
             </time>
           </div>
         
@@ -457,15 +351,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/03/15/a10497a90091/" target="_self">
-          BPF包过滤规则语法
+        <a href="/2024/01/25/d6c93a55c9e0/" target="_self">
+          ipv6源地址选择原理
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/a10497a90091/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/25/d6c93a55c9e0/" target="_self">
         <div>
-          BPF(Berkeley Packet Filter)全称为伯克利包过滤,是一种功能非常强大的过滤语法.这个语法被广泛应用于多种数据包嗅探软件,因为大部分数据包嗅探软件都依赖于使用BPF的libpcap&#x2F;WinPcap库.诸如tcpdump,wireshark等等。  语法使用BPF语法创建的过滤器被称为表达式,并且每个表达式包含一个或多个原语。原语是对网络协议标头中的字段（例如，主机
+          引言一个接口通常有多个ipv6地址（比如可能存在多个全球地址，多个链路本地地址）。那么设备从接口发包时它会使用哪个地址作为源地址呢？ 假设场景如下：我们设备是路由器，br0有两个链路本地地址：fe80::1&#x2F;64, fe80::2&#x2F;64。路由器下的PC发送dns查询，目的地址为fe80::1，路由器的dns server回包时会使用哪个源地址，fe80::1,还是fe80::2
         </div>
       </a>
 
@@ -473,8 +367,41 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-15 15:49" pubdate>
-              2024-03-15
+            <time datetime="2024-01-25 14:52" pubdate>
+              2024-01-25
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/12/12/9f5df2999f1d/" target="_self">
+          malloc何时返回失败
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/12/9f5df2999f1d/" target="_self">
+        <div>
+          关键字：内存分配机制 在 [[linux是怎样工作的-内存管理]]中怀疑过malloc返回值的意义，感觉它从来不会失败。下面来分析一下应用层的内存分配机制。 应用层机制从系统层面看，进程分配内存有两种方式，brk和mmap（暂不考虑共享内存）。1、brk是将数据段(.data)的最高地址指针_edata往高地址推；2、mmap是在进程的虚拟地址空间中（堆和栈中间，称为文件映射区域的地方）找一块空闲
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-12-12 13:50" pubdate>
+              2023-12-12
             </time>
           </div>
         
@@ -483,9 +410,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%8A%80%E6%9C%AF-bpf/">#技术/bpf</a>
-            
-              <a href="/tags/%E5%B7%A5%E5%85%B7-tcpdump/">#工具/tcpdump</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF-%E5%86%85%E5%AD%98/">#技术/内存</a>
             
           </div>
         
@@ -499,15 +424,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/03/28/4ffd7d75fdff/" target="_self">
-          linux命名空间简介
+        <a href="/2024/06/09/9f0cd45aea89/" target="_self">
+          linux进程组，会话，控制终端关系
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/28/4ffd7d75fdff/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/09/9f0cd45aea89/" target="_self">
         <div>
-          linux namespace提供了一种进程资源隔离的方法。是docker背后的技术原理。  简介  Mount Namespace - 挂载点隔离，一个空间的挂载卸载不影响另一个空间 UTS Namespace - 隔离nodename和domainname两个系统标识 IPC Namespace - 信号量，消息队列等IPC隔离 PID Namespace - pid 隔离 Network
+          从思考题开始先打开一个终端，运行如下命令： 12$ ping www.baidu.com &amp;$ (ping www.qq.com &amp;) 我们可以看到两个进程都在后台运行，ping结果都打印到当前终端。如果此时我关闭当前终端，这两个ping程序会如何。 结论：ping baidu会停止。ping qq会持续运行，但是没有输出。 进程组、会话、控制终端进程组每个进程都属于一个进程组，进
         </div>
       </a>
 
@@ -515,8 +440,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2025-03-28 15:29" pubdate>
-              2025-03-28
+            <time datetime="2024-06-09 11:10" pubdate>
+              2024-06-09
             </time>
           </div>
         
@@ -532,15 +457,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/12/29/987d260b4c15/" target="_self">
-          flock使用体会
+        <a href="/2022/02/20/d716b92474cf/" target="_self">
+          perl语言入门第六版读书笔记
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/12/29/987d260b4c15/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/20/d716b92474cf/" target="_self">
         <div>
-          简介它的API很简单，如下 123#include &lt;sys/file.h&gt;int flock(int fd, int operation); operation可指定：  LOCK_SH：设置共享（读）锁 LOCK_EX：设置独占（写）锁 LOCK_UN：解锁  它是建议锁。需要所有使用该文件的人都遵循规矩先flock上锁再使用文件才有效。 它是一个系统调用，在内核fs/locks.
+          perl语言入门第六版简介 本书涵盖的最低版本5.8 CPAN,perl综合典藏网，里面包含扩展，文档等 perl解析器能一次完成编译和运行这两个动作。（注意是有先编译，即运行前就可以检查到整个代码的语法错误）  标量数据 perl每个语句必须以分号；结束 perl的数字可以通过下划线分割，方便理解0x1234_2222_ffff perl虽然都是浮点数，但是支持取模运算（%） 如果源代码中有as
         </div>
       </a>
 
@@ -548,8 +473,81 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-12-29 07:44" pubdate>
-              2023-12-29
+            <time datetime="2022-02-20 20:08" pubdate>
+              2022-02-20
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/09/07/9c818c7ca46e/" target="_self">
+          popen后台执行进程问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/07/9c818c7ca46e/" target="_self">
+        <div>
+          popen里面使用&amp;后台进程问题 这个例子可以加深对linux下fork,文件等的理解  直接进入主题，如下代码 1234567891011121314151617181920#include &lt;stdio.h&gt;int main(int argc, char *argv[])&#123;	char line[128];	FILE *fp = popen(&quot;ping 1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-07 10:22" pubdate>
+              2022-09-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BC%96%E7%A8%8B-c/">#编程/c</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
+          raname批量重命名文件
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/01/f4b7b5e6a7f9/" target="_self">
+        <div>
+          linux rename命令, 正则批量重命名文件安装：apt install rename  语法man看到的帮助信息不多，根据使用经验来看，正则部分的用法和sed差不多。据查是perl正则。 参数  -n 仅打印替换效果，不做实际替换  实例1234567891011121314151617181920# 将123替换为2$ rename -n &#x27;s/123/2/&#x27; 12
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-01 17:04" pubdate>
+              2024-02-01
             </time>
           </div>
         
