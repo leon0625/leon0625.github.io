@@ -260,7 +260,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/04/01/5219218f2761/" target="_self">
         <div>
-          有时候想做快速转发性能优化，奈何本地只有一台电脑，怎么模拟测试性能好做对比呢？本文基于linux的网络命名空间来做设备模拟，使用pktgen模块来测试转发pps。  1. 整体拓扑设计（单机模拟三台机器）在一台 Ubuntu 上模拟：client(ns1)  –&gt;  router(ns2)  –&gt;  server(ns3)用 veth 连接：ns1 &lt;–&gt; ns2 &lt
+          本文的实验是在ubuntu（内核版本3.19.0）上运行的。  ftrace原理ftrace是一个追踪器框架，其中一个强大的追踪器就是函数追踪器（即函数的调用过程）。它使用gcc的-pg选项让内核中的每个函数在执行前都调用一个特殊的函数mcount()。该函数本来是在c库中实现，用于prof跟踪调试性能。内核不链接C库，所以就利用了这个gcc特性。mcount函数必现在汇编中实现，因为调用不遵循
         </div>
       </a>
 
