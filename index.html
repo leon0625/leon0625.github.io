@@ -212,6 +212,46 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2026/04/02/8f365e794da9/" target="_self">
+          linux内核函数动态追踪
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/04/02/8f365e794da9/" target="_self">
+        <div>
+          我们看函数时，非常关心两件事：（1）怎么调到这个函数来的；（2）这个函数内部又会调用哪些函数（到哪儿去）。除了一点点搜索代码，查看代码外，还可以使用内核的动态追踪工具来观察它们。 当前运行的系统为ubuntu 24.04(kernel 6.8.0)  动态查看调用栈 – 从哪儿来(1) 检查是否有对应的事件这里使用bpftrace来进行跟踪，首先第一步检查我们想要跟踪的函数是否有对应的事件bpf
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-04-02 17:03" pubdate>
+              2026-04-02
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%8A%80%E6%9C%AF-bpf/">#技术/bpf</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2018/06/02/8ee6ff56fc5e/" target="_self">
           linux内核调试器ftrace使用
         </a>
@@ -554,46 +594,6 @@
           </div>
         
         
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/03/15/098666119136/" target="_self">
-          sock_filter之bpf
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/098666119136/" target="_self">
-        <div>
-          在linux上，我们创建socket收包时，默认会把指定协议的所有数据包收上来。如指定的ETH_P_ALL，那么所有包都会收上来，如果指定IPPROTO_ICMPV6,那么只会收icmpv6的报文。有时我们想过滤部分数据包怎么办呢？使用setsockopt的SO_ATTACH_FILTER选项设置过滤器到内核。  SO_ATTACH_FILTER使用通过SO_ATTACH_FILTER选项，可以
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-15 16:21" pubdate>
-              2024-03-15
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%8A%80%E6%9C%AF-bpf/">#技术/bpf</a>
-            
-          </div>
         
       </div>
     </article>
