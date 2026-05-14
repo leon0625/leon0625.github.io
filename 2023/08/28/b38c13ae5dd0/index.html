@@ -212,7 +212,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          627 字
+          633 字
         
       </span>
     
@@ -323,7 +323,7 @@
 
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>（1）static内敛的函数不会打印函数名，能打印<code>-&gt; /lib/libmib.so+0xbb5a</code>，通过addr2line解析为：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gradle">$ addr2line -e build-x86<span class="hljs-regexp">/rootfs/</span>lib/libmib.so -f <span class="hljs-number">0</span>xbb5a    <br>mib_table_handler_configfile_backup<br><span class="hljs-regexp">/home/</span>leon<span class="hljs-regexp">/code2/</span>starnet_plt<span class="hljs-regexp">/gateway/</span>cml<span class="hljs-regexp">/mib_v2/</span><span class="hljs-keyword">source</span>/mib_table_handler.c:<span class="hljs-number">506</span><br></code></pre></td></tr></table></figure>
-<p>（2）跟踪函数下面的所有调用都要添加<code>__attribute__((no_instrument_function))</code>属性，避免产生循环<br>（3）</p>
+<p>（2）跟踪函数下面的所有调用都要添加<code>__attribute__((no_instrument_function))</code>属性，避免产生循环<br>（3）编译选项添加</p>
 
                 
               </div>
