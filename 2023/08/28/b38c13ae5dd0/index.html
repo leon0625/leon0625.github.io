@@ -27,7 +27,7 @@
 <meta property="og:description" content="初体验关键字：trace  有时需要追踪函数究竟挂在了哪儿，gdb是一个不错的调试工具，但遇到栈被破坏的情况，并不能打印出调用栈，这时下面的方法就排上用处了。  增加gcc编译选项 -finstrument-functionsgcc会自动在函数的入口和出口增加一个函数调用，函数原型为： 12void __cyg_profile_func_exit(void* callee, void* calls">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-28T11:27:00.000Z">
-<meta property="article:modified_time" content="2026-05-14T09:37:00.000Z">
+<meta property="article:modified_time" content="2026-05-14T09:38:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -212,7 +212,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          569 字
+          581 字
         
       </span>
     
@@ -321,8 +321,8 @@
 <p>打印示例：</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs clean">&lt;- /lib/libhi_ipc.so+<span class="hljs-number">0x6b1b</span><br>  -&gt; /lib/libmib.so+<span class="hljs-number">0x9d29</span><br>  &lt;- /lib/libmib.so+<span class="hljs-number">0x9d29</span><br>  -&gt; /lib/libmib.so+<span class="hljs-number">0xbbe0</span><br>    -&gt; mib_conf_global_configs<br>    &lt;- mib_conf_global_configs<br>    -&gt; mib_table_config_get_json_config<br>    &lt;- mib_table_config_get_json_config<br>    -&gt; mib_json_dump_file<br>      -&gt; mib_conf_global_configs<br><br></code></pre></td></tr></table></figure>
 
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>（1）static内敛的函数不会打印函数名，能打印</p>
-
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>（1）static内敛的函数不会打印函数名，能打印<code>-&gt; /lib/libmib.so+0xbb5a</code>，通过addr2line解析为：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
                 
               </div>
             
