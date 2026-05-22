@@ -27,7 +27,7 @@
 <meta property="og:description" content="以前用的微软的c&#x2F;c++插件来进行代码分析，跳转。分析代码很慢，磁盘占用多。没分析完时很难跳转。  前置工作clangd分析代码一样需要编译数据库文件(compile_commands.json)，需要先准备好这个文件。可以使用bear来捕获生成。 安装（1）vscode安装clangd插件 （2）ubuntu上安装clangd。 1sudo apt install clangd ub">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-22T02:33:00.000Z">
-<meta property="article:modified_time" content="2026-05-22T07:14:00.000Z">
+<meta property="article:modified_time" content="2026-05-22T07:15:00.000Z">
 <meta property="article:author" content="leon.liu">
 <meta property="article:tag" content="工具&#x2F;vscode">
 <meta name="twitter:card" content="summary_large_image">
@@ -344,7 +344,7 @@
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># /your/project/.clangd</span><br><span class="hljs-symbol">CompileFlags:</span><br><span class="hljs-symbol">  CompilationDatabase:</span> <span class="hljs-keyword">/path/</span>to/build_dir/<br><span class="hljs-symbol">  Add:</span> [-<span class="hljs-attr">ferror-limit</span><span class="hljs-operator">=</span><span class="hljs-number">0</span>]<br><span class="hljs-symbol"></span><br><span class="hljs-symbol">PathMappings:</span><br>  - Build: <span class="hljs-keyword">/home/</span>user<span class="hljs-keyword">/openwrt/</span>build_dir<span class="hljs-keyword">/target-mipsel/</span>pkg<span class="hljs-number">-1.0</span>/<br><span class="hljs-symbol">    Source:</span> <span class="hljs-keyword">/home/</span>user<span class="hljs-keyword">/openwrt/</span>package<span class="hljs-keyword">/pkg/</span>src/<br></code></pre></td></tr></table></figure>
 
 <p>也可以配置工作区的settings.json</p>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">&#123; <span class="hljs-string">&quot;clangd.arguments&quot;</span>: [ <span class="hljs-string">&quot;--compile-commands-dir=<span class="hljs-variable">$&#123;workspaceFolder&#125;</span>&quot;</span>, <span class="hljs-string">&quot;--path-mappings=/openwrt/build_dir/target-xx/pkg-src=/openwrt/package/pkg/src&quot;</span> ] &#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
