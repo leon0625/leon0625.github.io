@@ -225,7 +225,7 @@
         
         
           <!-- compatible with older versions-->
-          7 分钟
+          6 分钟
         
       </span>
     
@@ -344,7 +344,7 @@
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># /your/project/.clangd</span><br><span class="hljs-symbol">CompileFlags:</span><br><span class="hljs-symbol">  CompilationDatabase:</span> <span class="hljs-keyword">/path/</span>to/build_dir/<br><span class="hljs-symbol">  Add:</span> [-<span class="hljs-attr">ferror-limit</span><span class="hljs-operator">=</span><span class="hljs-number">0</span>]<br><span class="hljs-symbol"></span><br><span class="hljs-symbol">PathMappings:</span><br>  - Build: <span class="hljs-keyword">/home/</span>user<span class="hljs-keyword">/openwrt/</span>build_dir<span class="hljs-keyword">/target-mipsel/</span>pkg<span class="hljs-number">-1.0</span>/<br><span class="hljs-symbol">    Source:</span> <span class="hljs-keyword">/home/</span>user<span class="hljs-keyword">/openwrt/</span>package<span class="hljs-keyword">/pkg/</span>src/<br></code></pre></td></tr></table></figure>
 
 <p>也可以配置工作区的settings.json</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">&#123; <span class="hljs-string">&quot;clangd.arguments&quot;</span>: [ <span class="hljs-string">&quot;--compile-commands-dir=<span class="hljs-variable">$&#123;workspaceFolder&#125;</span>/build&quot;</span>, <span class="hljs-string">&quot;--path-mappings=/openwrt/build_dir/target-xx/pkg=/openwrt/package/pkg/src&quot;</span>, <span class="hljs-string">&quot;--log=verbose&quot;</span> ] &#125;<br></code></pre></td></tr></table></figure>
+
                 
               </div>
             
